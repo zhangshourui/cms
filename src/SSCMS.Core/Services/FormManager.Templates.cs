@@ -71,6 +71,7 @@ namespace SSCMS.Core.Services
             var templates = new List<FormTemplate>();
 
             var directoryPath = await GetTemplatesDirectoryPathAsync(site);
+<<<<<<< HEAD
             var directoryNames = DirectoryUtils.GetDirectoryNames(directoryPath);
             foreach (var directoryName in directoryNames)
             {
@@ -86,6 +87,29 @@ namespace SSCMS.Core.Services
                 var template = GetFormTemplate(directoryPath, true, directoryName);
                 if (template == null) continue;
                 templates.Add(template);
+=======
+            if (DirectoryUtils.IsDirectoryExists(directoryPath))
+            {
+                var directoryNames = DirectoryUtils.GetDirectoryNames(directoryPath);
+                foreach (var directoryName in directoryNames)
+                {
+                    var template = GetFormTemplate(directoryPath, false, directoryName);
+                    if (template == null) continue;
+                    templates.Add(template);
+                }
+            }
+
+            directoryPath = GetTemplatesDirectoryPath();
+            if (DirectoryUtils.IsDirectoryExists(directoryPath))
+            {
+                var directoryNames = DirectoryUtils.GetDirectoryNames(directoryPath);
+                foreach (var directoryName in directoryNames)
+                {
+                    var template = GetFormTemplate(directoryPath, true, directoryName);
+                    if (template == null) continue;
+                    templates.Add(template);
+                }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             }
 
             return templates;

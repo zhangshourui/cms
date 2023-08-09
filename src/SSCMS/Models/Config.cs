@@ -23,6 +23,10 @@ namespace SSCMS.Models
         public bool IsLogError { get; set; } = true;
         public bool IsTimeThreshold { get; set; }
         public int TimeThreshold { get; set; } = 60;
+<<<<<<< HEAD
+=======
+        public bool IsMaterialSiteOnly { get; set; }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         public int AdminUserNameMinLength { get; set; }
         public int AdminPasswordMinLength { get; set; } = 6;
         public PasswordRestriction AdminPasswordRestriction { get; set; } = PasswordRestriction.LetterAndDigit;
@@ -34,6 +38,10 @@ namespace SSCMS.Models
         public int AdminEnforcePasswordChangeDays { get; set; } = 90;
         public bool IsAdminEnforceLogout { get; set; }
         public int AdminEnforceLogoutMinutes { get; set; } = 960;
+<<<<<<< HEAD
+=======
+        public bool IsAdminCaptchaDisabled { get; set; }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         public bool IsUserRegistrationAllowed { get; set; } = true;
         public List<string> UserRegistrationAttributes { get; set; }
         public bool IsUserRegistrationMobile { get; set; }
@@ -50,12 +58,20 @@ namespace SSCMS.Models
         public string UserLockLoginType { get; set; } = "Hours";
         public int UserLockLoginHours { get; set; } = 3;
         public string UserDefaultGroupAdminName { get; set; }
+<<<<<<< HEAD
+=======
+        public bool IsUserCaptchaDisabled { get; set; }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         public bool IsCloudAdmin { get; set; }
         public string AdminTitle { get; set; } = Constants.AdminTitle;
         public string AdminFaviconUrl { get; set; }
         public string AdminLogoUrl { get; set; }
         public string AdminLogoLinkUrl { get; set; } = "https://sscms.com";
         public string AdminWelcomeHtml { get; set; } = @"欢迎使用 SSCMS 管理后台";
+<<<<<<< HEAD
+=======
+        public bool IsAdminUpdateDisabled { get; set; }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         public bool IsHomeClosed { get; set; }
         public string HomeTitle { get; set; } = "用户中心";
         public bool IsHomeLogo { get; set; }

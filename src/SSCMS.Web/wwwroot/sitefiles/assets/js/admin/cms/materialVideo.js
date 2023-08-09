@@ -223,9 +223,16 @@ var methods = {
   btnPullClick: function() {
     var $this = this;
 
+<<<<<<< HEAD
     utils.alertWarning({
       title: '拉取公众号视频素材',
       text: '此操作将拉取公众号视频素材，确认吗？',
+=======
+    utils.alertDelete({
+      title: '拉取公众号视频素材',
+      text: '此操作将拉取公众号视频素材，确定吗？',
+      button: '确 定',
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       callback: function () {
         $this.apiPull();
       }

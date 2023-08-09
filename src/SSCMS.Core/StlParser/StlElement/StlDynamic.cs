@@ -2,7 +2,10 @@
 using System.Threading.Tasks;
 using SSCMS.Core.StlParser.Attributes;
 using SSCMS.Parse;
+<<<<<<< HEAD
 using SSCMS.Core.StlParser.Utility;
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 using SSCMS.Enums;
 using SSCMS.Models;
 using SSCMS.Services;
@@ -128,7 +131,11 @@ namespace SSCMS.Core.StlParser.StlElement
             var templateInfo = await databaseManager.TemplateRepository.GetAsync(dynamicInfo.TemplateId);
             var siteInfo = await databaseManager.SiteRepository.GetAsync(dynamicInfo.SiteId);
 
+<<<<<<< HEAD
             await parseManager.InitAsync(EditMode.Default, siteInfo, dynamicInfo.ChannelId, dynamicInfo.ContentId, templateInfo);
+=======
+            await parseManager.InitAsync(EditMode.Default, siteInfo, dynamicInfo.ChannelId, dynamicInfo.ContentId, templateInfo, 0);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
             parseManager.PageInfo.User = dynamicInfo.User;
 

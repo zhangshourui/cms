@@ -111,11 +111,20 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Editor
                         relatedFields[style.RelatedFieldId] = items;
                     }
                 }
+<<<<<<< HEAD
+=======
+                else if (style.InputType == InputType.Date || style.InputType == InputType.DateTime)
+                {
+                    var date = TranslateUtils.ToDateTime(content.Get<string>(style.AttributeName), DateTime.Now);
+                    content.Set(style.AttributeName, date);
+                }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             }
 
             var siteUrl = await _pathManager.GetSiteUrlAsync(site, true);
 
             var linkTypes = _pathManager.GetLinkTypeSelects(false);
+<<<<<<< HEAD
             var root = await _channelRepository.GetCascadeAsync(site, await _channelRepository.GetAsync(request.SiteId));
             if (content.LinkType == LinkType.LinkToChannel)
             {
@@ -125,6 +134,48 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Editor
                     var targetChannelId = channelIds[channelIds.Count - 1];
                     var name = await _channelRepository.GetChannelNameNavigationAsync(request.SiteId, targetChannelId);
                     content.Set("LinkToChannel", name);
+=======
+            var root = await _channelRepository.GetCascadeAsync(site, await _channelRepository.GetAsync(request.SiteId), async summary =>
+            {
+                var count = await _contentRepository.GetCountAsync(site, summary);
+
+                return new
+                {
+                    Count = count
+                };
+            });
+
+            var linkTo = new LinkTo
+            {
+                ChannelIds = new List<int> {
+                  request.SiteId,
+                },
+                ContentId = 0,
+                ContentTitle = string.Empty
+            };
+            if (content.LinkType == Enums.LinkType.LinkToChannel)
+            {
+                linkTo.ChannelIds = ListUtils.GetIntList(content.LinkUrl);
+            }
+            else if (content.LinkType == Enums.LinkType.LinkToContent)
+            {
+                if (!string.IsNullOrEmpty(content.LinkUrl) && content.LinkUrl.IndexOf('_') != -1)
+                {
+                    var arr = content.LinkUrl.Split('_');
+                    if (arr.Length == 2)
+                    {
+                        var channelIds = ListUtils.GetIntList(arr[0]);
+                        var contentId = TranslateUtils.ToInt(arr[1]);
+                        var channelId = channelIds.Count > 0 ? channelIds[channelIds.Count - 1] : 0;
+                        var linkToContent = await _contentRepository.GetAsync(site.Id, channelId, contentId);
+                        if (linkToContent != null)
+                        {
+                            linkTo.ChannelIds = channelIds;
+                            linkTo.ContentId = contentId;
+                            linkTo.ContentTitle = linkToContent.Title;
+                        }
+                    }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 }
             }
 
@@ -138,6 +189,42 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Editor
                 CloudType = await _cloudManager.GetCloudTypeAsync(),
             };
 
+<<<<<<< HEAD
+=======
+            var breadcrumbItems = new List<Select<int>>();
+            if (channel.ParentsPath != null && channel.ParentsPath.Count > 0)
+            {
+                foreach (var channelId in channel.ParentsPath)
+                {
+                    var channelName = await _channelRepository.GetChannelNameAsync(request.SiteId, channelId);
+                    if (string.IsNullOrEmpty(channelName)) continue;
+
+                    breadcrumbItems.Add(new Select<int>
+                    {
+                        Value = channelId,
+                        Label = channelName,
+                    });
+                }
+            }
+            breadcrumbItems.Add(new Select<int>
+            {
+                Value = channel.Id,
+                Label = channel.ChannelName,
+            });
+
+            var isScheduled = false;
+            DateTime? scheduledDate = DateTime.Now.AddDays(1);
+            if (!content.Checked && content.CheckedLevel == CheckManager.LevelInt.ScheduledPublish)
+            {
+                var task = await _scheduledTaskRepository.GetPublishAsync(content.SiteId, content.ChannelId, content.Id);
+                if (task != null)
+                {
+                    isScheduled = true;
+                    scheduledDate = task.ScheduledDate;
+                }
+            }
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             return new GetResult
             {
                 CSRFToken = _authManager.GetCSRFToken(),
@@ -153,8 +240,17 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Editor
                 CheckedLevels = checkedLevels,
                 CheckedLevel = userCheckedLevel,
                 LinkTypes = linkTypes,
+<<<<<<< HEAD
                 Root = root,
                 Settings = settings,
+=======
+                LinkTo = linkTo,
+                Root = root,
+                Settings = settings,
+                BreadcrumbItems = breadcrumbItems,
+                IsScheduled = isScheduled,
+                ScheduledDate = scheduledDate,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             };
         }
     }

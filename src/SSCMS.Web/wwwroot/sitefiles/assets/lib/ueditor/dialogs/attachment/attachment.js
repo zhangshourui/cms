@@ -504,7 +504,12 @@
                     var responseText = (ret._raw || ret),
                         json = utils.str2json(responseText);
                     if (json.state == 'SUCCESS') {
+<<<<<<< HEAD
                         _this.fileList.push(json);
+=======
+                        // _this.fileList.push(json);
+                        _this.fileList[$file.index()] = json;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                         $file.append('<span class="success"></span>');
                     } else {
                         $file.find('.error').text(json.state).show();

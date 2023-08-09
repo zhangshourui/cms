@@ -17,6 +17,7 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Templates
                 return this.Error(Constants.ErrorSafeMode);
             }
             
+<<<<<<< HEAD
             if (request.FileType == "html")
             {
                 if (!await _authManager.HasSitePermissionsAsync(request.SiteId, MenuUtils.SitePermissions.TemplatesIncludes))
@@ -30,6 +31,11 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Templates
                 {
                     return Unauthorized();
                 }
+=======
+            if (!await _authManager.HasSitePermissionsAsync(request.SiteId, MenuUtils.SitePermissions.TemplatesAssets))
+            {
+                return Unauthorized();
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             }
 
             var site = await _siteRepository.GetAsync(request.SiteId);

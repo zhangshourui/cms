@@ -76,8 +76,14 @@
                         v-for="level in checkedLevels"
                         v-key="level.label"
                         :label="level.label"
+<<<<<<< HEAD
                         >{{ level.text }}</el-checkbox
                       >
+=======
+                        >
+                        {{ level.text }}
+                      </el-checkbox>
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                     </el-checkbox-group>
                   </el-form-item>
                   <el-form-item label="内容属性">
@@ -288,6 +294,23 @@
     <div style="height: 10px"></div>
 
     @await Html.PartialAsync("_PartialContents")
+<<<<<<< HEAD
+=======
+
+    <el-row style="margin-top: 7px;">
+      <el-col :span="24" align="center">
+        <el-pagination
+        size="mini"
+        background
+        v-on:current-change="handleCurrentChange"
+        :current-page="page"
+        :page-size="pageSize"
+        layout="total, prev, pager, next, jumper"
+        :total="total">
+      </el-pagination>
+      </el-col>
+    </el-row>
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   </el-main>
 </el-container>
 

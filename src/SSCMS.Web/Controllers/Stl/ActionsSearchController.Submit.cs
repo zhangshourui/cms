@@ -28,6 +28,10 @@ namespace SSCMS.Web.Controllers.Stl
                     };
                 }
 
+<<<<<<< HEAD
+=======
+                var ajaxDivId = StringUtils.FilterXss(request.AjaxDivId);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 var form = GetPostCollection(request);
 
                 template = _settingsManager.Decrypt(request.Template);
@@ -47,7 +51,11 @@ namespace SSCMS.Web.Controllers.Stl
                 };
                 var site = await _siteRepository.GetAsync(request.SiteId);
 
+<<<<<<< HEAD
                 await _parseManager.InitAsync(EditMode.Default, site, request.SiteId, 0, templateInfo);
+=======
+                await _parseManager.InitAsync(EditMode.Default, site, request.SiteId, 0, templateInfo, 0);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 _parseManager.PageInfo.User = await _authManager.GetUserAsync();
 
                 var contentBuilder = new StringBuilder(StlRequest.ParseRequestEntities(form, template));
@@ -76,7 +84,11 @@ namespace SSCMS.Web.Controllers.Stl
                         var pageHtml = await stlPageContents.ParseAsync(totalNum, currentPageIndex, pageCount, false);
                         var pagedBuilder = new StringBuilder(contentBuilder.ToString().Replace(stlPageContentsElementReplaceString, pageHtml));
 
+<<<<<<< HEAD
                         await _parseManager.ReplacePageElementsInSearchPageAsync(pagedBuilder, stlLabelList, request.AjaxDivId, currentPageIndex, pageCount, totalNum);
+=======
+                        await _parseManager.ReplacePageElementsInSearchPageAsync(pagedBuilder, stlLabelList, ajaxDivId, currentPageIndex, pageCount, totalNum);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
                         if (request.IsHighlight && !string.IsNullOrEmpty(request.Word))
                         {
@@ -113,7 +125,11 @@ namespace SSCMS.Web.Controllers.Stl
                         var pageHtml = await stlPageSqlContents.ParseAsync(totalNum, currentPageIndex, pageCount);
                         var pagedBuilder = new StringBuilder(contentBuilder.ToString().Replace(stlElement, pageHtml));
 
+<<<<<<< HEAD
                         await _parseManager.ReplacePageElementsInSearchPageAsync(pagedBuilder, stlLabelList, request.AjaxDivId, currentPageIndex, pageCount, totalNum);
+=======
+                        await _parseManager.ReplacePageElementsInSearchPageAsync(pagedBuilder, stlLabelList, ajaxDivId, currentPageIndex, pageCount, totalNum);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
                         if (request.IsHighlight && !string.IsNullOrEmpty(request.Word))
                         {

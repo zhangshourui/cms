@@ -107,8 +107,17 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Editor
             public List<Select<int>> CheckedLevels { get; set; }
             public int CheckedLevel { get; set; }
             public IEnumerable<Select<string>> LinkTypes { get; set; }
+<<<<<<< HEAD
             public Cascade<int> Root { get; set; }
             public Settings Settings { get; set; }
+=======
+            public LinkTo LinkTo { get; set; }
+            public Cascade<int> Root { get; set; }
+            public Settings Settings { get; set; }
+            public List<Select<int>> BreadcrumbItems { get; set; }
+            public bool IsScheduled { get; set; }
+            public DateTime? ScheduledDate { get; set; }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         }
 
         public class PreviewRequest
@@ -124,6 +133,18 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Editor
             public string Url { get; set; }
         }
 
+<<<<<<< HEAD
+=======
+        public class LinkTo
+        {
+            public List<int> ChannelIds { get; set; }
+
+            public int ContentId { get; set; }
+
+            public string ContentTitle { get; set; }
+        }
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         public class SubmitRequest
         {
             public int SiteId { get; set; }
@@ -131,6 +152,10 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Editor
             public int ContentId { get; set; }
             public Content Content { get; set; }
             public List<Translate> Translates { get; set; }
+<<<<<<< HEAD
+=======
+            public LinkTo LinkTo { get; set; }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             public bool IsScheduled { get; set; }
             public DateTime ScheduledDate { get; set; }
         }

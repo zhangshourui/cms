@@ -2,13 +2,21 @@
 using Microsoft.AspNetCore.Mvc;
 using SSCMS.Utils;
 using SSCMS.Core.Utils;
+<<<<<<< HEAD
+=======
+using SSCMS.Dto;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
 namespace SSCMS.Web.Controllers.Admin.Cms.Settings
 {
     public partial class SettingsCreateRuleController
     {
         [HttpPost, Route(Route)]
+<<<<<<< HEAD
         public async Task<ActionResult<GetResult>> Submit([FromBody] SubmitRequest request)
+=======
+        public async Task<ActionResult<BoolResult>> Submit([FromBody] SubmitRequest request)
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         {
             if (!await _authManager.HasSitePermissionsAsync(request.SiteId,
                     MenuUtils.SitePermissions.SettingsCreateRule))
@@ -19,6 +27,7 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Settings
             var site = await _siteRepository.GetAsync(request.SiteId);
             if (site == null) return this.Error("无法确定内容对应的站点");
 
+<<<<<<< HEAD
             var channel = await _channelRepository.GetAsync(request.ChannelId);
 
             if (request.ChannelId != request.SiteId)
@@ -26,6 +35,31 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Settings
                 channel.LinkUrl = request.LinkUrl;
                 channel.LinkType = request.LinkType;
 
+=======
+            var channel = await _channelRepository.GetAsync(request.Id);
+
+            if (request.Id != request.SiteId)
+            {
+                channel.LinkType = request.LinkType;
+
+                if (channel.LinkType == Enums.LinkType.None)
+                {
+                    channel.LinkUrl = request.LinkUrl;
+                }
+                else if (channel.LinkType == Enums.LinkType.LinkToChannel)
+                {
+                    channel.LinkUrl = ListUtils.ToString(request.ChannelIds);
+                }
+                else if (channel.LinkType == Enums.LinkType.LinkToContent)
+                {
+                    channel.LinkUrl = ListUtils.ToString(request.ChannelIds) + "_" + request.ContentId;
+                }
+                else
+                {
+                    channel.LinkUrl = string.Empty;
+                }
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 var filePath = channel.FilePath;
                 if (!string.IsNullOrEmpty(request.FilePath) && !StringUtils.EqualsIgnoreCase(filePath, request.FilePath))
                 {
@@ -78,17 +112,26 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Settings
                 }
             }
 
+<<<<<<< HEAD
             if (request.ChannelFilePathRule != await _pathManager.GetChannelFilePathRuleAsync(site, request.ChannelId))
             {
                 channel.ChannelFilePathRule = request.ChannelFilePathRule;
             }
             if (request.ContentFilePathRule != await _pathManager.GetContentFilePathRuleAsync(site, request.ChannelId))
+=======
+            if (request.ChannelFilePathRule != await _pathManager.GetChannelFilePathRuleAsync(site, request.Id))
+            {
+                channel.ChannelFilePathRule = request.ChannelFilePathRule;
+            }
+            if (request.ContentFilePathRule != await _pathManager.GetContentFilePathRuleAsync(site, request.Id))
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             {
                 channel.ContentFilePathRule = request.ContentFilePathRule;
             }
 
             await _channelRepository.UpdateAsync(channel);
 
+<<<<<<< HEAD
             await _createManager.CreateChannelAsync(request.SiteId, request.ChannelId);
 
             await _authManager.AddSiteLogAsync(request.SiteId, request.ChannelId, 0, "设置页面生成规则", $"栏目：{channel.ChannelName}");
@@ -112,6 +155,15 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Settings
             return new GetResult
             {
                 Channel = cascade
+=======
+            await _createManager.CreateChannelAsync(request.SiteId, request.Id);
+
+            await _authManager.AddSiteLogAsync(request.SiteId, request.Id, 0, "设置页面生成规则", $"栏目：{channel.ChannelName}");
+
+            return new BoolResult
+            {
+                Value = true
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             };
         }
     }

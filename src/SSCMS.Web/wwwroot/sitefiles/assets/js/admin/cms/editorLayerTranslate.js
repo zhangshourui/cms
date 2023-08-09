@@ -63,6 +63,10 @@ var methods = {
     });
 
     var transSiteId = this.form.transSiteIds[this.form.transSiteIds.length - 1];
+<<<<<<< HEAD
+=======
+    var transType = this.siteId !== transSiteId ? 'Copy' : this.form.transType;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
     utils.loading(this, true);
     $api.post($url, {
@@ -70,7 +74,11 @@ var methods = {
       channelId: this.channelId,
       transSiteId: transSiteId,
       transChannelIds: transChannelIds,
+<<<<<<< HEAD
       transType: this.form.transType
+=======
+      transType: transType
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     }).then(function (response) {
       var res = response.data;
 
@@ -79,7 +87,11 @@ var methods = {
         parent.$vue.addTranslation(
           transSiteId,
           channel.id,
+<<<<<<< HEAD
           $this.form.transType,
+=======
+          transType,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
           channel.name
         );
       });
@@ -92,6 +104,14 @@ var methods = {
     });
   },
 
+<<<<<<< HEAD
+=======
+  isCopyType: function () {
+    var transSiteId = this.form.transSiteIds[this.form.transSiteIds.length - 1];
+    return this.siteId === transSiteId;
+  },
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   handleTransSiteIdChange: function() {
     this.apiGetOptions();
   },

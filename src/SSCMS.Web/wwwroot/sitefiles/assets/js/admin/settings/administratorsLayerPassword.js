@@ -38,13 +38,26 @@ var methods = {
     });
   },
 
+<<<<<<< HEAD
+=======
+  toBase64: function(text) {
+    var bytes = new TextEncoder().encode(text);
+    var binString = Array.from(bytes, function (x) { return String.fromCodePoint(x) }).join("");
+    return btoa(binString);
+  },
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   apiSubmit: function () {
     var $this = this;
 
     utils.loading(this, true);
     $api.post($url, {
       userName: this.userName,
+<<<<<<< HEAD
       password: this.form.password
+=======
+      password: this.form.password ? this.toBase64(this.form.password) : '',
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     }).then(function (response) {
       var res = response.data;
 

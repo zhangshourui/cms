@@ -27,7 +27,12 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Contents
             var columns = await columnsManager.GetContentListColumnsAsync(site, channel, ColumnsManager.PageType.Contents);
 
             var (isChecked, checkedLevel) = await CheckManager.GetUserCheckLevelAsync(_authManager, site, request.SiteId);
+<<<<<<< HEAD
             var checkedLevels = CheckManager.GetCheckedLevels(site, isChecked, checkedLevel, true);
+=======
+            // var checkedLevels = CheckManager.GetCheckedLevels(site, isChecked, checkedLevel, true);
+            var checkedLevels = ElementUtils.GetCheckBoxes(CheckManager.GetCheckedLevels(site, isChecked, checkedLevel, true));
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
             return new GetResult
             {

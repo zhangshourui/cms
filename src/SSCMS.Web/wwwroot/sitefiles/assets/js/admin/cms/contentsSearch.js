@@ -14,6 +14,10 @@ var data = utils.init({
   pageSize: null,
   page: 1,
   titleColumn: null,
+<<<<<<< HEAD
+=======
+  bodyColumn: null,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   columns: null,
   permissions: null,
   menus: null,
@@ -55,6 +59,10 @@ var methods = {
       $this.tagNames = res.tagNames;
       $this.checkedLevels = res.checkedLevels;
       $this.titleColumn = res.titleColumn;
+<<<<<<< HEAD
+=======
+      $this.bodyColumn = res.bodyColumn;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       $this.columns = res.columns;
       $this.permissions = res.permissions;
       $this.permissions.isAdd = false;
@@ -64,6 +72,14 @@ var methods = {
         displayName: $this.titleColumn.displayName,
         value: keyword
       });
+<<<<<<< HEAD
+=======
+      $this.searchColumns.push({
+        attributeName: $this.bodyColumn.attributeName,
+        displayName: $this.bodyColumn.displayName,
+        value: ''
+      });
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
       $this.searchForm.checkedLevels = _.map(res.checkedLevels, function(x) { return x.label; });
       if (keyword) {
@@ -251,7 +267,12 @@ var methods = {
       siteId: this.siteId,
       channelId: content.channelId,
       contentId: content.id,
+<<<<<<< HEAD
       page: this.page
+=======
+      page: this.page,
+      tabName: utils.getTabName()
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     });
   },
 
@@ -377,9 +398,13 @@ var methods = {
   },
 
   handleHeaderDragend: function(newWidth, oldWidth, column) {
+<<<<<<< HEAD
     if (column.columnKey) {
       this.apiWidth(column.columnKey, newWidth);
     }
+=======
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   },
 
   handleColumnsChange: function() {

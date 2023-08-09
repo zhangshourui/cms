@@ -64,6 +64,7 @@ namespace SSCMS.Web.Controllers.Preview
             if (visualInfo.Site == null || visualInfo.Template == null) return null;
 
             var site = visualInfo.Site;
+<<<<<<< HEAD
             var templateInfo = visualInfo.Template;
 
             await _parseManager.InitAsync(EditMode.Preview, site, visualInfo.ChannelId, visualInfo.ContentId, templateInfo);
@@ -72,6 +73,16 @@ namespace SSCMS.Web.Controllers.Preview
 
             var contentBuilder = new StringBuilder(await _pathManager.GetTemplateContentAsync(site, templateInfo));
             if (templateInfo.CreatedFileExtName == ".shtml")
+=======
+            var template = visualInfo.Template;
+
+            await _parseManager.InitAsync(EditMode.Preview, site, visualInfo.ChannelId, visualInfo.ContentId, template, 0);
+            _parseManager.PageInfo.IsLocal = true;
+            _parseManager.ContextInfo.ContextType = visualInfo.ContextType;
+
+            var contentBuilder = new StringBuilder(await _pathManager.GetTemplateContentAsync(site, template));
+            if (template.CreatedFileExtName == ".shtml")
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             {
                 //<!-- #include virtual="{Stl.SiteUrl}/include/head.html" -->
 
@@ -80,6 +91,7 @@ namespace SSCMS.Web.Controllers.Preview
             }
             FileResult message = null;
 
+<<<<<<< HEAD
             if (templateInfo.TemplateType == TemplateType.FileTemplate)           //单页
             {
                 message = await GetFileTemplateAsync(visualInfo, contentBuilder);
@@ -89,6 +101,17 @@ namespace SSCMS.Web.Controllers.Preview
                 message = await GetChannelTemplateAsync(visualInfo, contentBuilder);
             }
             else if (templateInfo.TemplateType == TemplateType.ContentTemplate)        //内容页面
+=======
+            if (template.TemplateType == TemplateType.FileTemplate)           //单页
+            {
+                message = await GetFileTemplateAsync(visualInfo, contentBuilder);
+            }
+            else if (template.TemplateType == TemplateType.IndexPageTemplate || template.TemplateType == TemplateType.ChannelTemplate)        //栏目页面
+            {
+                message = await GetChannelTemplateAsync(visualInfo, contentBuilder);
+            }
+            else if (template.TemplateType == TemplateType.ContentTemplate)        //内容页面
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             {
                 message = await GetContentTemplateAsync(visualInfo, contentBuilder);
             }

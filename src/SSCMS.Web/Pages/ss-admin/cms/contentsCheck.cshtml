@@ -30,6 +30,7 @@
     <el-row>
       <el-col :span="20">
         <el-form v-on:submit.native.prevent ref="searchForm" :model="searchForm" :inline="true" size="small" label-width="100px">
+<<<<<<< HEAD
           <el-form-item label="栏目" prop="channelIds">
             <el-cascader
               ref="channelIds"
@@ -41,6 +42,27 @@
               placeholder="请选择栏目"
             >
             </el-cascader>
+=======
+          <el-form-item label="栏目" prop="channelIds" :rules="{ required: true, message: '请选择栏目' }">
+            <el-cascader
+                ref="channelIds"
+                v-model="searchForm.channelIds"
+                :options="[root]"
+                :props="{ multiple: true, checkStrictly: true }"
+                filterable
+                placeholder="请选择栏目"
+              >
+                <span slot-scope="{ node, data }">
+                  {{ node.label }}
+                </span>
+              </el-cascader>
+          </el-form-item>
+          <el-form-item>
+            <el-checkbox
+              v-model="searchForm.isAllContents"
+              label="包含子栏目"
+            ></el-checkbox>
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
           </el-form-item>
           <el-form-item>
             <el-popover placement="top" width="580" trigger="click">
@@ -179,7 +201,11 @@
     <el-row>
       <el-col :span="24">
         <el-form v-on:submit.native.prevent :inline="true" size="small" label-width="100px">
+<<<<<<< HEAD
           <el-form-item label="添加时间">
+=======
+          <el-form-item label="添加日期">
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             <el-col :span="11">
               <el-date-picker
                 type="datetime"
@@ -254,9 +280,13 @@
     <el-divider></el-divider>
     <el-row align="center" style="margin-right: 5px; margin-top: 10px">
       <el-col :span="24" align="center">
+<<<<<<< HEAD
         <el-button size="small" type="primary" v-on:click="btnSearchClick"
           >搜 索</el-button
         >
+=======
+        <el-button size="small" type="primary" v-on:click="btnSearchClick">搜 索</el-button>
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       </el-col>
     </el-row>
   </el-main>
@@ -290,6 +320,7 @@
 
     <div style="height: 10px"></div>
 
+<<<<<<< HEAD
     <el-table
       :data="pageContents"
       border
@@ -763,6 +794,21 @@
           :total="total"
         >
         </el-pagination>
+=======
+    @await Html.PartialAsync("_PartialContents")
+
+    <el-row style="margin-top: 7px;">
+      <el-col :span="24" align="center">
+        <el-pagination
+        size="mini"
+        background
+        v-on:current-change="handleCurrentChange"
+        :current-page="page"
+        :page-size="pageSize"
+        layout="total, prev, pager, next, jumper"
+        :total="total">
+      </el-pagination>
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       </el-col>
     </el-row>
   </el-main>

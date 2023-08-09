@@ -19,6 +19,7 @@ namespace SSCMS.Core.Utils.Office
         }
 
         public async Task CreateExcelFileForContentsAsync(string filePath, Site site,
+<<<<<<< HEAD
             Channel channel, IEnumerable<int> contentIdList, List<string> displayAttributes, bool isPeriods, string startDate,
             string endDate, bool? checkedState)
         {
@@ -68,6 +69,8 @@ namespace SSCMS.Core.Utils.Office
         }
 
         public async Task CreateExcelFileForContentsAsync(string filePath, Site site,
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             Channel channel, List<Content> contentInfoList, List<string> columnNames)
         {
             DirectoryUtils.CreateDirectoryIfNotExists(DirectoryUtils.GetDirectoryPath(filePath));
@@ -103,7 +106,11 @@ namespace SSCMS.Core.Utils.Office
                 rows.Add(row);
             }
 
+<<<<<<< HEAD
             CsvUtils.Export(filePath, head, rows);
+=======
+            ExcelUtils.Write(filePath, head, rows);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         }
 
         public async Task CreateExcelFileForUsersAsync(string filePath, bool? checkedState)
@@ -148,7 +155,11 @@ namespace SSCMS.Core.Utils.Office
                 });
             }
 
+<<<<<<< HEAD
             CsvUtils.Export(filePath, head, rows);
+=======
+            ExcelUtils.Write(filePath, head, rows);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         }
 
         public async Task CreateExcelFileForAdministratorsAsync(string filePath)
@@ -184,7 +195,11 @@ namespace SSCMS.Core.Utils.Office
                 });
             }
 
+<<<<<<< HEAD
             CsvUtils.Export(filePath, head, rows);
+=======
+            ExcelUtils.Write(filePath, head, rows);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         }
 
         public async Task<List<Content>> GetContentsByFileAsync(string filePath, Site site, Channel channel)
@@ -192,7 +207,11 @@ namespace SSCMS.Core.Utils.Office
             var contents = new List<Content>();
             var styles = ColumnsManager.GetContentListStyles(await _databaseManager.TableStyleRepository.GetContentStylesAsync(site, channel));
 
+<<<<<<< HEAD
             var sheet = ExcelUtils.GetDataTable(filePath);
+=======
+            var sheet = ExcelUtils.Read(filePath);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             if (sheet != null)
             {
                 var columns = new List<string>();

@@ -52,9 +52,14 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Forms
                 rows.Add(row);
             }
 
+<<<<<<< HEAD
             var fileName = $"{form.Title}.csv";
 
             CsvUtils.Export(_pathManager.GetTemporaryFilesPath(fileName), head, rows);
+=======
+            var fileName = $"{form.Title}.xlsx";
+            ExcelUtils.Write(_pathManager.GetTemporaryFilesPath(fileName), head, rows);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             var downloadUrl = _pathManager.GetTemporaryFilesUrl(fileName);
 
             return new StringResult

@@ -10,6 +10,7 @@
     </el-radio-group>
     <div class="tips">此功能通常用于制作调试期间，网站正式上线后不建议启用</div>
   </el-form-item>
+<<<<<<< HEAD
   <el-form-item label="当内容变动时是否生成本页">
     <el-radio-group v-model="form.isCreateContentIfContentChanged">
       <el-radio :label="true">生成</el-radio>
@@ -22,6 +23,8 @@
       <el-radio :label="false">不生成</el-radio>
     </el-radio-group>
   </el-form-item>
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   <el-form-item label="生成页面中是否显示模板信息">
     <el-radio-group v-model="form.isCreateShowPageInfo">
       <el-radio :label="true">显示</el-radio>
@@ -86,11 +89,19 @@
   </el-form-item>
   <el-form-item label="生成内容添加日期限制" v-if="form.isCreateStaticContentByAddDate" prop="createStaticContentAddDate" :rules="{ required: true, message: '请输入生成内容添加日期限制' }">
     <el-date-picker
+<<<<<<< HEAD
       v-model="form.createStaticContentAddDate"
       type="date"
       value-format="yyyy-MM-ddTHH:mm:ss.000Z"
       placeholder="请选择生成内容添加日期限制">
     </el-date-picker>
+=======
+      type="date"
+      placeholder="请选择生成内容添加日期限制"
+      v-model="form.createStaticContentAddDate"
+      value-format="yyyy-MM-dd"
+    ></el-date-picker>
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     <div class="tips">在此设置内容添加日期，此日期之前的内容页将不再生成</div>
   </el-form-item>
 

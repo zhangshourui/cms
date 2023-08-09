@@ -14,14 +14,28 @@ var data = utils.init({
   pageSize: null,
   page: 1,
   columns: null,
+<<<<<<< HEAD
 
+=======
+  titleColumn: null,
+  bodyColumn: null,
+  permissions: null,
+
+  tableMaxHeight: 999999999999,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   multipleSelection: [],
 
   checkedColumns: [],
   searchColumns: [],
 
+<<<<<<< HEAD
   channelIds: [],
   searchForm: {
+=======
+  searchForm: {
+    channelIds: [utils.getQueryInt("siteId")],
+    isAllContents: true,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     startDate: null,
     endDate: null,
     checkedLevels: [],
@@ -49,12 +63,29 @@ var methods = {
       $this.tagNames = res.tagNames;
       $this.checkedLevels = res.checkedLevels;
       $this.columns = res.columns;
+<<<<<<< HEAD
       var titleColumn = _.find($this.columns, function(o) { return o.attributeName == 'Title'; });
       $this.searchColumns.push({
         attributeName: titleColumn.attributeName,
         displayName: titleColumn.displayName,
         value: ''
       });
+=======
+      $this.titleColumn = res.titleColumn;
+      $this.bodyColumn = res.bodyColumn;
+      $this.permissions = res.permissions;
+      $this.searchColumns.push({
+        attributeName: $this.titleColumn.attributeName,
+        displayName: $this.titleColumn.displayName,
+        value: ''
+      });
+      $this.searchColumns.push({
+        attributeName: $this.bodyColumn.attributeName,
+        displayName: $this.bodyColumn.displayName,
+        value: ''
+      });
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       $this.searchForm.checkedLevels = [0];
 
       $this.apiList($this.siteId, 1);
@@ -67,6 +98,19 @@ var methods = {
   apiList: function(useless, page, message) {
     var $this = this;
 
+<<<<<<< HEAD
+=======
+    var channelIds = [];
+    for (var i = 0; i < this.searchForm.channelIds.length; i++) {
+      var obj = this.searchForm.channelIds[i];
+      if (Array.isArray(obj)) {
+        channelIds.push(obj[obj.length - 1]);
+      } else {
+        channelIds.push(obj);
+      }
+    }
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     var items = [];
     for (var i = 0; i < this.searchColumns.length; i++) {
       var column = this.searchColumns[i];
@@ -78,6 +122,7 @@ var methods = {
       }
     }
 
+<<<<<<< HEAD
     var channelId = this.channelIds && this.channelIds.length > 0 ? this.channelIds[this.channelIds.length - 1] : null;
 
     utils.loading(this, true);
@@ -88,6 +133,25 @@ var methods = {
       items: items
     }, this.searchForm);
     $api.post($url + '/actions/list', request).then(function(response) {
+=======
+    utils.loading(this, true);
+    $api.post($url + '/actions/list', {
+      siteId: this.siteId,
+      channelIds: channelIds,
+      isAllContents: this.searchForm.isAllContents,
+      page: page,
+      items: items,
+      startDate: this.searchForm.startDate,
+      endDate: this.searchForm.endDate,
+      checkedLevels: this.searchForm.checkedLevels,
+      isTop: this.searchForm.isTop,
+      isRecommend: this.searchForm.isRecommend,
+      isHot: this.searchForm.isHot,
+      isColor: this.searchForm.isColor,
+      groupNames: this.searchForm.groupNames,
+      tagNames: this.searchForm.tagNames
+    }).then(function(response) {
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       var res = response.data;
 
       $this.pageContents = res.pageContents;
@@ -121,6 +185,16 @@ var methods = {
     });
   },
 
+<<<<<<< HEAD
+=======
+  getContentTarget: function (content) {
+    if (content.linkType == 'NoLink') {
+      return '';
+    }
+    return '_blank';
+  },
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   btnSelectColumnClick: function(column) {
     var searchColumn = _.find(this.searchColumns, function(o) { return o.attributeName == column.attributeName; });
     if (searchColumn) {
@@ -163,6 +237,14 @@ var methods = {
   btnSearchClick: function () {
     var $this = this;
 
+<<<<<<< HEAD
+=======
+    if (this.searchForm.checkedLevels.length === 0) {
+      utils.error('请选择审核状态！');
+      return;
+    }
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     this.$refs.searchForm.validate(function(valid) {
       if (valid) {
         $this.apiList($this.siteId, 1);
@@ -171,12 +253,16 @@ var methods = {
   },
 
   btnEditClick: function(content) {
+<<<<<<< HEAD
     utils.openLayer({
       title: "编辑内容",
       url: this.getEditUrl(content),
       full: true,
       max: true
     });
+=======
+    utils.addTab('编辑内容', this.getEditUrl(content));
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   },
 
   btnAdminClick: function(adminId) {
@@ -192,7 +278,12 @@ var methods = {
       siteId: this.siteId,
       channelId: content.channelId,
       contentId: content.id,
+<<<<<<< HEAD
       page: this.page
+=======
+      page: this.page,
+      tabName: utils.getTabName()
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     });
   },
 
@@ -263,6 +354,13 @@ var methods = {
     this.$refs.multipleTable.toggleRowSelection(row);
   },
 
+<<<<<<< HEAD
+=======
+  handleHeaderDragend: function(newWidth, oldWidth, column) {
+
+  },
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   handleCurrentChange: function(val) {
     this.apiList(this.siteId, val);
   },

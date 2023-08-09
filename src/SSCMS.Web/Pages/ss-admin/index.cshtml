@@ -39,7 +39,11 @@
       </el-popover>
 
       <el-popover
+<<<<<<< HEAD
         v-if="newCms || newPlugins.length > 0"
+=======
+        v-if="!isAdminUpdateDisabled && (newCms || newPlugins.length > 0)"
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         placement="bottom"
         width="480"
         trigger="hover">
@@ -245,11 +249,17 @@
       :label="item.title"
       :name="item.name">
       <span slot="label">
+<<<<<<< HEAD
         <!-- <el-link v-if="!isCloudAdmin" :underline="false" v-on:click="openDocs(item)">
           <el-tooltip class="item" effect="dark" content="操作手册" placement="bottom">
             <i class="el-icon-info"></i>
           </el-tooltip>
         </el-link> -->
+=======
+        <el-link v-if="!isCloudAdmin" :underline="false" v-on:click="openDocs(item)">
+          <i class="el-icon-info"></i>
+        </el-link>
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         {{item.title}}
       </span>
       <iframe :id="'frm-' + item.name" :src="item.url" style="width: 100%; height: 100%; border: none" :style="{height: (winHeight - 45 - 40) + 'px'}"></iframe>

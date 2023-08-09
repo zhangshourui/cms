@@ -53,6 +53,14 @@
             <el-image v-if="content.imageUrl"  :src="getUrl(content.imageUrl)" style="max-width: 100px; max-height: 100px"></el-image>
           </el-link>
         </template>
+<<<<<<< HEAD
+=======
+
+        <!-- LinkType -->
+        <template v-else-if="column.attributeName === 'LinkType'">
+          {{getLinkType(content.linkType)}}
+        </template>
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     
         <!-- LinkUrl -->
         <template v-else-if="column.attributeName === 'LinkUrl'">

@@ -48,7 +48,11 @@ namespace SSCMS.Web.Controllers.Stl
 
                 if (request.SpecialId != 0)
                 {
+<<<<<<< HEAD
                     redirectUrl = await _pathManager.GetFileUrlAsync(site, request.SpecialId, false);
+=======
+                    redirectUrl = await _pathManager.GetSpecialUrlAsync(site, request.SpecialId, false);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 }
                 else if (request.FileTemplateId != 0)
                 {

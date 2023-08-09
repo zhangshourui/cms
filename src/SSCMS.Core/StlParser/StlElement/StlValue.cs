@@ -57,6 +57,7 @@ namespace SSCMS.Core.StlParser.StlElement
 
         [StlAttribute(Title = "是否转换为大写")]
         private const string IsUpper = nameof(IsUpper);
+<<<<<<< HEAD
 
         public const string TypeDate = "Date";
         public const string TypeDateOfTraditional = "DateOfTraditional";
@@ -75,6 +76,29 @@ namespace SSCMS.Core.StlParser.StlElement
 
         public static SortedList<string, string> TypeList => new SortedList<string, string>
         {
+=======
+        
+        public const string TypeItemIndex = "ItemIndex";
+        public const string TypeVersion = "Version";
+        public const string TypeDate = "Date";
+        public const string TypeDateOfTraditional = "DateOfTraditional";
+        public const string TypeSiteId = "SiteId";
+        public const string TypeSiteDir = "SiteDir";
+        public const string TypeSiteName = "SiteName";
+        public const string TypeSiteUrl = "SiteUrl";
+        public const string TypeRootUrl = "RootUrl";
+        public const string TypeApiUrl = "ApiUrl";
+        public const string TypeCurrentUrl = "CurrentUrl";
+        public const string TypeChannelUrl = "ChannelUrl";
+        public const string TypeHomeUrl = "HomeUrl";
+        public const string TypeLoginUrl = "LoginUrl";
+        public const string TypeRegisterUrl = "RegisterUrl";
+        public const string TypeLogoutUrl = "LogoutUrl";
+
+        public static SortedList<string, string> TypeList => new SortedList<string, string>
+        {
+            {TypeVersion, "CMS版本"},
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             {TypeDate, "当前日期"},
             {TypeDateOfTraditional, "带农历的当前日期"}
         };
@@ -158,6 +182,7 @@ namespace SSCMS.Core.StlParser.StlElement
 
         private static async Task<object> ParseAsync(IParseManager parseManager, string type, string format, int startIndex, int length, int wordNum, string ellipsis, string replace, string to, bool isClearTags, bool isClearBlank, bool isReturnToBr, bool isLower, bool isUpper)
         {
+<<<<<<< HEAD
             var pageInfo = parseManager.PageInfo;
             var contextInfo = parseManager.ContextInfo;
 
@@ -172,6 +197,31 @@ namespace SSCMS.Core.StlParser.StlElement
             }
 
             if (StringUtils.EqualsIgnoreCase(type, TypeDate))
+=======
+            var parsedContent = string.Empty;
+
+            var pageInfo = parseManager.PageInfo;
+            var contextInfo = parseManager.ContextInfo;
+
+            if (string.IsNullOrEmpty(type))
+            {
+                if (contextInfo.ContextType == ParseType.Each)
+                {
+                    parsedContent = contextInfo.ItemContainer.EachItem.Value as string;
+                    parsedContent = InputTypeUtils.ParseString(InputType.Text, parsedContent, replace, to, startIndex, length, wordNum, ellipsis, isClearTags, isClearBlank, isReturnToBr, isLower, isUpper, format);
+                }
+            }
+            else if (StringUtils.EqualsIgnoreCase(type, TypeItemIndex))
+            {
+                var itemIndex = StlParserUtility.GetItemIndex(contextInfo);
+                parsedContent = itemIndex.ToString();
+            }
+            else if (StringUtils.EqualsIgnoreCase(type, TypeVersion))
+            {
+                parsedContent = parseManager.SettingsManager.Version;
+            }
+            else if (StringUtils.EqualsIgnoreCase(type, TypeDate))
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             {
                 if (!pageInfo.BodyCodes.ContainsKey("datestring.js"))
                 {
@@ -223,8 +273,13 @@ namespace SSCMS.Core.StlParser.StlElement
             }
             else if (StringUtils.EqualsIgnoreCase(TypeCurrentUrl, type))//当前页地址
             {
+<<<<<<< HEAD
                 var contentInfo = await parseManager.GetContentAsync();
                 parsedContent = await StlParserUtility.GetStlCurrentUrlAsync(parseManager, pageInfo.Site, contextInfo.ChannelId, contextInfo.ContentId, contentInfo, pageInfo.Template.TemplateType, pageInfo.Template.Id, pageInfo.IsLocal);
+=======
+                var content = await parseManager.GetContentAsync();
+                parsedContent = await StlParserUtility.GetStlCurrentUrlAsync(parseManager, pageInfo.Site, contextInfo.ChannelId, contextInfo.ContentId, content, pageInfo.Template.TemplateType, pageInfo.Template.Id, pageInfo.IsLocal);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             }
             else if (StringUtils.EqualsIgnoreCase(TypeChannelUrl, type))//栏目页地址
             {
@@ -236,6 +291,7 @@ namespace SSCMS.Core.StlParser.StlElement
             }
             else if (StringUtils.EqualsIgnoreCase(TypeLoginUrl, type))
             {
+<<<<<<< HEAD
                 var contentInfo = await parseManager.GetContentAsync();
                 var returnUrl = await StlParserUtility.GetStlCurrentUrlAsync(parseManager, pageInfo.Site, contextInfo.ChannelId, contextInfo.ContentId, contentInfo, pageInfo.Template.TemplateType, pageInfo.Template.Id, pageInfo.IsLocal);
                 parsedContent = parseManager.PathManager.GetHomeUrl($"pages/login.html?returnUrl={PageUtils.UrlEncode(returnUrl)}");
@@ -251,6 +307,23 @@ namespace SSCMS.Core.StlParser.StlElement
                 var contentInfo = await parseManager.GetContentAsync();
                 var returnUrl = await StlParserUtility.GetStlCurrentUrlAsync(parseManager, pageInfo.Site, contextInfo.ChannelId, contextInfo.ContentId, contentInfo, pageInfo.Template.TemplateType, pageInfo.Template.Id, pageInfo.IsLocal);
                 parsedContent = parseManager.PathManager.GetHomeUrl($"pages/register.html?returnUrl={PageUtils.UrlEncode(returnUrl)}");
+=======
+                var content = await parseManager.GetContentAsync();
+                var returnUrl = await StlParserUtility.GetStlCurrentUrlAsync(parseManager, pageInfo.Site, contextInfo.ChannelId, contextInfo.ContentId, content, pageInfo.Template.TemplateType, pageInfo.Template.Id, pageInfo.IsLocal);
+                parsedContent = parseManager.PathManager.GetHomeUrl($"login/?returnUrl={PageUtils.UrlEncode(returnUrl)}");
+            }
+            else if (StringUtils.EqualsIgnoreCase(TypeLogoutUrl, type))
+            {
+                var content = await parseManager.GetContentAsync();
+                var returnUrl = await StlParserUtility.GetStlCurrentUrlAsync(parseManager, pageInfo.Site, contextInfo.ChannelId, contextInfo.ContentId, content, pageInfo.Template.TemplateType, pageInfo.Template.Id, pageInfo.IsLocal);
+                parsedContent = parseManager.PathManager.GetHomeUrl($"logout/?returnUrl={PageUtils.UrlEncode(returnUrl)}");
+            }
+            else if (StringUtils.EqualsIgnoreCase(TypeRegisterUrl, type))
+            {
+                var content = await parseManager.GetContentAsync();
+                var returnUrl = await StlParserUtility.GetStlCurrentUrlAsync(parseManager, pageInfo.Site, contextInfo.ChannelId, contextInfo.ContentId, content, pageInfo.Template.TemplateType, pageInfo.Template.Id, pageInfo.IsLocal);
+                parsedContent = parseManager.PathManager.GetHomeUrl($"register/?returnUrl={PageUtils.UrlEncode(returnUrl)}");
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             }
             else if (StringUtils.StartsWithIgnoreCase(type, "TableFor"))//
             {

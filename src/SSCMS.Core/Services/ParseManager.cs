@@ -36,10 +36,17 @@ namespace SSCMS.Core.Services
         public ParsePage PageInfo { get; set; }
         public ParseContext ContextInfo { get; set; }
 
+<<<<<<< HEAD
         public async Task InitAsync(EditMode editMode, Site site, int pageChannelId, int pageContentId, Template template)
         {
             var config = await DatabaseManager.ConfigRepository.GetAsync();
             PageInfo = new ParsePage(PathManager, editMode, config, pageChannelId, pageContentId, site, template, new Dictionary<string, object>());
+=======
+        public async Task InitAsync(EditMode editMode, Site site, int pageChannelId, int pageContentId, Template template, int specialId)
+        {
+            var config = await DatabaseManager.ConfigRepository.GetAsync();
+            PageInfo = new ParsePage(PathManager, editMode, config, pageChannelId, pageContentId, specialId, site, template, new Dictionary<string, object>());
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             ContextInfo = new ParseContext(PageInfo);
         }
 

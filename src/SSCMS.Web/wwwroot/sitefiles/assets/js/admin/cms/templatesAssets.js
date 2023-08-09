@@ -1,5 +1,9 @@
 ﻿var $url = '/cms/templates/templatesAssets';
 var $urlDelete = $url + '/actions/delete';
+<<<<<<< HEAD
+=======
+var $urlConfig = $url + '/actions/config';
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
 var data = utils.init({
   siteId: utils.getQueryInt("siteId"),
@@ -7,10 +11,17 @@ var data = utils.init({
   allFiles: null,
   files: null,
   siteUrl: null,
+<<<<<<< HEAD
   includeDir: null,
   cssDir: null,
   jsDir: null,
   fileType: utils.getQueryString("fileType") || 'All',
+=======
+  cssDir: null,
+  jsDir: null,
+  imagesDir: null,
+  fileType: utils.getQueryString("fileType") || 'css',
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   directoryPaths: [],
   keyword: '',
 
@@ -20,7 +31,11 @@ var data = utils.init({
 });
 
 var methods = {
+<<<<<<< HEAD
   apiList: function () {
+=======
+  apiGet: function () {
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     var $this = this;
 
     utils.loading(this, true);
@@ -32,12 +47,24 @@ var methods = {
     }).then(function (response) {
       var res = response.data;
 
+<<<<<<< HEAD
       $this.directories = res.directories;
       $this.allFiles = res.files;
       $this.siteUrl = res.siteUrl;
       $this.includeDir = res.includeDir;
       $this.cssDir = res.cssDir;
       $this.jsDir = res.jsDir;
+=======
+      $this.directoryPaths = [];
+      $this.keyword = '';
+
+      $this.directories = res.directories;
+      $this.allFiles = res.files;
+      $this.siteUrl = res.siteUrl;
+      $this.cssDir = res.cssDir;
+      $this.jsDir = res.jsDir;
+      $this.imagesDir = res.imagesDir;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       $this.reload();
     }).catch(function (error) {
       utils.error(error);
@@ -72,6 +99,7 @@ var methods = {
     var $this = this;
 
     this.loading = this.$loading();
+<<<<<<< HEAD
     $api.post($url + '/actions/config', this.configForm).then(function (response) {
       var res = response.data;
 
@@ -85,6 +113,15 @@ var methods = {
 
       $this.configPanel = false;
       utils.success('文件夹路径设置成功!');
+=======
+    $api.post($urlConfig, this.configForm).then(function (response) {
+      var res = response.data;
+
+      $this.configPanel = false;
+      utils.success('文件夹路径设置成功!');
+
+      $this.apiGet();
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     }).catch(function (error) {
       utils.error(error);
     }).then(function () {
@@ -93,16 +130,26 @@ var methods = {
   },
 
   getFileType: function(fileType) {
+<<<<<<< HEAD
     if (fileType === 'html') {
       return '包含文件';
     } else if (fileType === 'css') {
       return '样式文件';
     } else if (fileType === 'js') {
       return '脚本文件';
+=======
+    if (fileType === 'css') {
+      return '样式文件';
+    } else if (fileType === 'js') {
+      return '脚本文件';
+    } else if (fileType === 'images') {
+      return '图片文件';
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     }
     return '';
   },
 
+<<<<<<< HEAD
   btnDefaultClick: function (template) {
     var $this = this;
 
@@ -134,6 +181,10 @@ var methods = {
     }).then(function () {
       utils.loading($this, false);
     });
+=======
+  btnNavClick: function() {
+    this.apiGet();
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   },
 
   btnDeleteClick: function (file) {
@@ -153,6 +204,14 @@ var methods = {
   },
 
   btnEditClick: function(file) {
+<<<<<<< HEAD
+=======
+    if (this.fileType == 'images') {
+      var url = this.getPageUrl(file.directoryPath + '/' + file.fileName);
+      window.open(url);
+      return;
+    }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     utils.addTab('编辑' + ':' + file.directoryPath + '/' + file.fileName, this.getEditorUrl(file.directoryPath, file.fileName, file.fileType));
   },
 
@@ -166,20 +225,28 @@ var methods = {
     });
   },
 
+<<<<<<< HEAD
   getPageUrl: function(directoryPath) {
     return this.siteUrl + '/' + directoryPath;
   },
 
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   reload: function() {
     var $this = this;
 
     this.files = _.filter(this.allFiles, function(o) {
+<<<<<<< HEAD
       var isFileType = true;
       var isDirectoryPath = true;
       var isKeyword = true;
       if ($this.fileType != 'All') {
         isFileType = _.endsWith(o.fileName, $this.fileType);
       }
+=======
+      var isDirectoryPath = true;
+      var isKeyword = true;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       if ($this.directoryPaths.length > 0) {
         isDirectoryPath = false;
         for (var i = 0; i < $this.directoryPaths.length; i++) {
@@ -193,17 +260,34 @@ var methods = {
         isKeyword = (o.directoryPath || '').indexOf($this.keyword) !== -1 || (o.fileName || '').indexOf($this.keyword) !== -1;
       }
 
+<<<<<<< HEAD
       return isFileType && isDirectoryPath && isKeyword;
     });
   },
 
+=======
+      return isDirectoryPath && isKeyword;
+    });
+  },
+
+  getPageUrl: function(directoryPath) {
+    return this.siteUrl + '/' + directoryPath;
+  },
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   btnConfigClick: function() {
     this.configForm = {
       siteId: this.siteId,
       fileType: this.fileType,
+<<<<<<< HEAD
       includeDir: this.includeDir,
       cssDir: this.cssDir,
       jsDir: this.jsDir
+=======
+      cssDir: this.cssDir,
+      jsDir: this.jsDir,
+      imagesDir: this.imagesDir
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     };
     this.configPanel = true;
   },
@@ -221,6 +305,37 @@ var methods = {
     });
   },
 
+<<<<<<< HEAD
+=======
+  getUploadUrl: function() {
+    var directories = '';
+    if (this.directoryPaths.length > 0) {
+      var arr = this.directoryPaths[this.directoryPaths.length - 1];
+      directories = arr[arr.length - 1];
+    }
+    return $apiUrl + $url + '/actions/upload?siteId=' + this.siteId + '&fileType=' + this.fileType + '&directories=' + encodeURIComponent(directories);
+  },
+
+  uploadBefore(file) {
+    return true;
+  },
+
+  uploadProgress: function() {
+    utils.loading(this, true);
+  },
+
+  uploadSuccess: function(res) {
+    utils.success('文件上传成功!');
+    this.apiGet();
+  },
+
+  uploadError: function(err) {
+    utils.loading(this, false);
+    var error = JSON.parse(err.message);
+    utils.error(error.message);
+  },
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   btnCloseClick: function() {
     utils.removeTab();
   },
@@ -243,6 +358,10 @@ var $vue = new Vue({
         $this.btnCloseClick();
       }
     });
+<<<<<<< HEAD
     this.apiList();
+=======
+    this.apiGet();
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   }
 });

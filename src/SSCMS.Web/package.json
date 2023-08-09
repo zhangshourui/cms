@@ -189,6 +189,7 @@
         ],
         "order": 125
       },
+<<<<<<< HEAD
       "app_settings_cloudsImages": {
         "text": "免版权图库设置",
         "type": [
@@ -196,6 +197,8 @@
         ],
         "order": 126
       },
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       "app_settings_cloudsSms": {
         "text": "短信集成设置",
         "type": [
@@ -280,26 +283,48 @@
         ],
         "order": 138
       },
+<<<<<<< HEAD
+=======
+      "app_settings_utilitiesConfig": {
+        "text": "系统设置",
+        "type": [
+          "app"
+        ],
+        "order": 139
+      },
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       "app_settings_utilitiesCache": {
         "text": "系统缓存",
         "type": [
           "app"
         ],
+<<<<<<< HEAD
         "order": 139
+=======
+        "order": 140
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       },
       "app_settings_utilitiesParameters": {
         "text": "系统参数",
         "type": [
           "app"
         ],
+<<<<<<< HEAD
         "order": 140
+=======
+        "order": 141
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       },
       "app_settings_utilitiesEncrypt": {
         "text": "加密符串",
         "type": [
           "app"
         ],
+<<<<<<< HEAD
         "order": 141
+=======
+        "order": 142
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       },
       "site_contents": {
         "text": "内容管理",
@@ -886,7 +911,10 @@
           "app_settings_cloudsBackup",
           "app_settings_cloudsCdn",
           "app_settings_cloudsVod",
+<<<<<<< HEAD
           "app_settings_cloudsImages",
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
           "app_settings_cloudsSms",
           "app_settings_cloudsMail",
           "app_settings_cloudsTasks",
@@ -900,6 +928,10 @@
           "app_settings_logsError",
           "app_settings_logsConfig",
           "app_settings_configAdmin",
+<<<<<<< HEAD
+=======
+          "app_settings_utilitiesConfig",
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
           "app_settings_utilitiesCache",
           "app_settings_utilitiesParameters",
           "app_settings_utilitiesEncrypt"
@@ -1102,7 +1134,10 @@
               "app_settings_cloudsBackup",
               "app_settings_cloudsCdn",
               "app_settings_cloudsVod",
+<<<<<<< HEAD
               "app_settings_cloudsImages",
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
               "app_settings_cloudsSms",
               "app_settings_cloudsMail",
               "app_settings_cloudsTasks",
@@ -1174,6 +1209,7 @@
                 ],
                 "order": 106
               },
+<<<<<<< HEAD
               "app_settings_cloudsImages": {
                 "text": "免版权图库设置",
                 "iconClass": "el-icon-picture-outline-round",
@@ -1183,6 +1219,8 @@
                 ],
                 "order": 107
               },
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
               "app_settings_cloudsSms": {
                 "text": "短信集成设置",
                 "iconClass": "el-icon-chat-dot-round",
@@ -1314,6 +1352,10 @@
           "app_settings_utilities_all": {
             "text": "实用工具",
             "permissions": [
+<<<<<<< HEAD
+=======
+              "app_settings_utilitiesConfig",
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
               "app_settings_utilitiesCache",
               "app_settings_utilitiesParameters",
               "app_settings_utilitiesEncrypt"
@@ -1321,13 +1363,28 @@
             "iconClass": "ion-briefcase",
             "order": 109,
             "menus": {
+<<<<<<< HEAD
+=======
+              "app_settings_utilitiesConfig": {
+                "text": "系统设置",
+                "link": "./settings/utilitiesConfig/",
+                "permissions": [
+                  "app_settings_utilitiesConfig"
+                ],
+                "order": 101
+              },
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
               "app_settings_utilitiesCache": {
                 "text": "系统缓存",
                 "link": "./settings/utilitiesCache/",
                 "permissions": [
                   "app_settings_utilitiesCache"
                 ],
+<<<<<<< HEAD
                 "order": 101
+=======
+                "order": 102
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
               },
               "app_settings_utilitiesParameters": {
                 "text": "系统参数",
@@ -1335,7 +1392,11 @@
                 "permissions": [
                   "app_settings_utilitiesParameters"
                 ],
+<<<<<<< HEAD
                 "order": 102
+=======
+                "order": 103
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
               },
               "app_settings_utilitiesEncrypt": {
                 "text": "加密/解密字符串",
@@ -1343,7 +1404,11 @@
                 "permissions": [
                   "app_settings_utilitiesEncrypt"
                 ],
+<<<<<<< HEAD
                 "order": 103
+=======
+                "order": 104
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
               }
             }
           }
@@ -1692,7 +1757,11 @@
           },
           "site_templatesIncludes": {
             "text": "包含文件管理",
+<<<<<<< HEAD
             "link": "./cms/templatesAssets/?fileType=html",
+=======
+            "link": "./cms/templatesIncludes/",
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             "permissions": [
               "site_templatesIncludes"
             ],

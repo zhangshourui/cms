@@ -42,6 +42,10 @@
             public const string SettingsLogsUser = "app_settings_logsUser";
             public const string SettingsLogsError = "app_settings_logsError";
             public const string SettingsLogsConfig = "app_settings_logsConfig";
+<<<<<<< HEAD
+=======
+            public const string SettingsUtilitiesConfig = "app_settings_utilitiesConfig";
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             public const string SettingsUtilitiesCache = "app_settings_utilitiesCache";
             public const string SettingsUtilitiesParameters = "app_settings_utilitiesParameters";
             public const string SettingsUtilitiesEncrypt = "app_settings_utilitiesEncrypt";

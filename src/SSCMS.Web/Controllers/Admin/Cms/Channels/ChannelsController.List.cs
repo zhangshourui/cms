@@ -83,6 +83,10 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Channels
                 await _authManager.HasSitePermissionsAsync(request.SiteId, MenuUtils.SitePermissions.Templates);
 
             var linkTypes = _pathManager.GetLinkTypeSelects(true);
+<<<<<<< HEAD
+=======
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             var taxisTypes = new List<Select<string>>
             {
                 new Select<string>(TaxisType.OrderByTaxisDesc),

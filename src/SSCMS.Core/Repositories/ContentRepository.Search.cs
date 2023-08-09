@@ -6,6 +6,10 @@ using Datory;
 using SSCMS.Core.Utils;
 using SSCMS.Enums;
 using SSCMS.Models;
+<<<<<<< HEAD
+=======
+using SSCMS.Utils;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
 namespace SSCMS.Core.Repositories
 {
@@ -25,13 +29,25 @@ namespace SSCMS.Core.Repositories
 
             if (!string.IsNullOrEmpty(searchType) && !string.IsNullOrEmpty(searchText))
             {
+<<<<<<< HEAD
                 query.WhereLike(searchType, $"%{searchText}%");
+=======
+                if (repository.TableColumns.Exists(x => StringUtils.EqualsIgnoreCase(x.AttributeName, searchType)))
+                {
+                    query.WhereLike(searchType, $"%{searchText}%");
+                }
+                else
+                {
+                    query.WhereLike(AttrExtendValues, $@"%""{searchType}"":""%{searchText}%""%");
+                }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             }
 
             if (isAdvanced)
             {
                 if (checkedLevels != null && checkedLevels.Count > 0)
                 {
+<<<<<<< HEAD
                     query.Where(q =>
                     {
                         if (checkedLevels.Contains(site.CheckContentLevel))
@@ -42,6 +58,21 @@ namespace SSCMS.Core.Repositories
                         q.OrWhereIn(nameof(Content.CheckedLevel), checkedLevels);
                         return q;
                     });
+=======
+                    if (!checkedLevels.Contains(site.CheckContentLevel))
+                    {
+                        query.Where(nameof(Content.Checked), false);
+                        query.WhereIn(nameof(Content.CheckedLevel), checkedLevels);
+                    }
+                    else if (checkedLevels.Count == 1 && checkedLevels.Contains(site.CheckContentLevel))
+                    {
+                        query.Where(nameof(Content.Checked), true);
+                    }
+                    else
+                    {
+                        query.WhereIn(nameof(Content.CheckedLevel), checkedLevels);
+                    }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 }
 
                 if (groupNames != null && groupNames.Count > 0)
@@ -199,7 +230,21 @@ namespace SSCMS.Core.Repositories
                 {
                     if (!string.IsNullOrEmpty(item.Key) && !string.IsNullOrEmpty(item.Value))
                     {
+<<<<<<< HEAD
                         query.WhereLike(item.Key, $"%{item.Value}%");
+=======
+                        var searchType = item.Key;
+                        var searchText = item.Value;
+
+                        if (repository.TableColumns.Exists(x => StringUtils.EqualsIgnoreCase(x.AttributeName, searchType)))
+                        {
+                            query.WhereLike(searchType, $"%{searchText}%");
+                        }
+                        else
+                        {
+                            query.WhereLike(AttrExtendValues, $@"%""{searchType}"":""%{searchText}%""%");
+                        }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                     }
                 }
             }
@@ -208,6 +253,7 @@ namespace SSCMS.Core.Repositories
             {
                 if (checkedLevels != null && checkedLevels.Count > 0)
                 {
+<<<<<<< HEAD
                     query.Where(q =>
                     {
                         if (checkedLevels.Contains(site.CheckContentLevel))
@@ -218,6 +264,21 @@ namespace SSCMS.Core.Repositories
                         q.OrWhereIn(nameof(Content.CheckedLevel), checkedLevels);
                         return q;
                     });
+=======
+                    if (!checkedLevels.Contains(site.CheckContentLevel))
+                    {
+                        query.Where(nameof(Content.Checked), false);
+                        query.WhereIn(nameof(Content.CheckedLevel), checkedLevels);
+                    }
+                    else if (checkedLevels.Count == 1 && checkedLevels.Contains(site.CheckContentLevel))
+                    {
+                        query.Where(nameof(Content.Checked), true);
+                    }
+                    else
+                    {
+                        query.WhereIn(nameof(Content.CheckedLevel), checkedLevels);
+                    }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 }
             }
 
@@ -295,14 +356,31 @@ namespace SSCMS.Core.Repositories
                 false, false, null, null, false, 0, false);
         }
 
+<<<<<<< HEAD
         public async Task<(int Total, List<ContentSummary> PageSummaries)> CheckSearchAsync(Site site, int page, int? channelId, DateTime? startDate, DateTime? endDate, IEnumerable<KeyValuePair<string, string>> items, bool isCheckedLevels, List<int> checkedLevels, bool isTop, bool isRecommend, bool isHot, bool isColor, List<string> groupNames, List<string> tagNames)
         {
             var repository = await GetRepositoryAsync(site.TableName);
 
+=======
+        public async Task<(int Total, List<ContentSummary> PageSummaries)> CheckSearchAsync(Site site, int page, List<int> channelIds, bool isAllContents, DateTime? startDate, DateTime? endDate, IEnumerable<KeyValuePair<string, string>> items, bool isCheckedLevels, List<int> checkedLevels, bool isTop, bool isRecommend, bool isHot, bool isColor, List<string> groupNames, List<string> tagNames)
+        {
+            var repository = await GetRepositoryAsync(site.TableName);
+
+            var idList = new List<int>(channelIds);
+            if (isAllContents)
+            {
+                foreach (var channelId in channelIds)
+                {
+                    idList.AddRange(await _channelRepository.GetChannelIdsAsync(site.Id, channelId, ScopeType.All));
+                }
+            }
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             var query = Q
                 .Select(nameof(Content.ChannelId), nameof(Content.Id))
                 .Where(nameof(Content.SiteId), site.Id)
                 .WhereNot(nameof(Content.SourceId), SourceManager.Preview)
+<<<<<<< HEAD
                 .Where(nameof(Content.ChannelId), ">", 0)
                 .WhereNullOrFalse(nameof(Content.Checked))
                 .OrderByDesc(nameof(Content.AddDate));
@@ -312,6 +390,12 @@ namespace SSCMS.Core.Repositories
                 query.Where(nameof(Content.ChannelId), channelId.Value);
             }
 
+=======
+                .WhereIn(nameof(Content.ChannelId), idList.Distinct())
+                .WhereNullOrFalse(nameof(Content.Checked))
+                .OrderByDesc(nameof(Content.AddDate));
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             if (startDate.HasValue)
             {
                 query.Where(nameof(Content.AddDate), ">=", DateUtils.ToString(startDate));
@@ -327,7 +411,21 @@ namespace SSCMS.Core.Repositories
                 {
                     if (!string.IsNullOrEmpty(item.Key) && !string.IsNullOrEmpty(item.Value))
                     {
+<<<<<<< HEAD
                         query.WhereLike(item.Key, $"%{item.Value}%");
+=======
+                        var searchType = item.Key;
+                        var searchText = item.Value;
+
+                        if (repository.TableColumns.Exists(x => StringUtils.EqualsIgnoreCase(x.AttributeName, searchType)))
+                        {
+                            query.WhereLike(searchType, $"%{searchText}%");
+                        }
+                        else
+                        {
+                            query.WhereLike(AttrExtendValues, $@"%""{searchType}"":""%{searchText}%""%");
+                        }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                     }
                 }
             }
@@ -424,7 +522,21 @@ namespace SSCMS.Core.Repositories
                 {
                     if (!string.IsNullOrEmpty(item.Key) && !string.IsNullOrEmpty(item.Value))
                     {
+<<<<<<< HEAD
                         query.WhereLike(item.Key, $"%{item.Value}%");
+=======
+                        var searchType = item.Key;
+                        var searchText = item.Value;
+
+                        if (repository.TableColumns.Exists(x => StringUtils.EqualsIgnoreCase(x.AttributeName, searchType)))
+                        {
+                            query.WhereLike(searchType, $"%{searchText}%");
+                        }
+                        else
+                        {
+                            query.WhereLike(AttrExtendValues, $@"%""{searchType}"":""%{searchText}%""%");
+                        }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                     }
                 }
             }

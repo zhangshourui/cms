@@ -26,17 +26,29 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Material
         private readonly IAuthManager _authManager;
         private readonly IPathManager _pathManager;
         private readonly IWxManager _openManager;
+<<<<<<< HEAD
+=======
+        private readonly IConfigRepository _configRepository;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         private readonly ISiteRepository _siteRepository;
         private readonly IMaterialGroupRepository _materialGroupRepository;
         private readonly IMaterialImageRepository _materialImageRepository;
         private readonly IWxAccountRepository _openAccountRepository;
 
+<<<<<<< HEAD
         public ImageController(ISettingsManager settingsManager, IAuthManager authManager, IPathManager pathManager, IWxManager openManager, ISiteRepository siteRepository, IMaterialGroupRepository materialGroupRepository, IMaterialImageRepository materialImageRepository, IWxAccountRepository openAccountRepository)
+=======
+        public ImageController(ISettingsManager settingsManager, IAuthManager authManager, IPathManager pathManager, IWxManager openManager, IConfigRepository configRepository, ISiteRepository siteRepository, IMaterialGroupRepository materialGroupRepository, IMaterialImageRepository materialImageRepository, IWxAccountRepository openAccountRepository)
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         {
             _settingsManager = settingsManager;
             _authManager = authManager;
             _pathManager = pathManager;
             _openManager = openManager;
+<<<<<<< HEAD
+=======
+            _configRepository = configRepository;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             _siteRepository = siteRepository;
             _materialGroupRepository = materialGroupRepository;
             _materialImageRepository = materialImageRepository;
@@ -54,6 +66,10 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Material
 
         public class QueryResult
         {
+<<<<<<< HEAD
+=======
+            public bool IsSiteOnly { get; set; }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             public IEnumerable<MaterialGroup> Groups { get; set; }
             public int Count { get; set; }
             public IEnumerable<MaterialImage> Items { get; set; }

@@ -18,6 +18,10 @@ var data = utils.init({
   captchaUrl: null,
   version: null,
   adminTitle: null,
+<<<<<<< HEAD
+=======
+  isAdminCaptchaDisabled: false,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   isSmsAdmin: false,
   isSmsAdminAndDisableAccount: false,
 
@@ -45,17 +49,32 @@ var methods = {
       if (res.success) {
         $this.version = res.version;
         $this.adminTitle = res.adminTitle;
+<<<<<<< HEAD
+=======
+        document.title = $this.adminTitle + ' 管理后台';
+        $this.isAdminCaptchaDisabled = res.isAdminCaptchaDisabled;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         $this.isSmsAdmin = res.isSmsAdmin;
         $this.isSmsAdminAndDisableAccount = res.isSmsAdminAndDisableAccount;
         if (res.isSmsAdmin && res.isSmsAdminAndDisableAccount) {
           $this.isSmsLogin = true;
         }
 
+<<<<<<< HEAD
         var head = document.querySelector('head');
         var favicon = document.createElement('link');
         favicon.setAttribute('rel', 'shortcut icon');
         favicon.setAttribute('href', res.adminFaviconUrl || utils.getAssetsUrl('images/favicon.png'));
         head.appendChild(favicon);
+=======
+        if (res.adminFaviconUrl) {
+          var head = document.querySelector('head');
+          var favicon = document.createElement('link');
+          favicon.setAttribute('rel', 'shortcut icon');
+          favicon.setAttribute('href', res.adminFaviconUrl || utils.getAssetsUrl('images/favicon.png'));
+          head.appendChild(favicon);
+        }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
         $this.apiCaptcha();
       } else {
@@ -219,7 +238,12 @@ var methods = {
       if (!this.mobile || !this.code) return;
       this.apiSubmit(false);
     } else {
+<<<<<<< HEAD
       if (!this.account || !this.password || !this.captchaValue) return;
+=======
+      if (!this.account || !this.password) return;
+      if (!this.isAdminCaptchaDisabled && !this.captchaValue) return;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       this.apiSubmit(false);
     }
   }

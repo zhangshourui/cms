@@ -28,11 +28,19 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Contents
             var root = await _channelRepository.GetCascadeAsync(site, channel, async summary =>
             {
                 var visible = visibleChannelIds.Contains(summary.Id);
+<<<<<<< HEAD
                 var disabled = !enabledChannelIds.Contains(summary.Id);
                 var current = await _contentRepository.GetSummariesAsync(site, summary);
 
                 if (!visible) return null;
 
+=======
+                if (!visible) return null;
+                
+                var disabled = !enabledChannelIds.Contains(summary.Id);
+                var current = await _contentRepository.GetSummariesAsync(site, summary);
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 return new
                 {
                     current.Count,

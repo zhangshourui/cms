@@ -1,8 +1,17 @@
+<<<<<<< HEAD
 ﻿using Microsoft.AspNetCore.Authorization;
+=======
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
 using SSCMS.Configuration;
 using SSCMS.Dto;
+<<<<<<< HEAD
+=======
+using SSCMS.Models;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 using SSCMS.Repositories;
 using SSCMS.Services;
 
@@ -30,11 +39,30 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Contents
             _contentRepository = contentRepository;
         }
 
+<<<<<<< HEAD
         public class SubmitRequest : ChannelRequest
         {
             public string ChannelContentIds { get; set; }
             public bool IsUp { get; set; }
             public int Taxis { get; set; }
+=======
+        public class GetRequest : ChannelRequest
+        {
+            public string ChannelContentIds { get; set; }
+        }
+
+        public class GetResult
+        {
+            public IEnumerable<Content> Contents { get; set; }
+            public int TotalCount { get; set; }
+        }
+
+        public class SubmitRequest : ChannelRequest
+        {
+            public string ChannelContentIds { get; set; }
+            public string Type { get; set; }
+            public int Value { get; set; }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         }
     }
 }

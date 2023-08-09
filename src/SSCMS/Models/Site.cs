@@ -43,6 +43,11 @@ namespace SSCMS.Models
         public IList<Site> Children { get; set; }
 
         public int PageSize { get; set; } = 30;
+<<<<<<< HEAD
+=======
+        
+        public TaxisType TaxisType { get; set; } = TaxisType.OrderByTaxisDesc;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
         public int CheckContentLevel { get; set; } = 1;
 
@@ -92,6 +97,7 @@ namespace SSCMS.Models
 
         public string AssetsDir { get; set; } = "upload";
 
+<<<<<<< HEAD
         public string ChannelFilePathRule { get; set; } = "/channels/{@ChannelID}.html";
 
         public string ContentFilePathRule { get; set; } = "/contents/{@ChannelID}/{@ContentID}.html";
@@ -99,6 +105,11 @@ namespace SSCMS.Models
         public bool IsCreateContentIfContentChanged { get; set; } = true;
 
         public bool IsCreateChannelIfChannelChanged { get; set; } = true;
+=======
+        public string ChannelFilePathRule { get; set; } = "/channels/{@channelId}.html";
+
+        public string ContentFilePathRule { get; set; } = "/contents/{@channelId}/{@contentId}.html";
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
         public bool IsCreateShowPageInfo { get; set; }
 
@@ -242,8 +253,16 @@ namespace SSCMS.Models
 
         public string TemplatesAssetsIncludeDir { get; set; } = "include";
 
+<<<<<<< HEAD
         public string TemplatesAssetsJsDir { get; set; } = "js";
 
         public string TemplatesAssetsCssDir { get; set; } = "css";
+=======
+        public string TemplatesAssetsCssDir { get; set; } = "css";
+
+        public string TemplatesAssetsJsDir { get; set; } = "js";
+
+        public string TemplatesAssetsImagesDir { get; set; } = "images";
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     }
 }

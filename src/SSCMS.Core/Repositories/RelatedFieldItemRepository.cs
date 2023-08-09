@@ -58,6 +58,17 @@ namespace SSCMS.Core.Repositories
             await _repository.DeleteAsync(id, Q.CachingRemove(GetCacheKey(siteId)));
         }
 
+<<<<<<< HEAD
+=======
+        public async Task DeleteAllAsync(int siteId)
+        {
+            await _repository.DeleteAsync(Q
+                .Where(nameof(RelatedFieldItem.SiteId), siteId)
+                .CachingRemove(GetCacheKey(siteId))
+            );
+        }
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         public async Task UpdateTaxisToDownAsync(int siteId, int relatedFieldId, int id, int parentId)
         {
             var selectedTaxis = await GetTaxisAsync(id);

@@ -15,6 +15,11 @@ var data = utils.init({
   pageSize: null,
   page: 1,
   columns: null,
+<<<<<<< HEAD
+=======
+  titleColumn: null,
+  bodyColumn: null,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
   multipleSelection: [],
 
@@ -54,10 +59,23 @@ var methods = {
       $this.tagNames = res.tagNames;
       $this.checkedLevels = res.checkedLevels;
       $this.columns = res.columns;
+<<<<<<< HEAD
       var titleColumn = _.find($this.columns, function(o) { return o.attributeName == 'Title'; });
       $this.searchColumns.push({
         attributeName: titleColumn.attributeName,
         displayName: titleColumn.displayName,
+=======
+      $this.titleColumn = res.titleColumn;
+      $this.bodyColumn = res.bodyColumn;
+      $this.searchColumns.push({
+        attributeName: $this.titleColumn.attributeName,
+        displayName: $this.titleColumn.displayName,
+        value: ''
+      });
+      $this.searchColumns.push({
+        attributeName: $this.bodyColumn.attributeName,
+        displayName: $this.bodyColumn.displayName,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         value: ''
       });
       $this.searchForm.checkedLevels = _.map(res.checkedLevels, function(x) { return x.label; });
@@ -308,7 +326,12 @@ var methods = {
       siteId: this.siteId,
       channelId: content.channelId,
       contentId: content.id,
+<<<<<<< HEAD
       page: this.page
+=======
+      page: this.page,
+      tabName: utils.getTabName()
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     });
   },
 

@@ -2,6 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using SSCMS.Utils;
 using SSCMS.Core.Utils;
+<<<<<<< HEAD
+=======
+using System.Collections.Generic;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
 namespace SSCMS.Web.Controllers.Admin.Cms.Settings
 {
@@ -26,13 +30,54 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Settings
             var channelFilePathRule = string.IsNullOrEmpty(channel.ChannelFilePathRule) ? await _pathManager.GetChannelFilePathRuleAsync(site, channelId) : channel.ChannelFilePathRule;
             var contentFilePathRule = string.IsNullOrEmpty(channel.ContentFilePathRule) ? await _pathManager.GetContentFilePathRuleAsync(site, channelId) : channel.ContentFilePathRule;
 
+<<<<<<< HEAD
+=======
+            var linkTo = new LinkTo
+            {
+                ChannelIds = new List<int> {
+                  siteId,
+                },
+                ContentId = 0,
+                ContentTitle = string.Empty
+            };
+            if (channel.LinkType == Enums.LinkType.LinkToChannel)
+            {
+                linkTo.ChannelIds = ListUtils.GetIntList(channel.LinkUrl);
+            }
+            else if (channel.LinkType == Enums.LinkType.LinkToContent)
+            {
+                if (!string.IsNullOrEmpty(channel.LinkUrl) && channel.LinkUrl.IndexOf('_') != -1)
+                {
+                    var arr = channel.LinkUrl.Split('_');
+                    if (arr.Length == 2)
+                    {
+                        var channelIds = ListUtils.GetIntList(arr[0]);
+                        var linkContentId = TranslateUtils.ToInt(arr[1]);
+                        var linkChannelId = channelIds.Count > 0 ? channelIds[channelIds.Count - 1] : 0;
+                        var linkToContent = await _contentRepository.GetAsync(site.Id, linkChannelId, linkContentId);
+                        if (linkToContent != null)
+                        {
+                            linkTo.ChannelIds = channelIds;
+                            linkTo.ContentId = linkContentId;
+                            linkTo.ContentTitle = linkToContent.Title;
+                        }
+                    }
+                }
+            }
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             return new ChannelResult
             {
                 Channel = channel,
                 LinkTypes = linkTypes,
                 FilePath = filePath,
                 ChannelFilePathRule = channelFilePathRule,
+<<<<<<< HEAD
                 ContentFilePathRule = contentFilePathRule
+=======
+                ContentFilePathRule = contentFilePathRule,
+                LinkTo = linkTo,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             };
         }
     }

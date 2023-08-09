@@ -71,6 +71,11 @@ namespace SSCMS.Repositories
 
         Task<string> GetIndexNameAsync(int siteId, int channelId);
 
+<<<<<<< HEAD
+=======
+        Task<List<string>> GetListColumnsRecursiveAsync(Channel channel);
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         Task<string> GetChannelNameNavigationAsync(int siteId, int channelId);
 
         Task<string> GetChannelNameNavigationAsync(int siteId, int currentChannelId, int channelId);

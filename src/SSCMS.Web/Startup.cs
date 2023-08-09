@@ -4,7 +4,10 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+<<<<<<< HEAD
 using System.Text;
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -16,7 +19,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Localization;
+<<<<<<< HEAD
 using Microsoft.AspNetCore.Mvc;
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -59,6 +65,7 @@ namespace SSCMS.Web
             var settingsManager = services.AddSettingsManager(_config, _env.ContentRootPath, _env.WebRootPath, entryAssembly);
             var pluginManager = services.AddPlugins(_config, settingsManager);
 
+<<<<<<< HEAD
             services.AddCors(options =>
             {
                 options.AddPolicy(CorsPolicy,
@@ -72,6 +79,37 @@ namespace SSCMS.Web
 
             services.AddHttpContextAccessor();
             
+=======
+            if (settingsManager.CorsIsOrigins)
+            {
+                services.AddCors(options =>
+                {
+                    options.AddPolicy(CorsPolicy,
+                        builder => builder
+                            .AllowAnyMethod()
+                            .AllowAnyHeader()
+                            .WithOrigins(settingsManager.CorsOrigins)
+                            .AllowCredentials()
+                    );
+                });
+            }
+            else
+            {
+                services.AddCors(options =>
+                {
+                    options.AddPolicy(CorsPolicy,
+                        builder => builder
+                            .AllowAnyMethod()
+                            .AllowAnyHeader()
+                            .SetIsOriginAllowed(x => true)
+                            .AllowCredentials()
+                    );
+                });
+            }
+
+            services.AddHttpContextAccessor();
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             services.AddAuthentication(x =>
                 {
                     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -90,7 +128,12 @@ namespace SSCMS.Web
                     };
                     x.Events = new JwtBearerEvents
                     {
+<<<<<<< HEAD
                         OnMessageReceived = (context) => {
+=======
+                        OnMessageReceived = (context) =>
+                        {
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                             if (!context.Request.Query.TryGetValue("access_token", out var values))
                             {
                                 return Task.CompletedTask;
@@ -119,7 +162,11 @@ namespace SSCMS.Web
 
             services.AddRazorPages()
                 .AddPluginApplicationParts(pluginManager);
+<<<<<<< HEAD
                 // .SetCompatibilityVersion(CompatibilityVersion.Latest);
+=======
+            // .SetCompatibilityVersion(CompatibilityVersion.Latest);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
             services.AddCache(settingsManager.Redis.ConnectionString);
 
@@ -164,6 +211,7 @@ namespace SSCMS.Web
 
             if (!settingsManager.IsSafeMode)
             {
+<<<<<<< HEAD
               //http://localhost:5000/api/swagger/v1/swagger.json
               //http://localhost:5000/api/swagger/
               //http://localhost:5000/api/docs/
@@ -191,6 +239,35 @@ namespace SSCMS.Web
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IAntiforgery antiforgery, ISettingsManager settingsManager, IPluginManager pluginManager, IErrorLogRepository errorLogRepository, IOptions<SenparcSetting> senparcSetting)
+=======
+                //http://localhost:5000/api/swagger/v1/swagger.json
+                //http://localhost:5000/api/swagger/
+                //http://localhost:5000/api/docs/
+                services.AddOpenApiDocument(config =>
+                {
+                    config.PostProcess = document =>
+                    {
+                        document.Info.Version = "v1";
+                        document.Info.Title = "SSCMS REST API";
+                        document.Info.Description = "SSCMS REST API 为 SSCMS 提供了一个基于HTTP的API调用，允许开发者通过发送和接收JSON对象来远程与站点进行交互。";
+                        document.Info.Contact = new NSwag.OpenApiContact
+                        {
+                            Name = "SSCMS",
+                            Email = string.Empty,
+                            Url = "https://sscms.com"
+                        };
+                        document.Info.License = new NSwag.OpenApiLicense
+                        {
+                            Name = "GPL-3.0",
+                            Url = "https://github.com/siteserver/cms/blob/staging/LICENSE"
+                        };
+                    };
+                });
+            }
+        }
+
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ISettingsManager settingsManager, IPluginManager pluginManager, IErrorLogRepository errorLogRepository, IOptions<SenparcSetting> senparcSetting)
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         {
             if (env.IsDevelopment())
             {
@@ -218,7 +295,11 @@ namespace SSCMS.Web
                     {
                         exception.Message,
                         exception.StackTrace,
+<<<<<<< HEAD
                         AddDate = DateTime.Now
+=======
+                        CreatedDate = DateTime.Now
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                     });
                 }
                 else
@@ -226,7 +307,11 @@ namespace SSCMS.Web
                     result = TranslateUtils.JsonSerialize(new
                     {
                         exception.Message,
+<<<<<<< HEAD
                         AddDate = DateTime.Now
+=======
+                        CreatedDate = DateTime.Now
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                     });
                 }
                 context.Response.ContentType = "application/json";
@@ -289,7 +374,11 @@ namespace SSCMS.Web
             app.UseAuthentication();
             app.UseAuthorization();
 
+<<<<<<< HEAD
             app.UsePluginsAsync(settingsManager, pluginManager, errorLogRepository).GetAwaiter().GetResult();
+=======
+            app.UsePluginsAsync(settingsManager, pluginManager).GetAwaiter().GetResult();
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
             app.UseEndpoints(endpoints =>
             {
@@ -307,6 +396,7 @@ namespace SSCMS.Web
                 //.UseSenparcGlobal(false, () => GetExCacheStrategies(senparcSetting.Value))   
                 ;
 
+<<<<<<< HEAD
             if (!settingsManager.IsSafeMode)
             {
                 app.UseOpenApi();
@@ -317,6 +407,18 @@ namespace SSCMS.Web
                     settings.DocumentPath = "/swagger/v1/swagger.json";
                 });
             }
+=======
+            // if (!settingsManager.IsSafeMode)
+            // {
+            //     app.UseOpenApi();
+            //     app.UseSwaggerUi3();
+            //     app.UseReDoc(settings =>
+            //     {
+            //         settings.Path = "/api/docs";
+            //         settings.DocumentPath = "/swagger/v1/swagger.json";
+            //     }); 
+            // }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         }
     }
 }

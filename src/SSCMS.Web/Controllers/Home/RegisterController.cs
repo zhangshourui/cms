@@ -54,6 +54,10 @@ namespace SSCMS.Web.Controllers.Home
             public bool IsUserRegistrationMobile { get; set; }
             public bool IsUserRegistrationEmail { get; set; }
             public bool IsUserRegistrationGroup { get; set; }
+<<<<<<< HEAD
+=======
+            public bool IsUserCaptchaDisabled { get; set; }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             public bool IsHomeAgreement { get; set; }
             public string HomeAgreementHtml { get; set; }
             public IEnumerable<InputStyle> Styles { get; set; }

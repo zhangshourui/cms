@@ -4,6 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+<<<<<<< HEAD
+=======
+using DocumentFormat.OpenXml.Drawing;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 using DocumentFormat.OpenXml.Packaging;
 using HtmlAgilityPack;
 using OpenXmlPowerTools;
@@ -27,7 +31,10 @@ namespace SSCMS.Core.Utils.Office
         private bool IsClearImages { get; set; }
         private string DocsFilePath { get; set; }
         private string DocsFileTitle { get; set; }
+<<<<<<< HEAD
         private IPathManager PathManager { get; set; }
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         private Site Site { get; set; }
 
         public string Title { get; set; }
@@ -60,7 +67,10 @@ namespace SSCMS.Core.Utils.Office
                 ImageDirectoryUrl = PathUtils.GetMaterialVirtualFilePath(UploadType.Image, fileName);
             }
 
+<<<<<<< HEAD
             PathManager = pathManager;
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             Site = siteInfo;
         }
 
@@ -235,6 +245,16 @@ namespace SSCMS.Core.Utils.Office
                             try
                             {
                                 imageInfo.Bitmap.Save(imageFilePath, imageFormat);
+<<<<<<< HEAD
+=======
+
+                                if (Site.IsImageAutoResize)
+                                {
+                                    ImageUtils.ResizeImageIfExceeding(imageFilePath, Site.ImageAutoResizeWidth);
+                                }
+
+                                // AddWaterMarkAsync(Site, filePath);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                             }
                             catch (System.Runtime.InteropServices.ExternalException)
                             {
@@ -246,11 +266,20 @@ namespace SSCMS.Core.Utils.Office
                                 ImageUrl = imageSource;
                             }
 
+<<<<<<< HEAD
                             var img = new XElement(Xhtml.img,
                                 new XAttribute(NoNamespace.src, imageSource),
                                 imageInfo.ImgStyleAttribute,
                                 imageInfo.AltText != null ?
                                     new XAttribute(NoNamespace.alt, imageInfo.AltText) : null);
+=======
+                            var img = new XElement(
+                              Xhtml.img,
+                              new XAttribute(NoNamespace.src, imageSource),
+                              // imageInfo.ImgStyleAttribute,
+                              imageInfo.AltText != null ? new XAttribute(NoNamespace.alt, imageInfo.AltText) : null
+                            );
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                             return img;
                         }
                     };
@@ -273,12 +302,36 @@ namespace SSCMS.Core.Utils.Office
                     var htmlString = html.ToString(SaveOptions.DisableFormatting);
                     var htmlDoc = new HtmlDocument();
                     htmlDoc.LoadHtml(htmlString);
+<<<<<<< HEAD
                     var style = htmlDoc.DocumentNode.SelectSingleNode("//style").OuterHtml;
+=======
+                    var style = IsClearFormat ? string.Empty : htmlDoc.DocumentNode.SelectSingleNode("//style").OuterHtml;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                     var body = htmlDoc.DocumentNode.SelectSingleNode("//body").InnerHtml;
 
                     Body = $"{style}{Environment.NewLine}{body}";
                 }
             }
         }
+<<<<<<< HEAD
+=======
+
+        public static void OpenAndAddTextToWordDocument(string filepath, string txt)
+        {
+            // Open a WordprocessingDocument for editing using the filepath.
+            var wordprocessingDocument = WordprocessingDocument.Open(filepath, true);
+
+            // Assign a reference to the existing document body.
+            var body = wordprocessingDocument.MainDocumentPart.Document.Body;
+            
+            // Add new text.
+            var para = body.AppendChild(new Paragraph());
+            var run = para.AppendChild(new Run());
+            run.AppendChild(new Text(txt));
+            
+            // Close the handle explicitly.
+            wordprocessingDocument.Close();
+        }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     }
 }

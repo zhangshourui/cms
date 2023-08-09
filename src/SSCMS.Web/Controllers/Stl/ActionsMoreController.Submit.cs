@@ -36,7 +36,11 @@ namespace SSCMS.Web.Controllers.Stl
                 };
                 var site = await _siteRepository.GetAsync(request.SiteId);
 
+<<<<<<< HEAD
                 await _parseManager.InitAsync(EditMode.Default, site, request.PageChannelId, request.PageContentId, templateInfo);
+=======
+                await _parseManager.InitAsync(EditMode.Default, site, request.PageChannelId, request.PageContentId, templateInfo, 0);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 _parseManager.PageInfo.User = await _authManager.GetUserAsync();
 
                 var contentBuilder = new StringBuilder(template);

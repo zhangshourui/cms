@@ -88,6 +88,14 @@ namespace SSCMS.Utils
             return Utilities.GetStringList(collection, split);
         }
 
+<<<<<<< HEAD
+=======
+        public static List<string> GetStringList(string collection, string split)
+        {
+            return Utilities.GetStringList(collection, split);
+        }
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         public static List<string> GetStringList(IEnumerable<string> collection)
         {
             return Utilities.GetStringList(collection);

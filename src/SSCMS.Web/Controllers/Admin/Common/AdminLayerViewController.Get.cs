@@ -33,7 +33,14 @@ namespace SSCMS.Web.Controllers.Admin.Common
             foreach (var siteId in siteIdListWithPermissions)
             {
                 var site = await _siteRepository.GetAsync(siteId);
+<<<<<<< HEAD
                 siteNames.Add(site.SiteName);
+=======
+                if (site != null)
+                {
+                    siteNames.Add(site.SiteName);
+                }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             }
             var roleNames = await _administratorRepository.GetRolesAsync(admin.UserName);
 

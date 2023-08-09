@@ -31,14 +31,38 @@ namespace SSCMS.Core.Repositories
 
                 if (!string.IsNullOrEmpty(group))
                 {
+<<<<<<< HEAD
                     if (!ListUtils.ContainsIgnoreCase(channel.GroupNames, group))
+=======
+                    var isContains = false;
+                    foreach (var groupName in ListUtils.GetStringList(group))
+                    {
+                        if (ListUtils.Contains(channel.GroupNames, groupName))
+                        {
+                            isContains = true;
+                        }
+                    }
+                    if (!isContains)
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                     {
                         continue;
                     }
                 }
                 if (!string.IsNullOrEmpty(groupNot))
                 {
+<<<<<<< HEAD
                     if (ListUtils.ContainsIgnoreCase(channel.GroupNames, groupNot))
+=======
+                    var isContains = false;
+                    foreach (var groupNotName in ListUtils.GetStringList(groupNot))
+                    {
+                        if (ListUtils.Contains(channel.GroupNames, groupNotName))
+                        {
+                            isContains = true;
+                        }
+                    }
+                    if (isContains)
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                     {
                         continue;
                     }

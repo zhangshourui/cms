@@ -94,6 +94,13 @@ namespace SSCMS.Core.Services
 
         public string[] AdminRestrictionBlockList => _config.GetSection("AdminRestriction:BlockList").Get<string[]>();
 
+<<<<<<< HEAD
+=======
+        public bool CorsIsOrigins => _config.GetValue("Cors:IsOrigins", false);
+
+        public string[] CorsOrigins => _config.GetSection("Cors:Origins").Get<string[]>();
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         public string Encrypt(string inputString, string securityKey = null)
         {
             return TranslateUtils.EncryptStringBySecretKey(inputString, !string.IsNullOrEmpty(securityKey) ? securityKey : SecurityKey);
@@ -104,7 +111,11 @@ namespace SSCMS.Core.Services
             return TranslateUtils.DecryptStringBySecretKey(inputString, !string.IsNullOrEmpty(securityKey) ? securityKey : SecurityKey);
         }
 
+<<<<<<< HEAD
         public void SaveSettings(bool isProtectData, bool isSafeMode, bool isDisablePlugins, DatabaseType databaseType, string databaseConnectionString, string redisConnectionString, string adminRestrictionHost, string[] adminRestrictionAllowList, string[] adminRestrictionBlockList)
+=======
+        public void SaveSettings(bool isProtectData, bool isSafeMode, bool isDisablePlugins, DatabaseType databaseType, string databaseConnectionString, string redisConnectionString, string adminRestrictionHost, string[] adminRestrictionAllowList, string[] adminRestrictionBlockList, bool corsIsOrigins, string[] corsOrigins)
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         {
             var type = databaseType.GetValue();
             var databaseConnectionStringValue = databaseConnectionString;
@@ -116,7 +127,11 @@ namespace SSCMS.Core.Services
                 redisConnectionStringValue = Encrypt(redisConnectionString, SecurityKey);
             }
 
+<<<<<<< HEAD
             InstallUtils.SaveSettings(ContentRootPath, isProtectData, isSafeMode, isDisablePlugins, SecurityKey, type, databaseConnectionStringValue, redisConnectionStringValue, adminRestrictionHost, adminRestrictionAllowList, adminRestrictionBlockList);
+=======
+            InstallUtils.SaveSettings(ContentRootPath, isProtectData, isSafeMode, isDisablePlugins, SecurityKey, type, databaseConnectionStringValue, redisConnectionStringValue, adminRestrictionHost, adminRestrictionAllowList, adminRestrictionBlockList, corsIsOrigins, corsOrigins);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             Reload();
         }
     }

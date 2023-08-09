@@ -28,7 +28,11 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Editor
             if (site == null) return this.Error(Constants.ErrorNotFound);
 
             var channel = await _channelRepository.GetAsync(request.ChannelId);
+<<<<<<< HEAD
             var source = await _contentRepository.GetAsync(site, channel,  request.ContentId);
+=======
+            var source = await _contentRepository.GetAsync(site, channel, request.ContentId);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
             var adminId = _authManager.AdminId;
             var content = await _pathManager.EncodeContentAsync(site, channel, request.Content);
@@ -65,17 +69,49 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Editor
             {
                 content.Checked = false;
                 content.CheckedLevel = CheckManager.LevelInt.ScheduledPublish;
+<<<<<<< HEAD
 
                 await _scheduledTaskRepository.InsertPublishAsync(content, request.ScheduledDate);
+=======
+            }
+
+            if (content.LinkType == Enums.LinkType.None)
+            {
+                content.LinkUrl = request.Content.LinkUrl;
+            }
+            else if (content.LinkType == Enums.LinkType.LinkToChannel)
+            {
+                content.LinkUrl = ListUtils.ToString(request.LinkTo.ChannelIds);
+            }
+            else if (content.LinkType == Enums.LinkType.LinkToContent)
+            {
+                content.LinkUrl = ListUtils.ToString(request.LinkTo.ChannelIds) + "_" + request.LinkTo.ContentId;
+            }
+            else
+            {
+                content.LinkUrl = string.Empty;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             }
 
             await _contentRepository.UpdateAsync(site, channel, content);
 
+<<<<<<< HEAD
+=======
+            if (request.IsScheduled)
+            {
+                await _scheduledTaskRepository.InsertPublishAsync(content, request.ScheduledDate);
+            }
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             var channelNames = await _channelRepository.GetChannelNameNavigationAsync(content.SiteId, content.ChannelId);
             await _authManager.AddSiteLogAsync(content.SiteId, content.ChannelId, content.Id, "修改内容",
                 $"栏目：{channelNames}，内容标题：{content.Title}");
             await CloudManager.SendContentChangedMail(_pathManager, _mailManager, _errorLogRepository, site, content, channelNames, _authManager.AdminName, true);
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             await _contentTagRepository.UpdateTagsAsync(source.TagNames, content.TagNames, request.SiteId, content.Id);
 
             if (request.Translates != null && request.Translates.Count > 0)

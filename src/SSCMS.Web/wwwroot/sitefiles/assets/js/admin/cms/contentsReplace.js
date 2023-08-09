@@ -16,6 +16,10 @@ var data = utils.init({
     replace: '',
     isCaseSensitive: true,
     isRegex: false,
+<<<<<<< HEAD
+=======
+    isDescendant: false,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     to: '',
   }
 });
@@ -101,6 +105,10 @@ var methods = {
               replace: $this.form.replace,
               isCaseSensitive: $this.form.isCaseSensitive,
               isRegex: $this.form.isRegex,
+<<<<<<< HEAD
+=======
+              isDescendant: $this.form.isDescendant,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
               to: $this.form.to,
             });
           }

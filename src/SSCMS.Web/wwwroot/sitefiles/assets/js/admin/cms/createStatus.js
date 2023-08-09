@@ -12,7 +12,11 @@ var data = utils.init({
 });
 
 var methods = {
+<<<<<<< HEAD
   load: function () {
+=======
+  apiGet: function () {
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     var $this = this;
 
     utils.loading(this, true);
@@ -34,7 +38,11 @@ var methods = {
     })
     .then(function() {
       $this.timeoutId = setTimeout(function () {
+<<<<<<< HEAD
         $this.load();
+=======
+        $this.apiGet();
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       }, 5000);
       utils.loading($this, false);
     });
@@ -73,7 +81,11 @@ var methods = {
       .then(function(response) {
         var res = response.data;
 
+<<<<<<< HEAD
         $this.load();
+=======
+        $this.apiGet();
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       })
       .catch(function(error) {
         utils.error(error);
@@ -91,6 +103,10 @@ var $vue = new Vue({
   methods: methods,
   created: function () {
     utils.keyPress(null, this.btnCloseClick);
+<<<<<<< HEAD
     this.load();
+=======
+    this.apiGet();
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   }
 });

@@ -16,6 +16,10 @@ var data = utils.init({
   adminLogoUrl: null,
   adminLogoLinkUrl: null,
   adminTitle: null,
+<<<<<<< HEAD
+=======
+  isAdminUpdateDisabled: null,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   isSuperAdmin: null,
   culture: null,
   plugins: null,
@@ -73,11 +77,19 @@ var methods = {
           $this.adminLogoLinkUrl = res.adminLogoLinkUrl;
           adminFaviconUrl = res.adminFaviconUrl;
           $this.adminTitle = res.adminTitle || 'SSCMS 管理后台';
+<<<<<<< HEAD
+=======
+          $this.isAdminUpdateDisabled = res.isAdminUpdateDisabled;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         } else {
           $this.adminLogoUrl = utils.getAssetsUrl('images/logo.png');
           $this.adminLogoLinkUrl = 'https://sscms.com';
           adminFaviconUrl = utils.getAssetsUrl('images/favicon.png');
           $this.adminTitle = 'SSCMS 管理后台';
+<<<<<<< HEAD
+=======
+          $this.isAdminUpdateDisabled = false;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         }
 
         $this.isSuperAdmin = res.isSuperAdmin;

@@ -11,6 +11,10 @@ var data = utils.init({
   version: null,
   homeTitle: null,
   isSmsEnabled: false,
+<<<<<<< HEAD
+=======
+  isUserCaptchaDisabled: false,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   countdown: 0,
   form: {
     type: 'account',
@@ -34,6 +38,7 @@ var methods = {
         title: '您的账号登录已过期或失效，请重新登录'
       };
     }
+<<<<<<< HEAD
     var tempUrl = $url;
     var access_token = utils.getQueryString("access_token");
     if (access_token) {
@@ -57,6 +62,20 @@ var methods = {
         $this.version = res.version;
         $this.homeTitle = res.homeTitle;
         $this.isSmsEnabled = res.isSmsEnabled;
+=======
+
+    utils.loading(this, true);
+    $api.get($url).then(function (response) {
+      var res = response.data;
+
+      $this.version = res.version;
+      $this.homeTitle = res.homeTitle;
+      $this.isSmsEnabled = res.isSmsEnabled;
+      $this.isUserCaptchaDisabled = res.isUserCaptchaDisabled;
+      if ($this.isUserCaptchaDisabled) {
+        $this.btnTypeClick();
+      } else {
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         $this.apiCaptcha();
       }
     }).catch(function (error) {
@@ -85,6 +104,7 @@ var methods = {
 
   apiCaptchaCheck: function () {
     var $this = this;
+<<<<<<< HEAD
 
     utils.loading(this, true);
     $api.post($urlCaptchaCheck, {
@@ -97,6 +117,23 @@ var methods = {
       utils.loading($this, false);
       utils.notifyError(error);
     });
+=======
+    if (this.isUserCaptchaDisabled) {
+      $this.apiSubmit();
+    } else {
+      utils.loading(this, true);
+      $api.post($urlCaptchaCheck, {
+        token: this.captchaToken,
+        value: this.form.captchaValue
+      }).then(function (response) {
+        $this.apiSubmit();
+      }).catch(function (error) {
+        $this.apiCaptcha();
+        utils.loading($this, false);
+        utils.notifyError(error);
+      });
+    }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   },
 
   apiSendSms: function () {
@@ -112,7 +149,11 @@ var methods = {
       $this.countdown = 60;
       var interval = setInterval(function () {
         $this.countdown -= 1;
+<<<<<<< HEAD
         if ($this.countdown <= 0) {
+=======
+        if ($this.countdown <= 0){
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
           clearInterval(interval);
         }
       }, 1000);
@@ -156,21 +197,36 @@ var methods = {
     });
   },
 
+<<<<<<< HEAD
   //redirectIndex: function () {
   //  location.href = utils.getIndexUrl();
   //},
   redirectIndex: function () {
     location.href = "/"
   },
+=======
+  redirectIndex: function () {
+    location.href = utils.getIndexUrl();
+  },
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   redirectLostPassword: function () {
     location.href = utils.getRootUrl('lostPassword');
   },
 
+<<<<<<< HEAD
   btnTypeClick: function () {
     var $this = this;
 
     this.$refs.formAccount.clearValidate();
     this.$refs.formMobile.clearValidate();
+=======
+  btnTypeClick: function() {
+    var $this = this;
+
+    this.$refs.formAccount && this.$refs.formAccount.clearValidate();
+    this.$refs.formMobile && this.$refs.formMobile.clearValidate();
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     if (this.form.type == 'account') {
       setTimeout(function () {
         $this.$refs['account'].focus();
@@ -207,13 +263,21 @@ var methods = {
     var $this = this;
 
     if (this.form.type == 'account') {
+<<<<<<< HEAD
       this.$refs.formAccount.validate(function (valid) {
+=======
+      this.$refs.formAccount.validate(function(valid) {
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         if (valid) {
           $this.apiCaptchaCheck();
         }
       });
     } else {
+<<<<<<< HEAD
       this.$refs.formMobile.validate(function (valid) {
+=======
+      this.$refs.formMobile.validate(function(valid) {
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         if (valid) {
           $this.apiSubmit();
         }
@@ -221,7 +285,11 @@ var methods = {
     }
   },
 
+<<<<<<< HEAD
   btnRegisterClick: function (e) {
+=======
+  btnRegisterClick: function(e) {
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     e.preventDefault();
     location.href = utils.getRootUrl('register');
   }

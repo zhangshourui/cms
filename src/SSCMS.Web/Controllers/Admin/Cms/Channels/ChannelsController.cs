@@ -80,6 +80,18 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Channels
             public bool IsCloudImages { get; set; }
         }
 
+<<<<<<< HEAD
+=======
+        public class LinkTo
+        {
+            public List<int> ChannelIds { get; set; }
+
+            public int ContentId { get; set; }
+
+            public string ContentTitle { get; set; }
+        }
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         public class ListResult
         {
             public Cascade<int> Channel { get; set; }
@@ -106,6 +118,10 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Channels
             public string FilePath { get; set; }
             public string ChannelFilePathRule { get; set; }
             public string ContentFilePathRule { get; set; }
+<<<<<<< HEAD
+=======
+            public LinkTo LinkTo { get; set; }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         }
 
         public class ImportRequest : ChannelRequest
@@ -143,6 +159,15 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Channels
             public string Channels { get; set; }
         }
 
+<<<<<<< HEAD
+=======
+        public class UpdateRequest : Channel
+        {
+            public List<int> ChannelIds { get; set; }
+            public int ContentId { get; set; }
+        }
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         private async Task<List<TableStyle>> GetStylesAsync(Channel channel)
         {
             var styles = new List<TableStyle>

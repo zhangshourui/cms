@@ -56,7 +56,11 @@ namespace SSCMS.Core.Services
                     }
 
                     var ajaxUrl = PathManager.GetTriggerApiUrl(PageInfo.SiteId, ContextInfo.ChannelId,
+<<<<<<< HEAD
                         ContextInfo.ContentId, fileTemplateId, true);
+=======
+                        ContextInfo.ContentId, fileTemplateId, PageInfo.SpecialId, true);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                     if (!PageInfo.FootCodes.ContainsKey("CreateDoubleClick"))
                     {
                         PageInfo.FootCodes.Add("CreateDoubleClick", $@"

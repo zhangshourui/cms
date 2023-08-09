@@ -165,6 +165,14 @@ namespace SSCMS.Core.Utils.PathRules
                     if (node == null) node = await _databaseManager.ChannelRepository.GetAsync(channelId);
                     value = StringUtils.ToLower(node.ChannelName);
                 }
+<<<<<<< HEAD
+=======
+                else if (StringUtils.EqualsIgnoreCase(element, ChannelIndex))
+                {
+                    if (node == null) node = await _databaseManager.ChannelRepository.GetAsync(channelId);
+                    value = node.IndexName;
+                }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 else if (StringUtils.EqualsIgnoreCase(element, LowerChannelIndex))
                 {
                     if (node == null) node = await _databaseManager.ChannelRepository.GetAsync(channelId);

@@ -54,7 +54,11 @@ namespace SSCMS.Web.Controllers.Admin
                 }
 
                 _settingsManager.SaveSettings(request.IsProtectData, false, false, request.DatabaseType, databaseConnectionString,
+<<<<<<< HEAD
                     redisConnectionString, string.Empty, null, null);
+=======
+                    redisConnectionString, string.Empty, null, null, false, null);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             }
 
             return new StringResult

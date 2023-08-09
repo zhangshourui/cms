@@ -22,6 +22,10 @@ namespace SSCMS.Repositories
             bool isVideoExists, bool isVideo, bool isFileExists, bool isFile, string since, bool isRelatedContents, int startNum,
             int totalNum, TaxisType taxisType, bool isTopExists, bool isTop, bool isRecommendExists, bool isRecommend,
             bool isHotExists, bool isHot, bool isColorExists, bool isColor, ScopeType scopeType, string groupChannel,
+<<<<<<< HEAD
             string groupChannelNot, NameValueCollection others, Query query);
+=======
+            string groupChannelNot, string where, NameValueCollection others, Query query);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     }
 }

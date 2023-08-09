@@ -1,5 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
+<<<<<<< HEAD
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <TypeScriptTarget>ES6</TypeScriptTarget>
   </PropertyGroup>
@@ -14,6 +15,12 @@
     <TargetFramework>net7.0</TargetFramework>
     <LangVersion>latest</LangVersion>
     <Version>7.2.0</Version>
+=======
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Version>7.2.1</Version>
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
     <ApplicationIcon>logo.ico</ApplicationIcon>
@@ -21,7 +28,10 @@
     <NoWarn>$(NoWarn);1591</NoWarn>
     <AssemblyName>SSCMS.Web</AssemblyName>
     <StartupObject></StartupObject>
+<<<<<<< HEAD
     <UserSecretsId>c85e6b1a-c6dc-4589-af71-a2098559048e</UserSecretsId>
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   </PropertyGroup>
 
   <ItemGroup>
@@ -51,6 +61,7 @@
     <Watch Include="plugins\**\*.cshtml;plugins\**\*.cs" Exclude="plugins\*\obj\**\*;plugins\bin\**\*" />
   </ItemGroup>
 
+<<<<<<< HEAD
   <ItemGroup>
     <Content Remove="compilerconfig.json" />
   </ItemGroup>
@@ -59,4 +70,6 @@
     <None Include="compilerconfig.json" />
   </ItemGroup>
 
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 </Project>

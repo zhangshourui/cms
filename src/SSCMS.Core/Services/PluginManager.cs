@@ -127,10 +127,22 @@ namespace SSCMS.Core.Services
         private static bool IsEnabled(IPlugin plugin, int siteId, int channelId)
         {
             if (!IsEnabled(plugin, siteId)) return false;
+<<<<<<< HEAD
             if (plugin.ApplyToChannels && plugin.AllChannels) return true;
 
             var siteConfig = plugin.SiteConfigs?.FirstOrDefault(x => x.SiteId == siteId);
             if (siteConfig == null) return false;
+=======
+            if (!plugin.ApplyToChannels) return false;
+
+            var siteConfig = plugin.SiteConfigs?.FirstOrDefault(x => x.SiteId == siteId);
+            siteConfig ??= new SiteConfig
+            {
+                SiteId = siteId,
+                AllChannels = plugin.AllChannels,
+                ChannelIds = new List<int>()
+            };
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             
             return siteConfig.AllChannels || ListUtils.Contains(siteConfig.ChannelIds, channelId);
         }

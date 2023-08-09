@@ -10,7 +10,11 @@ variables:
   netCoreSdkVersion: '7.0.101'
   buildConfiguration: 'Release'
   imageName: 'sscms/core'
+<<<<<<< HEAD
   productVersion: '7.2.0'
+=======
+  productVersion: '7.2.1'
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
 jobs:
 

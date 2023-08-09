@@ -2,10 +2,18 @@
 
 var data = utils.init({
   siteId: utils.getQueryInt("siteId"),
+<<<<<<< HEAD
   isCensorTextEnabled: null,
   form: {
     isSaveImageInTextEditor: null,
     pageSize: null,
+=======
+  taxisTypes: [],
+  form: {
+    isSaveImageInTextEditor: null,
+    pageSize: null,
+    taxisType: null,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     isAutoPageInTextEditor: null,
     autoPageWordNum: null,
     isContentTitleBreakLine: null,
@@ -27,15 +35,25 @@ var methods = {
     }).then(function (response) {
       var res = response.data;
 
+<<<<<<< HEAD
       $this.isCensorTextEnabled = res.isCensorTextEnabled;
       $this.form.isSaveImageInTextEditor = res.site.isSaveImageInTextEditor;
       $this.form.pageSize = res.site.pageSize;
+=======
+      $this.form.isSaveImageInTextEditor = res.site.isSaveImageInTextEditor;
+      $this.form.pageSize = res.site.pageSize;
+      $this.form.taxisType = res.site.taxisType;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       $this.form.isAutoPageInTextEditor = res.site.isAutoPageInTextEditor;
       $this.form.autoPageWordNum = res.site.autoPageWordNum;
       $this.form.isContentTitleBreakLine = res.site.isContentTitleBreakLine;
       $this.form.isContentSubTitleBreakLine = res.site.isContentSubTitleBreakLine;
       $this.form.checkContentLevel = res.site.checkContentLevel;
       $this.form.checkContentDefaultLevel = res.site.checkContentDefaultLevel;
+<<<<<<< HEAD
+=======
+      $this.taxisTypes = res.taxisTypes;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     }).catch(function (error) {
       utils.error(error);
     }).then(function () {
@@ -51,6 +69,10 @@ var methods = {
       siteId: this.siteId,
       isSaveImageInTextEditor: this.form.isSaveImageInTextEditor,
       pageSize: this.form.pageSize,
+<<<<<<< HEAD
+=======
+      taxisType: this.form.taxisType,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       isAutoPageInTextEditor: this.form.isAutoPageInTextEditor,
       autoPageWordNum: this.form.autoPageWordNum,
       isContentTitleBreakLine: this.form.isContentTitleBreakLine,

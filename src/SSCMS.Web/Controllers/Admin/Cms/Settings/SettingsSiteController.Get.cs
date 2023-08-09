@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 ﻿using System.Collections.Generic;
+=======
+﻿using System;
+using System.Collections.Generic;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 using System.Threading.Tasks;
 using Datory;
 using Microsoft.AspNetCore.Mvc;
@@ -54,6 +59,14 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Settings
                     }
                     entity.Set(style.AttributeName, site.Get(style.AttributeName));
                 }
+<<<<<<< HEAD
+=======
+                else if (style.InputType == InputType.Date || style.InputType == InputType.DateTime)
+                {
+                    var date = TranslateUtils.ToDateTime(site.Get<string>(style.AttributeName), DateTime.Now);
+                    entity.Set(style.AttributeName, date);
+                }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 else
                 {
                     entity.Set(style.AttributeName, site.Get(style.AttributeName));

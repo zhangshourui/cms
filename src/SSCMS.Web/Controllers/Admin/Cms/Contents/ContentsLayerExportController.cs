@@ -39,7 +39,11 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Contents
         public class GetResult
         {
             public List<ContentColumn> Value { get; set; }
+<<<<<<< HEAD
             public List<KeyValuePair<int, string>> CheckedLevels { get; set; }
+=======
+            public IEnumerable<CheckBox<int>> CheckedLevels { get; set; }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             public int CheckedLevel { get; set; }
         }
 

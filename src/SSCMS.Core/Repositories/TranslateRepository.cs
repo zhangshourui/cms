@@ -39,6 +39,16 @@ namespace SSCMS.Core.Repositories
             );
         }
 
+<<<<<<< HEAD
+=======
+        public async Task DeleteAllAsync(int siteId)
+        {
+            await _repository.DeleteAsync(Q
+                .Where(nameof(Translate.SiteId), siteId)
+            );
+        }
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         public async Task<List<Translate>> GetTranslatesAsync(int siteId, bool summary = false)
         {
             var translates =  await _repository.GetAllAsync(Q

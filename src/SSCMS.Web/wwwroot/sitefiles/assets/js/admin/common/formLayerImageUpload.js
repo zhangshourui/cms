@@ -8,6 +8,11 @@ var data = utils.init({
   uploadUrl: null,
   dialogImageUrl: '',
   dialogVisible: false,
+<<<<<<< HEAD
+=======
+  fileNames: [],
+  files: [],
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   form: {
     userId: utils.getQueryInt('userId'),
     siteId: utils.getQueryInt('siteId'),
@@ -17,7 +22,11 @@ var data = utils.init({
     thumbWidth: 500,
     thumbHeight: 500,
     isLinkToOriginal: true,
+<<<<<<< HEAD
     filePaths: []
+=======
+    filePaths: [],
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   }
 });
 
@@ -81,6 +90,21 @@ var methods = {
     var $this = this;
 
     utils.loading(this, true);
+<<<<<<< HEAD
+=======
+    this.form.filePaths = [];
+    for (var i = 0; i < this.fileNames.length; i++) {
+      var name = this.fileNames[i];
+      for (var j = 0; j < this.files.length; j++) {
+        var file = this.files[j];
+        if (file.name === name) {
+          this.form.filePaths.push(file.path);
+          continue;
+        }
+      }
+    }
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     $api.post($url, this.form).then(function(response) {
       var res = response.data;
 
@@ -102,7 +126,11 @@ var methods = {
   },
 
   btnSubmitClick: function () {
+<<<<<<< HEAD
     if (this.form.filePaths.length === 0) {
+=======
+    if (this.files.length === 0) {
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       utils.error('请选择需要插入的图片文件！');
       return false;
     }
@@ -115,11 +143,15 @@ var methods = {
   },
 
   uploadBefore(file) {
+<<<<<<< HEAD
     var isLt10M = file.size / 1024 / 1024 < 10;
     if (!isLt10M) {
       utils.error('上传图片大小不能超过 10MB!');
       return false;
     }
+=======
+    this.fileNames.push(file.name);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     return true;
   },
 
@@ -128,7 +160,11 @@ var methods = {
   },
 
   uploadSuccess: function(res) {
+<<<<<<< HEAD
     this.form.filePaths.push(res.path);
+=======
+    this.files.push(res);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     utils.loading(this, false);
   },
 
@@ -140,7 +176,19 @@ var methods = {
 
   uploadRemove(file) {
     if (file.response) {
+<<<<<<< HEAD
       this.form.filePaths.splice(this.form.filePaths.indexOf(file.response.path), 1);
+=======
+      var index = 0;
+      for (var i = 0; i < this.files.length; i++) {
+        var f = this.files[i];
+        if (f.path === file.path) {
+          index = i;
+          break;
+        }
+      }
+      this.files.splice(index, 1);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     }
   },
 

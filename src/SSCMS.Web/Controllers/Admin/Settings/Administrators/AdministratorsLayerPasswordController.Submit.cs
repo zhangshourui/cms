@@ -24,11 +24,19 @@ namespace SSCMS.Web.Controllers.Admin.Settings.Administrators
                 return Unauthorized();
             }
 
+<<<<<<< HEAD
             var password = request.Password;
             var valid = await _administratorRepository.ChangePasswordAsync(adminInfo, password);
             if (!valid.IsValid)
             {
                 return this.Error($"更改密码失败：{valid.ErrorMessage}");
+=======
+            var password = StringUtils.Base64Decode(request.Password);
+            var (isValid, errorMessage) = await _administratorRepository.ChangePasswordAsync(adminInfo, password);
+            if (!isValid)
+            {
+                return this.Error($"更改密码失败：{errorMessage}");
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             }
 
             await _authManager.AddAdminLogAsync("重设管理员密码", $"管理员:{adminInfo.UserName}");

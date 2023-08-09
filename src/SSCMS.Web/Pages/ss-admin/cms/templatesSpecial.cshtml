@@ -20,12 +20,15 @@
       <el-link
         :underline="false"
         type="primary"
+<<<<<<< HEAD
         v-on:click="btnEditClick(scope.row)">
         设置
       </el-link>
       <el-link
         :underline="false"
         type="primary"
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         v-on:click="btnUploadClick(scope.row)">
         上传文件
       </el-link>
@@ -37,6 +40,21 @@
       </el-link>
       <el-link
         :underline="false"
+<<<<<<< HEAD
+=======
+        type="primary"
+        v-on:click="btnEditClick(scope.row)">
+        设置
+      </el-link>
+      <el-link
+        :underline="false"
+        type="primary"
+        v-on:click="btnCreateClick(scope.row)">
+        生成页面
+      </el-link>
+      <el-link
+        :underline="false"
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         v-if="scope.row.id > 0"
         type="danger"
         v-on:click="btnDeleteClick(scope.row)">
@@ -60,7 +78,11 @@
 <el-drawer
   id="form"
   v-if="form"
+<<<<<<< HEAD
   :title="form.id > 0 ? (form.isUploadOnly ? '上传文件' : '修改专题') : '添加专题'"
+=======
+  :title="form.id > 0 ? (form.isUploadOnly ? '上传文件' : '设置') : '新建专题'"
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   :visible.sync="panel"
   destroy-on-close
   direction="rtl"

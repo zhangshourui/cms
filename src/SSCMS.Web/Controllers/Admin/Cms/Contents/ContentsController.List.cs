@@ -4,6 +4,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SSCMS.Configuration;
 using SSCMS.Core.Utils;
+<<<<<<< HEAD
+=======
+using SSCMS.Dto;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 using SSCMS.Models;
 using SSCMS.Utils;
 
@@ -36,7 +40,11 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Contents
             if (site == null) return this.Error(Constants.ErrorNotFound);
 
             var channel = await _channelRepository.GetAsync(request.ChannelId);
+<<<<<<< HEAD
             if (channel == null) return this.Error("无法确定内容对应的栏目");
+=======
+            if (channel == null) return this.Error(Constants.ErrorNotFound);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
             if (channel.IsPreviewContentsExists)
             {
@@ -115,6 +123,30 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Contents
                 columns.FirstOrDefault(x => StringUtils.EqualsIgnoreCase(x.AttributeName, nameof(Models.Content.Title)));
             columns.Remove(titleColumn);
 
+<<<<<<< HEAD
+=======
+            var breadcrumbItems = new List<Select<int>>();
+            if (channel.ParentsPath != null && channel.ParentsPath.Count > 0)
+            {
+                foreach (var channelId in channel.ParentsPath)
+                {
+                    var channelName = await _channelRepository.GetChannelNameAsync(request.SiteId, channelId);
+                    if (string.IsNullOrEmpty(channelName)) continue;
+                    
+                    breadcrumbItems.Add(new Select<int>
+                    {
+                        Value = channelId,
+                        Label = channelName,
+                    });
+                }
+            }
+            breadcrumbItems.Add(new Select<int>
+            {
+                Value = channel.Id,
+                Label = channel.ChannelName,
+            });
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             return new ListResult
             {
                 PageContents = pageContents,
@@ -122,11 +154,21 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Contents
                 PageSize = site.PageSize,
                 TitleColumn = titleColumn,
                 Columns = columns,
+<<<<<<< HEAD
                 IsAllContents = channel.IsAllContents,
                 CheckedLevels = checkedLevels,
                 Permissions = permissions,
                 ContentMenus = contentMenus,
                 ContentsMenus = contentsMenus
+=======
+                CheckedLevels = checkedLevels,
+                Permissions = permissions,
+                ContentMenus = contentMenus,
+                ContentsMenus = contentsMenus,
+                BreadcrumbItems = breadcrumbItems,
+                IsAllContents = channel.IsAllContents,
+                IsChangeBanned = channel.IsChangeBanned,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             };
         }
     }

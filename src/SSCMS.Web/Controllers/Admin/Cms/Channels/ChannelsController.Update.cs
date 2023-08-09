@@ -12,7 +12,11 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Channels
     public partial class ChannelsController
     {
         [HttpPost, Route(RouteUpdate)]
+<<<<<<< HEAD
         public async Task<ActionResult<List<int>>> Update([FromBody] Channel request)
+=======
+        public async Task<ActionResult<List<int>>> Update([FromBody] UpdateRequest request)
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         {
             if (!await _authManager.HasSitePermissionsAsync(request.SiteId,
                     MenuUtils.SitePermissions.Channels))
@@ -115,11 +119,35 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Channels
             channel.ChannelTemplateId = request.ChannelTemplateId;
             channel.ContentTemplateId = request.ContentTemplateId;
             channel.LinkType = request.LinkType;
+<<<<<<< HEAD
             channel.LinkUrl = request.LinkUrl;
+=======
+            if (channel.LinkType == Enums.LinkType.None)
+            {
+                channel.LinkUrl = request.LinkUrl;
+            }
+            else if (channel.LinkType == Enums.LinkType.LinkToChannel)
+            {
+                channel.LinkUrl = ListUtils.ToString(request.ChannelIds);
+            }
+            else if (channel.LinkType == Enums.LinkType.LinkToContent)
+            {
+                channel.LinkUrl = ListUtils.ToString(request.ChannelIds) + "_" + request.ContentId;
+            }
+            else
+            {
+                channel.LinkUrl = string.Empty;
+            }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             channel.DefaultTaxisType = request.DefaultTaxisType;
             channel.FilePath = request.FilePath;
             channel.ChannelFilePathRule = request.ChannelFilePathRule;
             channel.ContentFilePathRule = request.ContentFilePathRule;
+<<<<<<< HEAD
+=======
+            channel.IsChangeBanned = request.IsChangeBanned;
+            channel.IsCreateBanned = request.IsCreateBanned;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             channel.Keywords = request.Keywords;
             channel.Description = request.Description;
 

@@ -13,10 +13,15 @@ namespace SSCMS.Web.Controllers.Admin.Plugins
             {
                 return Unauthorized();
             }
+<<<<<<< HEAD
 
             //var dict = await _pluginManager.GetPluginIdAndVersionDictAsync();
             //var list = dict.Keys.ToList();
             //var packageIds = Utilities.ToString(list);
+=======
+            
+            // _pluginManager.Load();
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
             return new GetResult
             {

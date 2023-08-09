@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SSCMS.Core.Utils;
 using SSCMS.Dto;
+=======
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using SSCMS.Core.Utils;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 using SSCMS.Models;
 using SSCMS.Configuration;
 using SSCMS.Utils;
@@ -55,6 +62,7 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Contents
                 PageSize = site.PageSize
             };
         }
+<<<<<<< HEAD
 
         public class ListRequest : SiteRequest
         {
@@ -79,5 +87,7 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Contents
             public int Total { get; set; }
             public int PageSize { get; set; }
         }
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     }
 }

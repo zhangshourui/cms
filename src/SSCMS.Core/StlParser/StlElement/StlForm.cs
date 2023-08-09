@@ -133,7 +133,11 @@ namespace SSCMS.Core.StlParser.StlElement
         private static async Task<object> ParseAsync(IParseManager parseManager, ParseContext context, Site site, Form form, string apiUrl, string type, string height, NameValueCollection attributes)
         {
             var elementId = StringUtils.GetElementId();
+<<<<<<< HEAD
             var libUrl = parseManager.PathManager.GetApiHostUrl(site, "sitefiles/assets/lib/iframe-resizer-3.6.3/iframeResizer.min.js");
+=======
+            var libUrl = parseManager.PathManager.GetApiHostUrl(site, "sitefiles/assets/lib/iframe-resizer-4.3.6/iframeResizer.min.js");
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
             var formTemplate = await parseManager.FormManager.GetFormTemplateAsync(site, type);
             if (formTemplate == null)

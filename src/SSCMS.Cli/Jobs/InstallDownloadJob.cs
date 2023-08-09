@@ -70,10 +70,17 @@ namespace SSCMS.Cli.Jobs
                     return;
                 }
 
+<<<<<<< HEAD
                 var proceed = console.GetYesNo($"Do you want to install SS CMS in {contentRootPath}?");
                 if (!proceed) return;
 
                 await console.WriteLineAsync($"Downloading SS CMS {result.Cms.Version}...");
+=======
+                var proceed = console.GetYesNo($"Do you want to install SSCMS in {contentRootPath}?");
+                if (!proceed) return;
+
+                await console.WriteLineAsync($"Downloading SSCMS {result.Cms.Version}...");
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 var directoryPath = await CloudUtils.Dl.DownloadCmsAsync(_pathManager, _settingsManager.OSArchitecture, result.Cms.Version);
 
                 await console.WriteSuccessAsync($"{result.Cms.Version} download successfully!");
@@ -85,7 +92,11 @@ namespace SSCMS.Cli.Jobs
 
             if (!await _configRepository.IsNeedInstallAsync())
             {
+<<<<<<< HEAD
                 await console.WriteErrorAsync($"SS CMS has been installed in {contentRootPath}");
+=======
+                await console.WriteErrorAsync($"SSCMS has been installed in {contentRootPath}");
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 return;
             }
 
@@ -135,9 +146,15 @@ namespace SSCMS.Cli.Jobs
             var databaseConnectionString = InstallUtils.GetDatabaseConnectionString(databaseType, databaseHost, isDatabaseDefaultPort, databasePort, databaseUserName, databasePassword, databaseName);
 
             var isProtectData = console.GetYesNo("Protect settings in sscms.json?");
+<<<<<<< HEAD
             _settingsManager.SaveSettings(isProtectData, false, false, databaseType, databaseConnectionString, string.Empty, string.Empty, null, null);
 
             await console.WriteSuccessAsync("SS CMS was download and ready for install, please run: sscms install database");
+=======
+            _settingsManager.SaveSettings(isProtectData, false, false, databaseType, databaseConnectionString, string.Empty, string.Empty, null, null, false, null);
+
+            await console.WriteSuccessAsync("SSCMS was download and ready for install, please run: sscms install database");
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
         }
     }

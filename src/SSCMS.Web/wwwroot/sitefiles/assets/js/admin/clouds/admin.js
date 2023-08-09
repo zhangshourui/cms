@@ -15,6 +15,10 @@ var data = utils.init({
     adminLogoUrl: null,
     adminLogoLinkUrl: null,
     adminWelcomeHtml: null,
+<<<<<<< HEAD
+=======
+    isAdminUpdateDisabled: null,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   }
 });
 
@@ -31,7 +35,12 @@ var methods = {
       $this.form.adminFaviconUrl = res.adminFaviconUrl;
       $this.form.adminLogoUrl = res.adminLogoUrl;
       $this.form.adminLogoLinkUrl = res.adminLogoLinkUrl;
+<<<<<<< HEAD
       $this.form.adminWelcomeHtml = res.adminWelcomeHtml || '欢迎使用 SS CMS 管理后台';
+=======
+      $this.form.adminWelcomeHtml = res.adminWelcomeHtml || '欢迎使用 SSCMS 管理后台';
+      $this.form.isAdminUpdateDisabled = res.isAdminUpdateDisabled;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
       if ($this.form.adminFaviconUrl) {
         $this.uploadFaviconList.push({name: 'avatar', url: $this.form.adminFaviconUrl});
@@ -56,7 +65,12 @@ var methods = {
       adminFaviconUrl: $this.form.adminFaviconUrl,
       adminLogoUrl: $this.form.adminLogoUrl,
       adminLogoLinkUrl: $this.form.adminLogoLinkUrl,
+<<<<<<< HEAD
       adminWelcomeHtml: $this.form.adminWelcomeHtml
+=======
+      adminWelcomeHtml: $this.form.adminWelcomeHtml,
+      isAdminUpdateDisabled: $this.form.isAdminUpdateDisabled,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     }).then(function (response) {
       var res = response.data;
 

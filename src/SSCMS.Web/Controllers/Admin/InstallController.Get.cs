@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+<<<<<<< HEAD
 using System.Security.Permissions;
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 using System.Threading.Tasks;
 using Datory;
 using Microsoft.AspNetCore.Mvc;
@@ -28,9 +31,12 @@ namespace SSCMS.Web.Controllers.Admin
                 var filePath = PathUtils.Combine(_settingsManager.ContentRootPath, "version.txt");
                 FileUtils.WriteText(filePath, _settingsManager.Version);
 
+<<<<<<< HEAD
                 var ioPermission = new FileIOPermission(FileIOPermissionAccess.Write, _settingsManager.ContentRootPath);
                 ioPermission.Demand();
 
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 rootWritable = true;
             }
             catch
@@ -44,9 +50,12 @@ namespace SSCMS.Web.Controllers.Admin
                 var filePath = PathUtils.Combine(_settingsManager.WebRootPath, DirectoryUtils.SiteFiles.DirectoryName, "index.html");
                 FileUtils.WriteText(filePath, Constants.Html5Empty);
 
+<<<<<<< HEAD
                 var ioPermission = new FileIOPermission(FileIOPermissionAccess.Write, PathUtils.Combine(_settingsManager.ContentRootPath, DirectoryUtils.SiteFiles.DirectoryName));
                 ioPermission.Demand();
 
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 siteFilesWritable = true;
             }
             catch

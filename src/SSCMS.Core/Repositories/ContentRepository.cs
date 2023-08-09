@@ -11,17 +11,26 @@ namespace SSCMS.Core.Repositories
     public partial class ContentRepository : IContentRepository
     {
         private readonly ISettingsManager _settingsManager;
+<<<<<<< HEAD
         private readonly IAdministratorRepository _administratorRepository;
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         private readonly IChannelRepository _channelRepository;
         private readonly ISiteRepository _siteRepository;
         private readonly IErrorLogRepository _errorLogRepository;
         private readonly IStatRepository _statRepository;
         private readonly Repository<Content> _repository;
 
+<<<<<<< HEAD
         public ContentRepository(ISettingsManager settingsManager, IAdministratorRepository administratorRepository, IChannelRepository channelRepository, ISiteRepository siteRepository, IErrorLogRepository errorLogRepository, IStatRepository statRepository)
         {
             _settingsManager = settingsManager;
             _administratorRepository = administratorRepository;
+=======
+        public ContentRepository(ISettingsManager settingsManager, IChannelRepository channelRepository, ISiteRepository siteRepository, IErrorLogRepository errorLogRepository, IStatRepository statRepository)
+        {
+            _settingsManager = settingsManager;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             _channelRepository = channelRepository;
             _siteRepository = siteRepository;
             _errorLogRepository = errorLogRepository;
@@ -51,6 +60,7 @@ namespace SSCMS.Core.Repositories
             return repository;
         }
 
+<<<<<<< HEAD
         private string GetComparableNow()
         {
             var retVal = string.Empty;
@@ -111,6 +121,8 @@ namespace SSCMS.Core.Repositories
             return retVal;
         }
 
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         private string Quote(string identifier)
         {
             return Database.GetQuotedIdentifier(identifier);

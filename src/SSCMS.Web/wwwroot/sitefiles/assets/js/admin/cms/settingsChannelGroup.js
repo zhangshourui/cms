@@ -88,15 +88,33 @@ var methods = {
     });
   },
 
+<<<<<<< HEAD
   btnOrderClick: function(group, isUp) {
+=======
+  onSort: function (event) {
+    var group = this.groups[event.oldIndex];
+    var groupId = group.id;
+    var isUp = event.oldIndex > event.newIndex;
+    var rows = Math.abs(event.oldIndex - event.newIndex);
+    this.btnOrderClick(groupId, isUp, rows);
+  },
+
+  btnOrderClick: function(groupId, isUp, rows) {
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     var $this = this;
 
     utils.loading(this, true);
     $api.post($url + '/actions/order', {
       siteId: this.siteId,
+<<<<<<< HEAD
       groupId: group.id,
       taxis: group.taxis,
       isUp: isUp
+=======
+      groupId: groupId,
+      isUp: isUp,
+      rows: rows,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     }).then(function (response) {
       var res = response.data;
 
@@ -116,6 +134,12 @@ var methods = {
 
 var $vue = new Vue({
   el: '#main',
+<<<<<<< HEAD
+=======
+  components: {
+    ElTableDraggable,
+  },
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   data: data,
   methods: methods,
   created: function () {

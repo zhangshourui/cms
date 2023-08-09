@@ -18,10 +18,25 @@ var data = utils.init({
   itemsPanel: false,
   itemsRelatedField: null,
   itemsParentId: 0,
+<<<<<<< HEAD
   itemsTree: null,
   itemsExpandedIds: [],
   itemsAddDialog: false,
   itemsAddForm: null,
+=======
+  itemsParentName: null,
+  itemsTree: null,
+  itemsExpandedIds: [],
+  itemsAddDialog: false,
+  itemsAddForm: {
+    isRapid: true,
+    rapidValues: '',
+    items: [{
+      key: '',
+      value: ''
+    }]
+  },
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   itemsEditDialog: false,
   itemsEditForm: null,
 
@@ -233,6 +248,7 @@ var methods = {
     });
   },
 
+<<<<<<< HEAD
   btnItemsAddClick: function(parentId) {
     this.itemsAddDialog = true;
     this.itemsParentId = parentId;
@@ -242,6 +258,18 @@ var methods = {
         value: ''
       }]
     };
+=======
+  btnItemsAddClick: function(parentName, parentId) {
+    this.itemsAddDialog = true;
+    this.itemsParentName = parentName;
+    this.itemsParentId = parentId;
+    this.itemsAddForm.isRapid = true;
+    this.itemsAddForm.rapidValues = '';
+    this.itemsAddForm.items = [{
+      key: '',
+      value: ''
+    }];
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   },
 
   btnItemRemoveClick: function (index) {
@@ -286,6 +314,11 @@ var methods = {
       siteId: this.siteId,
       relatedFieldId: this.itemsRelatedField.id,
       parentId: this.itemsParentId,
+<<<<<<< HEAD
+=======
+      isRapid: this.itemsAddForm.isRapid,
+      rapidValues: this.itemsAddForm.rapidValues,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       items: this.itemsAddForm.items
     }).then(function (response) {
       var res = response.data;
@@ -347,9 +380,19 @@ var methods = {
   btnItemsAddSubmitClick: function () {
     var $this = this;
 
+<<<<<<< HEAD
     this.$refs.itemsAddForm.validate(function(valid) {
       if (valid) {
         $this.apiItemsAdd();
+=======
+    this.$refs.itemsAddForm1.validate(function(valid1) {
+      if (valid1) {
+        $this.$refs.itemsAddForm2.validate(function(valid2) {
+          if (valid2) {
+            $this.apiItemsAdd();
+          }
+        });
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       }
     });
   },

@@ -58,7 +58,11 @@
         </el-input>
       </el-form-item>
 
+<<<<<<< HEAD
       <el-form-item prop="captchaValue" :rules="[{ required: true, message: '请输入验证码' }]">
+=======
+      <el-form-item v-if="!isUserCaptchaDisabled" prop="captchaValue" :rules="[{ required: true, message: '请输入验证码' }]">
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         <el-input v-model="form.captchaValue" placeholder="请输入验证码" autocomplete="off" v-on:keyup.enter.native="btnSubmitClick">
           <template slot="prepend">
             <i class="el-icon-picture"></i>
@@ -102,7 +106,11 @@
       <el-checkbox v-model="form.isPersistent" style="margin-right: 10px; margin-bottom: 5px;">
         保持登录状态
       </el-checkbox>
+<<<<<<< HEAD
             <el-link style="float: right;margin-left: 10px" v-if="isSmsEnabled" v-on:click="redirectLostPassword" :underline="false">忘记密码？</el-link>
+=======
+      <el-link style="float: right;" v-if="isSmsEnabled" v-on:click="redirectLostPassword" :underline="false" style="margin-left: 10px">忘记密码？</el-link>
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     </div>
     <div style="margin: 10px 0;">
       <el-button type="primary" style="width: 100%" v-on:click="btnSubmitClick">登 录</el-button>

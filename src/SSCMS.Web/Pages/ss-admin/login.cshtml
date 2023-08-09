@@ -89,7 +89,11 @@
               </div>
             </div>
     
+<<<<<<< HEAD
             <div class="form-group row">
+=======
+            <div v-if="!isAdminCaptchaDisabled" class="form-group row">
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
               <div class="col-12">
                 <div class="input-group">
                   <div class="input-group-prepend">
@@ -113,7 +117,11 @@
                 </div>
               </div>
               <div class="col-6">
+<<<<<<< HEAD
                 <a href="javascript:;" v-on:click="btnCaptchaClick">
+=======
+                <a v-if="!isAdminCaptchaDisabled" href="javascript:;" v-on:click="btnCaptchaClick">
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                   <img v-show="captchaUrl" style="display: none" class="float-right rounded" :src="captchaUrl" align="absmiddle">
                 </a>
               </div>

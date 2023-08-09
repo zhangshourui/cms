@@ -48,7 +48,12 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Contents
 
         public class ListRequest : SiteRequest
         {
+<<<<<<< HEAD
             public int? ChannelId { get; set; }
+=======
+            public List<int> ChannelIds { get; set; }
+            public bool IsAllContents { get; set; }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             public DateTime? StartDate { get; set; }
             public DateTime? EndDate { get; set; }
             public IEnumerable<KeyValuePair<string, string>> Items { get; set; }
@@ -69,6 +74,20 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Contents
             public int PageSize { get; set; }
         }
 
+<<<<<<< HEAD
+=======
+        public class Permissions
+        {
+            public bool IsAdd { get; set; }
+            public bool IsDelete { get; set; }
+            public bool IsEdit { get; set; }
+            public bool IsArrange { get; set; }
+            public bool IsTranslate { get; set; }
+            public bool IsCheck { get; set; }
+            public bool IsCreate { get; set; }
+        }
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         public class TreeResult
         {
             public Cascade<int> Root { get; set; }
@@ -76,7 +95,14 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Contents
             public IEnumerable<string> GroupNames { get; set; }
             public IEnumerable<string> TagNames { get; set; }
             public IEnumerable<CheckBox<int>> CheckedLevels { get; set; }
+<<<<<<< HEAD
             public List<ContentColumn> Columns { get; set; }
+=======
+            public ContentColumn TitleColumn { get; set; }
+            public ContentColumn BodyColumn { get; set; }
+            public List<ContentColumn> Columns { get; set; }
+            public Permissions Permissions { get; set; }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         }
     }
 }

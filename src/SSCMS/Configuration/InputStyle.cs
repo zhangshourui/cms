@@ -26,6 +26,10 @@ namespace SSCMS.Configuration
             Taxis = style.Taxis;
             DefaultValue = style.DefaultValue;
             RelatedFieldId = style.RelatedFieldId;
+<<<<<<< HEAD
+=======
+            CustomizeCode = style.CustomizeCode;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         }
 
         /// <summary>
@@ -65,5 +69,9 @@ namespace SSCMS.Configuration
         /// </summary>
         public string Height { get; set; }
         public int RelatedFieldId { get; set; }
+<<<<<<< HEAD
+=======
+        public string CustomizeCode { get; set; }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     }
 }

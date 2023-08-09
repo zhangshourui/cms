@@ -4,7 +4,11 @@ namespace SSCMS.Configuration
 {
     public static class Constants
     {
+<<<<<<< HEAD
         public const string AdminTitle = "SSCMS 管理后台";
+=======
+        public const string AdminTitle = "SSCMS";
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         public const string EnvironmentPrefix = "SSCMS_";
         public const string ConfigFileName = "sscms.json";
         public const string PackageFileName = "package.json";

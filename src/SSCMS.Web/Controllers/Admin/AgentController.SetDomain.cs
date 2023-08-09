@@ -31,6 +31,7 @@ namespace SSCMS.Web.Controllers.Admin
                 site.IsSeparatedWeb = true;
                 site.SeparatedWebUrl = domain;
                 site.IsSeparatedApi = true;
+<<<<<<< HEAD
                 if (site.Root)
                 {
                     site.SeparatedApiUrl = domain;
@@ -47,6 +48,9 @@ namespace SSCMS.Web.Controllers.Admin
                         site.SeparatedApiUrl = request.HostDomain;
                     }
                 }
+=======
+                site.SeparatedApiUrl = request.HostDomain;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             }
             else
             {

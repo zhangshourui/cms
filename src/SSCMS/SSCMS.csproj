@@ -4,11 +4,19 @@
     <TargetFramework>net7.0</TargetFramework>
     <LangVersion>latest</LangVersion>
     <PackageId>SSCMS</PackageId>
+<<<<<<< HEAD
     <Version>7.2.0</Version>
     <Authors>SS CMS</Authors>
     <Company>SS CMS</Company>
     <PackageDescription>SS CMS .NET Core abstractions for developers.</PackageDescription>
     <Copyright>Copyright © SS CMS</Copyright>
+=======
+    <Version>7.2.1</Version>
+    <Authors>SSCMS</Authors>
+    <Company>SSCMS</Company>
+    <PackageDescription>SSCMS .NET Core abstractions for developers.</PackageDescription>
+    <Copyright>Copyright © SSCMS</Copyright>
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     <RepositoryUrl>https://github.com/siteserver/cms/</RepositoryUrl>
     <PackageReleaseNotes></PackageReleaseNotes>
     <PackageIcon>logo.png</PackageIcon>
@@ -26,17 +34,30 @@
 
   <ItemGroup>
 	  <PackageReference Include="RestSharp" Version="107.3.0" />
+<<<<<<< HEAD
     <PackageReference Include="NSwag.AspNetCore" Version="13.15.9" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.42" />
     <PackageReference Include="ExcelDataReader" Version="3.6.0" />
     <PackageReference Include="ExcelDataReader.DataSet" Version="3.6.0" />
+=======
+    <PackageReference Include="NSwag.AspNetCore" Version="13.19.0" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.42" />
+    <PackageReference Include="ExcelDataReader" Version="3.6.0" />
+    <PackageReference Include="ExcelDataReader.DataSet" Version="3.6.0" />
+    <PackageReference Include="NPOI" Version="2.6.0" />
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     <PackageReference Include="HtmlSanitizer" Version="7.1.475" />
     <PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+<<<<<<< HEAD
     <!-- <PackageReference Include="Datory" Version="7.2.0" /> -->
     <ProjectReference Include="..\Datory\Datory.csproj" />
+=======
+    <PackageReference Include="Datory" Version="7.2.1" />
+    <!-- <ProjectReference Include="..\Datory\Datory.csproj" /> -->
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   </ItemGroup>
 
 </Project>

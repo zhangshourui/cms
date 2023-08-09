@@ -45,6 +45,10 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Contents
             public string Replace { get; set; }
             public bool IsCaseSensitive { get; set; }
             public bool IsRegex { get; set; }
+<<<<<<< HEAD
+=======
+            public bool IsDescendant { get; set; }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             public string To { get; set; }
         }
     }

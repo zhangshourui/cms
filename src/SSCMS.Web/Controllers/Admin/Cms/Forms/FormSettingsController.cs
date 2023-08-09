@@ -55,6 +55,10 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Forms
             public string SuccessMessage { get; set; }
             public string SuccessCallback { get; set; }
             public bool IsReply { get; set; }
+<<<<<<< HEAD
+=======
+            public bool IsReplyListAll { get; set; }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             public string ListAttributeNames { get; set; }
             public bool IsCaptcha { get; set; }
             public bool IsSms { get; set; }

@@ -16,6 +16,10 @@ namespace SSCMS.Core.Repositories
         public async Task TrashContentsAsync(Site site, Channel channel, List<int> contentIdList, int adminId)
         {
             if (contentIdList == null || !contentIdList.Any()) return;
+<<<<<<< HEAD
+=======
+            if (channel.IsChangeBanned) return;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
             var repository = await GetRepositoryAsync(site, channel);
 
@@ -146,6 +150,7 @@ namespace SSCMS.Core.Repositories
                     await _errorLogRepository.AddErrorLogAsync(ex);
                 }
             }
+<<<<<<< HEAD
 
             //foreach (var plugin in oldPluginManager.GetPlugins())
             //{
@@ -158,6 +163,8 @@ namespace SSCMS.Core.Repositories
             //        await _errorLogRepository.AddErrorLogAsync(plugin.PluginId, ex, nameof(plugin.OnContentDeleteCompleted));
             //    }
             //}
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         }
 
         // 回收站 - 删除全部

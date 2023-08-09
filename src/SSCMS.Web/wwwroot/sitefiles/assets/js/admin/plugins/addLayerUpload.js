@@ -76,7 +76,11 @@ var methods = {
     var fileName = res.fileName;
 
     if (oldPlugin) {
+<<<<<<< HEAD
       parent.utils.alertWarning({
+=======
+      parent.utils.alertDelete({
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         title: '是否覆盖插件',
         text: '系统检测到插件已存在，插件名称：' + $this.plugin.displayName + '，插件Id：' + $this.plugin.pluginId + '，当前版本：' + oldPlugin.version + '，上传包版本：' + $this.plugin.version + '，是否覆盖？',
         button: '覆盖插件',

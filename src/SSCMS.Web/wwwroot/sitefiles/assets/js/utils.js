@@ -258,6 +258,7 @@ var utils = {
     if (Object.prototype.toString.call(date) !== '[object Date]') {
       date = new Date(date);
     }
+<<<<<<< HEAD
     var delta = Math.round((new Date() - date) / 1000);
     var minute = 60, hour = minute * 60, day = hour * 24;
     if (delta < day) {
@@ -267,6 +268,44 @@ var utils = {
       return '昨天 ' + utils.pad(date.getHours()) + ':' + utils.pad(date.getMinutes());
     }
     return utils.pad(date.getMonth() + 1) + '月' + utils.pad(date.getDate()) + '日';
+=======
+    var now = new Date();
+    var delta = Math.round((now - date) / 1000);
+    if (delta > 0) {
+      var minute = 60, hour = minute * 60, day = hour * 24;
+      if (delta < day) {
+        return '今天';
+      }
+      if (delta < day * 2) {
+        return '昨天';
+      }
+      if (date.getFullYear() === now.getFullYear()) {
+        return utils.pad(date.getMonth() + 1) + '月' + utils.pad(date.getDate()) + '日';
+      }
+    }
+    return date.getFullYear() + '-' + utils.pad(date.getMonth() + 1) + '-' + utils.pad(date.getDate());
+  },
+
+  getFriendlyDateTime: function(date) {
+    if (Object.prototype.toString.call(date) !== '[object Date]') {
+      date = new Date(date);
+    }
+    var now = new Date();
+    var delta = Math.round((now - date) / 1000);
+    if (delta > 0) {
+      var minute = 60, hour = minute * 60, day = hour * 24;
+      if (delta < day) {
+        return '今天 ' + utils.pad(date.getHours()) + ':' + utils.pad(date.getMinutes()) + ':' + utils.pad(date.getSeconds());
+      }
+      if (delta < day * 2) {
+        return '昨天 ' + utils.pad(date.getHours()) + ':' + utils.pad(date.getMinutes()) + ':' + utils.pad(date.getSeconds());
+      }
+      if (date.getFullYear() === now.getFullYear()) {
+        return utils.pad(date.getMonth() + 1) + '月' + utils.pad(date.getDate()) + '日 ' + utils.pad(date.getHours()) + ':' + utils.pad(date.getMinutes()) + ':' + utils.pad(date.getSeconds());
+      }
+    }
+    return date.getFullYear() + '-' + utils.pad(date.getMonth() + 1) + '-' + utils.pad(date.getDate()) + ' ' + utils.pad(date.getHours()) + ':' + utils.pad(date.getMinutes()) + ':' + utils.pad(date.getSeconds());
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   },
 
   getRootVue: function() {
@@ -274,6 +313,12 @@ var utils = {
   },
 
   getTabVue: function(name) {
+<<<<<<< HEAD
+=======
+    if (!name) {
+      return window.$vue;
+    }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     var $this = utils.getRootVue();
     var tab = $this.tabs.find(function(tab) {
       return tab.name == name;
@@ -367,7 +412,11 @@ var utils = {
       showCancelButton: true,
       cancelButtonText: "取 消",
     }).then(function (result) {
+<<<<<<< HEAD
       if (result.value) {
+=======
+      if (result.value && config.callback) {
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         config.callback();
       }
     });
@@ -386,7 +435,11 @@ var utils = {
       confirmButtonClass: "el-button el-button--primary",
       showCancelButton: false
     }).then(function (result) {
+<<<<<<< HEAD
       if (result.value) {
+=======
+      if (result.value && config.callback) {
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         config.callback();
       }
     });
@@ -400,6 +453,7 @@ var utils = {
     alert({
       title: config.title,
       text: config.text,
+<<<<<<< HEAD
       type: "question",
       confirmButtonText: config.button || "确 认",
       confirmButtonClass: "el-button el-button--primary",
@@ -408,6 +462,14 @@ var utils = {
       cancelButtonText: "取 消",
     }).then(function (result) {
       if (result.value) {
+=======
+      type: "warning",
+      confirmButtonText: config.button || "确 定",
+      confirmButtonClass: "el-button el-button--danger",
+      showCancelButton: false,
+    }).then(function (result) {
+      if (result.value && config.callback) {
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         config.callback();
       }
     });
@@ -503,8 +565,16 @@ var utils = {
         sessionStorage.setItem(uuid, JSON.stringify({
           message: error
         }));
+<<<<<<< HEAD
 
         top.location.href = utils.getRootUrl("error", { uuid: uuid });
+=======
+        if (options.current) {
+          location.href = utils.getRootUrl("error", { uuid: uuid });
+        } else {
+          top.location.href = utils.getRootUrl("error", { uuid: uuid });
+        }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       } else {
         utils.getRootVue().$message({
           type: "error",
@@ -527,6 +597,7 @@ var utils = {
       } else if (error.response && error.response.status === 500 || options && options.redirect) {
         var uuid = utils.uuid();
 
+<<<<<<< HEAD
         if (typeof message === 'string') {
           sessionStorage.setItem(uuid, JSON.stringify({
             message: message
@@ -534,6 +605,15 @@ var utils = {
         } else {
           sessionStorage.setItem(uuid, message);
         }
+=======
+        // if (typeof message === 'string') {
+        //   sessionStorage.setItem(uuid, JSON.stringify({
+        //     message: message
+        //   }));
+        // } else {
+          sessionStorage.setItem(uuid, message);
+        // }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
         if (options && options.redirect) {
           top.location.href = utils.getRootUrl("error", { uuid: uuid })
@@ -640,6 +720,18 @@ var utils = {
   },
 
   openDocs: function (url) {
+<<<<<<< HEAD
+=======
+    var $this = utils.getRootVue();
+    var vue = utils.getTabVue($this.tabName);
+    if (vue && vue.homepage) {
+      if (vue.homepage.indexOf('://') !== -1) {
+        window.open(vue.homepage, '_docs');
+        return;
+      }
+      url = vue.homepage;
+    }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     url = url.replace('.', '');
     url = url.replace('/', '');
     url = url.replace('ss-admin/', '');
@@ -647,7 +739,10 @@ var utils = {
       url = url.substring(0, url.indexOf('?'));
     }
     window.open('https://sscms.com/docs/v7/handbook/' + url, '_docs');
+<<<<<<< HEAD
     // window.open('http://localhost:8080/docs/v7/handbook/' + url, '_docs');
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   },
 
   keyPress: function (submitFn, cancelFn) {
@@ -722,6 +817,21 @@ var utils = {
     }
   },
 
+<<<<<<< HEAD
+=======
+  validateMaxValue: function (rule, value, callback) {
+    if (!value) {
+      callback();
+    } else if (!/^-?\d+(\.\d{1,2})?$/.test(value)) {
+      callback(new Error(rule.message || '字段必须是数值，并且不能大于指定的值'));
+    } else if (value && parseInt(value) > parseInt(rule.value)) {
+      callback(new Error(rule.message || '字段必须是数值，并且不能大于指定的值'));
+    } else {
+      callback()
+    }
+  },
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   validateMin: function (rule, value, callback) {
     if (value && value.length < parseInt(rule.value)) {
       callback(new Error(rule.message || '字段不能低于指定的长度'));
@@ -730,9 +840,29 @@ var utils = {
     }
   },
 
+<<<<<<< HEAD
   validateIdCard: function (rule, value, callback) {
     var reg = /(^\d{15}$)|(^\d{17}(\d|X|x)$)/;
     if (!value || !reg.test(value)) {
+=======
+  validateMinValue: function (rule, value, callback) {
+    if (!value) {
+      callback();
+    } else if (!/^-?\d+(\.\d{1,2})?$/.test(value)) {
+      callback(new Error(rule.message || '字段必须是数值，并且不能小于指定的值'));
+    } else if (value && parseInt(value) < parseInt(rule.value)) {
+      callback(new Error(rule.message || '字段必须是数值，并且不能小于指定的值'));
+    } else {
+      callback()
+    }
+  },
+
+  validateIdCard: function (rule, value, callback) {
+    var reg = /(^\d{15}$)|(^\d{17}(\d|X|x)$)/;
+    if (!value) {
+      callback();
+    } else if (!reg.test(value)) {
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       callback(new Error(rule.message || '字段必须是身份证号码'));
     } else {
       callback()
@@ -741,7 +871,11 @@ var utils = {
 
   validateChinese: function (rule, value, callback) {
     if (!value) {
+<<<<<<< HEAD
       callback(new Error(rule.message || '字段必须是中文'));
+=======
+      callback();
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     } else {
       var isAll = true;
       for(var i = 0; i < value.length; i++) {
@@ -850,19 +984,27 @@ var utils = {
       { alphaDash: "字段只能包含英文字母、数字、破折号或下划线" },
       { alphaNum: "字段只能包含英文字母或数字" },
       { alphaSpaces: "字段只能包含英文字母或空格" },
+<<<<<<< HEAD
       { creditCard: "字段必须是有效的信用卡" },
       { between: "字段必须有一个以最小值和最大值为界的数值" },
       { decimal: "字段必须是数字" },
       { digits: "字段必须是整数" },
       { included: "字段必须具有指定列表中的值" },
       { excluded: "字段不能具有指定列表中的值" },
+=======
+      { decimal: "字段必须是数字" },
+      { digits: "字段必须是整数" },
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       { max: "字段不能超过指定的长度" },
       { maxValue: "字段必须是数值，并且不能大于指定的值" },
       { min: "字段不能低于指定的长度" },
       { minValue: "字段必须是数值，并且不能小于指定的值" },
       { regex: "字段必须匹配指定的正则表达式" },
       { chinese: "字段必须是中文" },
+<<<<<<< HEAD
       { currency: "字段必须是货币格式" },
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       { zip: "字段必须是邮政编码" },
       { idCard: "字段必须是身份证号码" },
     ];
@@ -895,21 +1037,37 @@ var utils = {
           });
         } else if (ruleType === "alpha") {
           array.push({
+<<<<<<< HEAD
             type: "alpha",
+=======
+            type: "string",
+            pattern: /^[a-zA-Z]+$/,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             message: rule.message || options.alpha
           });
         } else if (ruleType === "alphaDash") {
           array.push({
+<<<<<<< HEAD
             type: "alphaDash",
+=======
+            type: "string",
+            pattern: /^[a-zA-Z0-9_-]+$/,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             message: rule.message || options.alphaDash,
           });
         } else if (ruleType === "alphaNum") {
           array.push({
+<<<<<<< HEAD
             type: "alphaNum",
+=======
+            type: "string",
+            pattern: /^[a-zA-Z0-9]+$/,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             message: rule.message || options.alphaNum,
           });
         } else if (ruleType === "alphaSpaces") {
           array.push({
+<<<<<<< HEAD
             type: "alphaSpaces",
             message: rule.message || options.alphaSpaces,
           });
@@ -923,6 +1081,12 @@ var utils = {
             type: "between",
             message: rule.message || options.between,
           });
+=======
+            type: "string",
+            pattern: /^[a-zA-Z\s]+$/,
+            message: rule.message || options.alphaSpaces,
+          });
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         } else if (ruleType === "decimal") {
           array.push({
             validator: utils.validateDecimal,
@@ -933,6 +1097,7 @@ var utils = {
             validator: utils.validateDigits,
             message: rule.message || options.digits
           });
+<<<<<<< HEAD
         } else if (ruleType === "included") {
           array.push({
             type: "included",
@@ -947,21 +1112,38 @@ var utils = {
           array.push({
             validator: utils.validateMax,
             message: rule.message || options.mobile,
+=======
+        } else if (ruleType === "max") {
+          array.push({
+            validator: utils.validateMax,
+            message: rule.message || options.max,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             value: rule.value
           });
         } else if (ruleType === "maxValue") {
           array.push({
+<<<<<<< HEAD
             type: "maxValue",
             message: rule.message || options.maxValue,
+=======
+            validator: utils.validateMaxValue,
+            message: rule.message || options.maxValue,
+            value: rule.value
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
           });
         } else if (ruleType === "min") {
           array.push({
             validator: utils.validateMin,
+<<<<<<< HEAD
             message: rule.message || options.mobile,
+=======
+            message: rule.message || options.min,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             value: rule.value
           });
         } else if (ruleType === "minValue") {
           array.push({
+<<<<<<< HEAD
             type: "minValue",
             message: rule.message || options.minValue,
           });
@@ -979,12 +1161,25 @@ var utils = {
               }
             },
             message: message
+=======
+            validator: utils.validateMinValue,
+            message: rule.message || options.minValue,
+            value: rule.value
+          });
+        } else if (ruleType === "regex" && rule.value) {
+          var re = new RegExp(rule.value, "ig");
+          array.push({
+            type: "string",
+            pattern: re,
+            message: rule.message || options.regex,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
           });
         } else if (ruleType === "chinese") {
           array.push({
             validator: utils.validateChinese,
             message: rule.message || options.chinese,
           });
+<<<<<<< HEAD
         } else if (ruleType === "currency") {
           array.push({
             type: "currency",
@@ -994,6 +1189,13 @@ var utils = {
           array.push({
             type: "zip",
             message: rule.message || options.zip
+=======
+        } else if (ruleType === "zip") {
+          array.push({
+            type: "string",
+            pattern: /^[0-9]{6,6}$/,
+            message: rule.message || options.zip,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
           });
         } else if (ruleType === "idCard") {
           array.push({

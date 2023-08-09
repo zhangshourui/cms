@@ -20,6 +20,10 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Contents
         private const string RouteCreate = "cms/contents/contents/actions/create";
         private const string RouteColumns = "cms/contents/contents/actions/columns";
         private const string RouteWidth = "cms/contents/contents/actions/width";
+<<<<<<< HEAD
+=======
+        private const string RouteOrder = "cms/contents/contents/actions/order";
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         private const string RouteAll = "cms/contents/contents/actions/all";
 
         private readonly IAuthManager _authManager;
@@ -95,11 +99,20 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Contents
             public int PageSize { get; set; }
             public ContentColumn TitleColumn { get; set; }
             public List<ContentColumn> Columns { get; set; }
+<<<<<<< HEAD
             public bool IsAllContents { get; set; }
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             public IEnumerable<CheckBox<int>> CheckedLevels { get; set; }
             public Permissions Permissions { get; set; }
             public List<Menu> ContentMenus { get; set; }
             public List<Menu> ContentsMenus { get; set; }
+<<<<<<< HEAD
+=======
+            public List<Select<int>> BreadcrumbItems { get; set; }
+            public bool IsAllContents { get; set; }
+            public bool IsChangeBanned { get; set; }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         }
 
         public class TreeRequest : SiteRequest
@@ -125,5 +138,15 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Contents
             public string NextAttributeName { get; set; }
             public int NextWidth { get; set; }
         }
+<<<<<<< HEAD
+=======
+
+        public class OrderRequest : ChannelRequest
+        {
+            public int ContentId { get; set; }
+            public bool IsUp { get; set; }
+            public int Rows { get; set; }
+        }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     }
 }

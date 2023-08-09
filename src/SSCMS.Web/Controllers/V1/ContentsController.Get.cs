@@ -22,12 +22,21 @@ namespace SSCMS.Web.Controllers.V1
             var site = await _siteRepository.GetAsync(siteId);
             if (site == null) return this.Error(Constants.ErrorNotFound);
 
+<<<<<<< HEAD
             var channelInfo = await _channelRepository.GetAsync(channelId);
             if (channelInfo == null) return this.Error(Constants.ErrorNotFound);
 
             if (!await _authManager.HasContentPermissionsAsync(siteId, channelId, MenuUtils.ContentPermissions.View)) return Unauthorized();
 
             var content = await _contentRepository.GetAsync(site, channelInfo, id);
+=======
+            var channel = await _channelRepository.GetAsync(channelId);
+            if (channel == null) return this.Error(Constants.ErrorNotFound);
+
+            if (!await _authManager.HasContentPermissionsAsync(siteId, channelId, MenuUtils.ContentPermissions.View)) return Unauthorized();
+
+            var content = await _contentRepository.GetAsync(site, channel, id);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             if (content == null) return this.Error(Constants.ErrorNotFound);
 
             return content;

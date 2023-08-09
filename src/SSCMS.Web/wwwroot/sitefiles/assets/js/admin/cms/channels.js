@@ -86,7 +86,11 @@ var methods = {
     $api.get($url + '/' + this.siteId + '/' + channelId).then(function (response) {
       var res = response.data;
 
+<<<<<<< HEAD
       $this.form = _.assign({}, res.entity);
+=======
+      $this.form = _.assign({}, res.entity, res.linkTo);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       if (!$this.form.groupNames) {
         $this.form.groupNames = [];
       }
@@ -247,6 +251,22 @@ var methods = {
     this.insertEditor(attributeName, html);
   },
 
+<<<<<<< HEAD
+=======
+  runLayerContentSelect: function (content) {
+    this.form.contentId = content.id;
+    this.form.contentTitle = content.title;
+  },
+
+  getContentUrl: function() {
+    return utils.getRootUrl('redirect', {
+      siteId: this.siteId,
+      channelId:  this.form.channelIds[this.form.channelIds.length - 1],
+      contentId: this.form.contentId
+    });
+  },
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   insertText: function(attributeName, no, text) {
     var count = this.form[utils.getCountName(attributeName)] || 0;
     if (count <= no) {
@@ -295,7 +315,23 @@ var methods = {
       title: '构造',
       url: url,
       width: 800,
+<<<<<<< HEAD
       height: 500
+=======
+      height: 550
+    });
+  },
+
+  btnLinkToContentClick: function () {
+    var channelId = this.form.channelIds[this.form.channelIds.length - 1];
+    utils.openLayer({
+      title: "选择指定内容",
+      url: utils.getCmsUrl("layerContentSelect", {
+        siteId: this.siteId,
+        channelId: channelId,
+        contentId: 0,
+      }),
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     });
   },
 
@@ -629,7 +665,11 @@ var methods = {
   btnLayerClick: function(options) {
     var query = {
       siteId: this.siteId,
+<<<<<<< HEAD
       editorAttributeName: "Body",
+=======
+      editorAttributeName: "Content",
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     };
 
     if (options.inputType) {

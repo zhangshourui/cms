@@ -81,6 +81,10 @@ namespace SSCMS.Web.Controllers.Admin
             public string AdminLogoUrl { get; set; }
             public string AdminLogoLinkUrl { get; set; }
             public string AdminTitle { get; set; }
+<<<<<<< HEAD
+=======
+            public bool IsAdminUpdateDisabled { get; set; }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             public bool IsSuperAdmin { get; set; }
             public string Culture { get; set; }
             public List<GetPlugin> Plugins { get; set; }

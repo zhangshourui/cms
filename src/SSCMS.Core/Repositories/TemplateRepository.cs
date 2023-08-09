@@ -102,6 +102,17 @@ namespace SSCMS.Core.Repositories
             FileUtils.DeleteFileIfExists(filePath);
         }
 
+<<<<<<< HEAD
+=======
+        public async Task DeleteAllAsync(int siteId)
+        {
+            await _repository.DeleteAsync(Q
+                .Where(nameof(Template.SiteId), siteId)
+                .CachingRemove(GetListKey(siteId))
+            );
+        }
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         public async Task CreateDefaultTemplateAsync(int siteId)
         {
             await InsertAsync(new Template

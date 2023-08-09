@@ -140,7 +140,11 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Contents
                 {
                     var exportColumnNames =
                         request.IsAllColumns ? columns.Select(x => x.AttributeName).ToList() : request.ColumnNames;
+<<<<<<< HEAD
                     var fileName = $"{channel.ChannelName}.csv";
+=======
+                    var fileName = $"{channel.ChannelName}.xlsx";
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                     var filePath = _pathManager.GetTemporaryFilesPath(fileName);
 
                     var excelObject = new ExcelObject(_databaseManager, _pathManager);

@@ -103,6 +103,7 @@ namespace SSCMS.Core.Repositories
             return (entity, string.Empty);
         }
 
+<<<<<<< HEAD
         public async Task<(User user, string errorMessage)> InsertAsync(User user, string password, string ipAddress, bool ignoreConfigLimit = false)
         {
 
@@ -111,6 +112,12 @@ namespace SSCMS.Core.Repositories
 
             // 通过api注册时，不受系统配置限制
             if (!ignoreConfigLimit && !config.IsUserRegistrationAllowed)
+=======
+        public async Task<(User user, string errorMessage)> InsertAsync(User user, string password, string ipAddress)
+        {
+            var config = await _configRepository.GetAsync();
+            if (!config.IsUserRegistrationAllowed)
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             {
                 return (null, "对不起，系统已禁止新用户注册！");
             }
@@ -139,6 +146,24 @@ namespace SSCMS.Core.Repositories
             return (user, string.Empty);
         }
 
+<<<<<<< HEAD
+=======
+        public async Task<int> InsertWithoutValidationAsync(User user, string password)
+        {
+            if (StringUtils.IsMobile(user.UserName) && string.IsNullOrEmpty(user.Mobile))
+            {
+                user.Mobile = user.UserName;
+            }
+
+            var passwordSalt = GenerateSalt();
+            password = EncodePassword(password, PasswordFormat.Encrypted, passwordSalt);
+            user.LastActivityDate = DateTime.Now;
+            user.LastResetPasswordDate = DateTime.Now;
+
+            return await InsertWithoutValidationAsync(user, password, PasswordFormat.Encrypted, passwordSalt);
+        }
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         private async Task<int> InsertWithoutValidationAsync(User user, string password, PasswordFormat passwordFormat, string passwordSalt)
         {
             user.LastActivityDate = DateTime.Now;

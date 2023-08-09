@@ -32,7 +32,19 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Settings
                 }
             }
 
+<<<<<<< HEAD
             site.PageSize = request.PageSize;
+=======
+            var isClearCache = false;
+            if (site.TaxisType != request.TaxisType)
+            {
+                isClearCache = true;
+            }
+
+            site.PageSize = request.PageSize;
+            site.TaxisType = request.TaxisType;
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             site.IsAutoPageInTextEditor = request.IsAutoPageInTextEditor;
             site.AutoPageWordNum = request.AutoPageWordNum;
             site.IsContentTitleBreakLine = request.IsContentTitleBreakLine;
@@ -48,6 +60,14 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Settings
                 await _contentRepository.SetAutoPageContentToSiteAsync(site);
             }
 
+<<<<<<< HEAD
+=======
+            if (isClearCache)
+            {
+                await _contentRepository.ClearAllListCacheAsync(site);
+            }
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             await _authManager.AddSiteLogAsync(request.SiteId, "修改内容设置");
 
             return new BoolResult

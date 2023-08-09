@@ -94,6 +94,16 @@ namespace SSCMS.Core.Repositories
             return await GetTableStylesAsync(siteTableName, relatedIdentities);
         }
 
+<<<<<<< HEAD
+=======
+        public async Task<TableStyle> GetSiteStyleAsync(int siteId, string attributeName)
+        {
+            var relatedIdentities = GetRelatedIdentities(siteId);
+            var siteTableName = _siteRepository.TableName;
+            return await GetTableStyleAsync(siteTableName, attributeName, relatedIdentities);
+        }
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         public async Task<List<TableStyle>> GetChannelStylesAsync(Channel channel)
         {
             var relatedIdentities = GetRelatedIdentities(channel);
@@ -101,6 +111,16 @@ namespace SSCMS.Core.Repositories
             return await GetTableStylesAsync(channelTableName, relatedIdentities);
         }
 
+<<<<<<< HEAD
+=======
+        public async Task<TableStyle> GetChannelStyleAsync(Channel channel, string attributeName)
+        {
+            var relatedIdentities = GetRelatedIdentities(channel);
+            var channelTableName = _channelRepository.TableName;
+            return await GetTableStyleAsync(channelTableName, attributeName, relatedIdentities);
+        }
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         public async Task<List<TableStyle>> GetContentStylesAsync(Site site, Channel channel)
         {
             var tableName = _channelRepository.GetTableName(site, channel);
@@ -108,6 +128,16 @@ namespace SSCMS.Core.Repositories
             return await GetTableStylesAsync(tableName, relatedIdentities);
         }
 
+<<<<<<< HEAD
+=======
+        public async Task<TableStyle> GetContentStyleAsync(Site site, Channel channel, string attributeName)
+        {
+            var tableName = _channelRepository.GetTableName(site, channel);
+            var relatedIdentities = GetRelatedIdentities(channel);
+            return await GetTableStyleAsync(tableName, attributeName, relatedIdentities);
+        }
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         public async Task<List<TableStyle>> GetUserStylesAsync()
         {
             var relatedIdentities = EmptyRelatedIdentities;
@@ -115,7 +145,12 @@ namespace SSCMS.Core.Repositories
             var styles = await GetTableStylesAsync(userTableName, relatedIdentities);
             return styles.Where(x =>
                 !StringUtils.EqualsIgnoreCase(x.AttributeName, nameof(User.Mobile)) &&
+<<<<<<< HEAD
                 !StringUtils.EqualsIgnoreCase(x.AttributeName, nameof(User.Email))).ToList();
+=======
+                !StringUtils.EqualsIgnoreCase(x.AttributeName, nameof(User.Email)) &&
+                !StringUtils.EqualsIgnoreCase(x.AttributeName, nameof(User.DisplayName))).ToList();
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         }
 
         //relatedIdentities从大到小，最后是0

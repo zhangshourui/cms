@@ -72,6 +72,17 @@ namespace SSCMS.Core.Repositories
             );
         }
 
+<<<<<<< HEAD
+=======
+        public async Task DeleteAllAsync(int siteId)
+        {
+            await _repository.DeleteAsync(Q
+                .Where(nameof(WxUser.SiteId), siteId)
+                .CachingRemove(GetCacheKey(siteId))
+            );
+        }
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         private async Task<List<WxUser>> GetAllAsync(int siteId)
         {
             return await _repository.GetAllAsync(Q

@@ -50,6 +50,7 @@ var methods = {
     $api.get($url + '/' + this.siteId + '/' + channelId).then(function (response) {
       var res = response.data;
 
+<<<<<<< HEAD
       $this.editForm = {
         siteId: $this.siteId,
         channelId: res.channel.id,
@@ -60,6 +61,14 @@ var methods = {
         channelFilePathRule: res.channelFilePathRule,
         contentFilePathRule: res.contentFilePathRule,
       };
+=======
+      $this.editForm = _.assign({}, res.channel, res.linkTo);
+
+      $this.editForm.filePath = res.filePath;
+      $this.editForm.channelFilePathRule = res.channelFilePathRule;
+      $this.editForm.contentFilePathRule = res.contentFilePathRule;
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       $this.editLinkTypes = res.linkTypes;
       $this.editPanel = true;
     }).catch(function (error) {
@@ -92,6 +101,34 @@ var methods = {
     });
   },
 
+<<<<<<< HEAD
+=======
+  getContentUrl: function() {
+    return utils.getRootUrl('redirect', {
+      siteId: this.siteId,
+      channelId:  this.editForm.channelIds[this.editForm.channelIds.length - 1],
+      contentId: this.editForm.contentId
+    });
+  },
+
+  runLayerContentSelect: function (content) {
+    this.editForm.contentId = content.id;
+    this.editForm.contentTitle = content.title;
+  },
+
+  btnLinkToContentClick: function () {
+    var channelId = this.editForm.channelIds[this.editForm.channelIds.length - 1];
+    utils.openLayer({
+      title: "选择指定内容",
+      url: utils.getCmsUrl("layerContentSelect", {
+        siteId: this.siteId,
+        channelId: channelId,
+        contentId: 0,
+      }),
+    });
+  },
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   filterNode: function(value, data) {
     if (!value || !value.filterText) return true;
     return utils.contains(data.label, value.filterText) || utils.contains(data.indexName, value.filterText) || utils.contains(data.filePath, value.filterText) || utils.contains(data.contentFilePathRule, value.filterText);
@@ -117,7 +154,11 @@ var methods = {
       title: '构造',
       url: url,
       width: 800,
+<<<<<<< HEAD
       height: 500
+=======
+      height: 550
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     });
   },
 

@@ -39,7 +39,11 @@ namespace SSCMS.Core.Repositories
                             if (StringUtils.StartsWithIgnoreCase(value, "not:"))
                             {
                                 value = value.Substring("not:".Length);
+<<<<<<< HEAD
                                 if (value.IndexOf(',') == -1)
+=======
+                                if (!value.Contains(','))
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                                 {
                                     sqlWhereString += $" AND ({attributeName} <> '{value}')";
                                 }
@@ -55,7 +59,11 @@ namespace SSCMS.Core.Repositories
                             else if (StringUtils.StartsWithIgnoreCase(value, "contains:"))
                             {
                                 value = value.Substring("contains:".Length);
+<<<<<<< HEAD
                                 if (value.IndexOf(',') == -1)
+=======
+                                if (!value.Contains(','))
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                                 {
                                     sqlWhereString += $" AND ({attributeName} LIKE '%{value}%')";
                                 }
@@ -69,7 +77,11 @@ namespace SSCMS.Core.Repositories
                                     }
                                     builder.Length -= 3;
 
+<<<<<<< HEAD
                                     builder.Append(")");
+=======
+                                    builder.Append(')');
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
                                     sqlWhereString += builder.ToString();
                                 }
@@ -77,7 +89,11 @@ namespace SSCMS.Core.Repositories
                             else if (StringUtils.StartsWithIgnoreCase(value, "start:"))
                             {
                                 value = value.Substring("start:".Length);
+<<<<<<< HEAD
                                 if (value.IndexOf(',') == -1)
+=======
+                                if (!value.Contains(','))
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                                 {
                                     sqlWhereString += $" AND ({attributeName} LIKE '{value}%')";
                                 }
@@ -91,7 +107,11 @@ namespace SSCMS.Core.Repositories
                                     }
                                     builder.Length -= 3;
 
+<<<<<<< HEAD
                                     builder.Append(")");
+=======
+                                    builder.Append(')');
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
                                     sqlWhereString += builder.ToString();
                                 }
@@ -99,7 +119,11 @@ namespace SSCMS.Core.Repositories
                             else if (StringUtils.StartsWithIgnoreCase(value, "end:"))
                             {
                                 value = value.Substring("end:".Length);
+<<<<<<< HEAD
                                 if (value.IndexOf(',') == -1)
+=======
+                                if (!value.Contains(','))
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                                 {
                                     sqlWhereString += $" AND ({attributeName} LIKE '%{value}')";
                                 }
@@ -113,14 +137,22 @@ namespace SSCMS.Core.Repositories
                                     }
                                     builder.Length -= 3;
 
+<<<<<<< HEAD
                                     builder.Append(")");
+=======
+                                    builder.Append(')');
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
                                     sqlWhereString += builder.ToString();
                                 }
                             }
                             else
                             {
+<<<<<<< HEAD
                                 if (value.IndexOf(',') == -1)
+=======
+                                if (!value.Contains(','))
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                                 {
                                     sqlWhereString += $" AND ({attributeName} = '{value}')";
                                 }
@@ -193,7 +225,11 @@ namespace SSCMS.Core.Repositories
             //return list;
         }
 
+<<<<<<< HEAD
         public async Task<List<KeyValuePair<int, Content>>> ParserGetContentsDataSourceAsync(Site site, int channelId, int contentId, string groupContent, string groupContentNot, string tags, bool isImageExists, bool isImage, bool isVideoExists, bool isVideo, bool isFileExists, bool isFile, string since, bool isRelatedContents, int startNum, int totalNum, TaxisType taxisType, bool isTopExists, bool isTop, bool isRecommendExists, bool isRecommend, bool isHotExists, bool isHot, bool isColorExists, bool isColor, ScopeType scopeType, string groupChannel, string groupChannelNot, NameValueCollection others, Query query)
+=======
+        public async Task<List<KeyValuePair<int, Content>>> ParserGetContentsDataSourceAsync(Site site, int channelId, int contentId, string groupContent, string groupContentNot, string tags, bool isImageExists, bool isImage, bool isVideoExists, bool isVideo, bool isFileExists, bool isFile, string since, bool isRelatedContents, int startNum, int totalNum, TaxisType taxisType, bool isTopExists, bool isTop, bool isRecommendExists, bool isRecommend, bool isHotExists, bool isHot, bool isColorExists, bool isColor, ScopeType scopeType, string groupChannel, string groupChannelNot, string where, NameValueCollection others, Query query)
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         {
             if (!await _channelRepository.IsExistsAsync(channelId)) return null;
 
@@ -244,21 +280,59 @@ namespace SSCMS.Core.Repositories
 
             if (!string.IsNullOrEmpty(groupContent))
             {
+<<<<<<< HEAD
                 query.Where(q => q
                     .Where(nameof(Content.GroupNames), groupContent)
                     .OrWhereInStr(repository.Database.DatabaseType, nameof(Content.GroupNames), $",{groupContent}")
                     .OrWhereInStr(repository.Database.DatabaseType, nameof(Content.GroupNames), $",{groupContent},")
                     .OrWhereInStr(repository.Database.DatabaseType, nameof(Content.GroupNames), $"{groupContent},")
                 );
+=======
+                query.Where(q =>
+                {
+                    foreach (var group in ListUtils.GetStringList(groupContent))
+                    {
+                        q
+                        .OrWhere(nameof(Content.GroupNames), group)
+                        .OrWhereInStr(repository.Database.DatabaseType, nameof(Content.GroupNames), $",{group}")
+                        .OrWhereInStr(repository.Database.DatabaseType, nameof(Content.GroupNames), $",{group},")
+                        .OrWhereInStr(repository.Database.DatabaseType, nameof(Content.GroupNames), $"{group},");
+                    }
+                    return q;
+                });
+                // query.Where(q => q
+                //     .Where(nameof(Content.GroupNames), groupContent)
+                //     .OrWhereInStr(repository.Database.DatabaseType, nameof(Content.GroupNames), $",{groupContent}")
+                //     .OrWhereInStr(repository.Database.DatabaseType, nameof(Content.GroupNames), $",{groupContent},")
+                //     .OrWhereInStr(repository.Database.DatabaseType, nameof(Content.GroupNames), $"{groupContent},")
+                // );
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             }
 
             if (!string.IsNullOrEmpty(groupContentNot))
             {
+<<<<<<< HEAD
                 query
                     .WhereNot(nameof(Content.GroupNames), groupContentNot)
                     .WhereNotInStr(repository.Database.DatabaseType, nameof(Content.GroupNames), $",{groupContentNot}")
                     .WhereNotInStr(repository.Database.DatabaseType, nameof(Content.GroupNames), $",{groupContentNot},")
                     .WhereNotInStr(repository.Database.DatabaseType, nameof(Content.GroupNames), $"{groupContentNot},");
+=======
+                foreach (var groupNot in ListUtils.GetStringList(groupContentNot))
+                {
+                    query
+                      .WhereNot(nameof(Content.GroupNames), groupNot)
+                      .WhereNotInStr(repository.Database.DatabaseType, nameof(Content.GroupNames), $",{groupNot}")
+                      .WhereNotInStr(repository.Database.DatabaseType, nameof(Content.GroupNames), $",{groupNot},")
+                      .WhereNotInStr(repository.Database.DatabaseType, nameof(Content.GroupNames), $"{groupNot},");
+                }
+
+                // query
+                //     .WhereNot(nameof(Content.GroupNames), groupContentNot)
+                //     .WhereNotInStr(repository.Database.DatabaseType, nameof(Content.GroupNames), $",{groupContentNot}")
+                //     .WhereNotInStr(repository.Database.DatabaseType, nameof(Content.GroupNames), $",{groupContentNot},")
+                //     .WhereNotInStr(repository.Database.DatabaseType, nameof(Content.GroupNames), $"{groupContentNot},");
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             }
 
             if (!string.IsNullOrEmpty(tags))
@@ -344,6 +418,14 @@ namespace SSCMS.Core.Repositories
                 query.WhereIn(nameof(Content.ChannelId), channelIdList);
             }
 
+<<<<<<< HEAD
+=======
+            if (!string.IsNullOrEmpty(where))
+            {
+                query.WhereRaw(where);
+            }
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             if (others != null && others.Count > 0)
             {
                 foreach (var attributeName in others.AllKeys)
@@ -357,7 +439,11 @@ namespace SSCMS.Core.Repositories
                             if (StringUtils.StartsWithIgnoreCase(value, "not:"))
                             {
                                 value = value.Substring("not:".Length);
+<<<<<<< HEAD
                                 if (value.IndexOf(',') == -1)
+=======
+                                if (!value.Contains(','))
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                                 {
                                     query.WhereNot(attributeName, value);
                                 }
@@ -373,7 +459,11 @@ namespace SSCMS.Core.Repositories
                             else if (StringUtils.StartsWithIgnoreCase(value, "contains:"))
                             {
                                 value = value.Substring("contains:".Length);
+<<<<<<< HEAD
                                 if (value.IndexOf(',') == -1)
+=======
+                                if (!value.Contains(','))
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                                 {
                                     query.WhereLike(attributeName, $"%{value}%");
                                 }
@@ -393,7 +483,11 @@ namespace SSCMS.Core.Repositories
                             else if (StringUtils.StartsWithIgnoreCase(value, "start:"))
                             {
                                 value = value.Substring("start:".Length);
+<<<<<<< HEAD
                                 if (value.IndexOf(',') == -1)
+=======
+                                if (!value.Contains(','))
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                                 {
                                     query.WhereStarts(attributeName, value);
                                 }
@@ -413,7 +507,11 @@ namespace SSCMS.Core.Repositories
                             else if (StringUtils.StartsWithIgnoreCase(value, "end:"))
                             {
                                 value = value.Substring("end:".Length);
+<<<<<<< HEAD
                                 if (value.IndexOf(',') == -1)
+=======
+                                if (!value.Contains(','))
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                                 {
                                     query.WhereEnds(attributeName, value);
                                 }
@@ -432,7 +530,11 @@ namespace SSCMS.Core.Repositories
                             }
                             else
                             {
+<<<<<<< HEAD
                                 if (value.IndexOf(',') == -1)
+=======
+                                if (!value.Contains(','))
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                                 {
                                     query.Where(attributeName, value);
                                 }
@@ -487,7 +589,11 @@ namespace SSCMS.Core.Repositories
             return list;
         }
 
+<<<<<<< HEAD
         private void ParserOrderQuery(DatabaseType databaseType, Query query, TaxisType taxisType)
+=======
+        private static void ParserOrderQuery(DatabaseType databaseType, Query query, TaxisType taxisType)
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         {
             if (taxisType == TaxisType.OrderById)
             {

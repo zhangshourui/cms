@@ -33,6 +33,10 @@ namespace SSCMS.Web.Controllers.Admin.Clouds
             public string AdminFaviconUrl { get; set; }
             public string AdminLogoUrl { get; set; }
             public string AdminWelcomeHtml { get; set; }
+<<<<<<< HEAD
+=======
+            public bool IsAdminUpdateDisabled { get; set; }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         }
 
         public class SubmitRequest
@@ -43,6 +47,10 @@ namespace SSCMS.Web.Controllers.Admin.Clouds
             public string AdminLogoUrl { get; set; }
             public string AdminLogoLinkUrl { get; set; }
             public string AdminWelcomeHtml { get; set; }
+<<<<<<< HEAD
+=======
+            public bool IsAdminUpdateDisabled { get; set; }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         }
 
         public class UploadResult

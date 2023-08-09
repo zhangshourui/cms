@@ -25,6 +25,10 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Forms
             form.SuccessMessage = request.SuccessMessage;
             form.SuccessCallback = request.SuccessCallback;
             form.IsReply = request.IsReply;
+<<<<<<< HEAD
+=======
+            form.IsReplyListAll = request.IsReplyListAll;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             form.PageSize = request.PageSize;
             form.IsTimeout = request.IsTimeout;
             form.TimeToStart = request.TimeToStart;

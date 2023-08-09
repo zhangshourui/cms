@@ -19,6 +19,11 @@ namespace SSCMS.Repositories
 
         Task<int> InsertPublishAsync(Content content, DateTime scheduledDate);
 
+<<<<<<< HEAD
+=======
+        Task<ScheduledTask> GetPublishAsync(int siteId, int channelId, int contentId);
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         Task<int> InsertCloudSyncAsync();
 
         Task<int> InsertCloudBackupAsync();

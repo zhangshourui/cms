@@ -321,5 +321,3 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
-/src/SSCMS.Web/wwwroot/channels
-/src/SSCMS.Web/wwwroot/contents

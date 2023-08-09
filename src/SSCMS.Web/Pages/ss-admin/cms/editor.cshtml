@@ -94,6 +94,16 @@
   .el-collapse-item__header {font-size: 14px;}
   .el-link {font-size:12px; margin-right: 5px;}
   /* .el-loading-mask.is-fullscreen, .el-loading-mask {z-index: 2001 !important;} */
+<<<<<<< HEAD
+=======
+  .el-breadcrumb__inner a, .el-breadcrumb__inner.is-link {
+    font-weight: normal;
+    color: #999;
+  }
+  .el-breadcrumb__item:last-child .el-breadcrumb__inner, .el-breadcrumb__item:last-child .el-breadcrumb__inner a, .el-breadcrumb__item:last-child .el-breadcrumb__inner a:hover {
+    cursor: pointer;
+  }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   </style>
 }
 
@@ -101,7 +111,16 @@
   <el-main style="padding: 0; margin: 0">
     <el-scrollbar class="scrollbar" :style="{height: mainHeight}">
       
+<<<<<<< HEAD
       <el-form v-on:submit.native.prevent style="margin: 10px 20px 20px 0" ref="form" :model="form" size="small" status-icon label-width="85px">
+=======
+      <el-form v-on:submit.native.prevent style="margin: 10px 20px 20px 0" ref="form" :model="form" size="small" status-icon label-width="100px">
+        <el-form-item>
+          <el-breadcrumb style="margin-top: 5px;">
+            <el-breadcrumb-item v-for="item in breadcrumbItems" :key="item.value"><a :href="getChannelUrl(item)" target="_blank">{{ item.label }}</a></el-breadcrumb-item>
+          </el-breadcrumb>
+        </el-form-item>
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         @await Html.PartialAsync("_PartialForm")
       </el-form>
 
@@ -160,7 +179,11 @@
 
             </el-collapse-item>
             <el-collapse-item title="内容链接" name="link">
+<<<<<<< HEAD
               <el-form v-on:submit.native.prevent size="small">
+=======
+              <el-form ref="linkToForm" :model="linkTo" v-on:submit.native.prevent size="small">
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 <el-form-item label="链接类型">
                   <el-select v-model="form.linkType" placeholder="请选择链接类型" v-on:change="form.linkUrl = form.linkToChannel = '';">
                     <el-option v-for="linkType in linkTypes" :key="linkType.value" :label="linkType.label" :value="linkType.value"></el-option>
@@ -169,6 +192,7 @@
                 <el-form-item v-if="form.linkType == 'None'" label="外部链接">
                   <el-input v-model="form.linkUrl" name="linkUrl" placeholder="设置后栏目链接将转向此地址" autosize :autosize="{ minRows: 2, maxRows: 4}" type="textarea" data-vv-as="外部链接" v-validate="'url'"></el-input>
                 </el-form-item>
+<<<<<<< HEAD
                 <el-form-item v-if="form.linkType == 'LinkToChannel'" label="指定栏目">
                   <el-tag
                     v-if="form.linkToChannel"
@@ -188,6 +212,43 @@
                     placeholder="请选择栏目">
                   </el-cascader>
                 </el-form-item>
+=======
+                <el-form-item
+                  v-if="form.linkType == 'LinkToChannel' || form.linkType == 'LinkToContent'" 
+                  label="指定栏目"
+                  prop="channelIds"
+                  :rules="[{ required: true, message: '请选择栏目' }]"
+                  >
+                  <el-cascader
+                    v-model="linkTo.channelIds"
+                    :options="root"
+                    :props="{ checkStrictly: true }"
+                    filterable
+                    clearable
+                    v-on:change="linkTo.contentId = 0; linkTo.contentTitle = '';"
+                    style="width: 100%;"
+                    placeholder="请选择栏目">
+                    <template slot-scope="{ node, data }">
+                      <span>{{ data.label }}</span>
+                      <span> ({{ data.count }}) </span>
+                    </template>
+                  </el-cascader>
+                </el-form-item>
+                <el-form-item 
+                  v-if="form.linkType == 'LinkToContent' && linkTo.channelIds && linkTo.channelIds.length > 0" 
+                  label="指定内容"
+                  prop="contentTitle"
+                  :rules="[{ required: true, message: '请选择内容' }]"
+                  >
+                  <div style="clear: both;" v-if="linkTo.contentId > 0">
+                    <el-link type="primary" :underline="false" :href="getContentUrl()" v-html="linkTo.contentTitle" target="_blank"></el-link>
+                  </div>
+                  <div style="clear: both;"></div>
+                  <el-button size="mini" icon="el-icon-circle-plus-outline" v-on:click="btnLinkToContentClick">
+                    指定内容
+                  </el-button>
+                </el-form-item>
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
               </el-form>
             </el-collapse-item>
             <el-collapse-item title="添加时间" name="addDate">
@@ -363,6 +424,7 @@
 
 <el-row align="center" style="text-align: center; padding-top:4px">
   
+<<<<<<< HEAD
 
   <el-dropdown style="margin-right: 10px;" v-if="form.checkedLevel === site.checkContentLevel" split-button type="primary" size="medium" v-on:click="btnSaveClick" v-on:command="btnSaveCommandClick">
     发 布
@@ -371,11 +433,33 @@
     </el-dropdown-menu>
   </el-dropdown>
   <el-button v-else size="medium" v-on:click="btnSaveClick" type="primary">保 存</el-button>
+=======
+  <el-tooltip v-if="form.checkedLevel === site.checkContentLevel" class="item" effect="dark" placement="top">
+    <div slot="content" style="text-align: center">发布内容<br/>Ctrl+回车</div>
+    <el-dropdown style="margin-right: 10px;" split-button type="primary" size="medium" v-on:click="btnSaveClick" v-on:command="btnSaveCommandClick">
+      发 布
+      <el-dropdown-menu slot="dropdown">
+        <el-dropdown-item command="scheduled" :disabled="settings.cloudType == 'Free'">定时发布</el-dropdown-item>
+      </el-dropdown-menu>
+    </el-dropdown>
+  </el-tooltip>
+  <el-tooltip v-else class="item" effect="dark" placement="top">
+    <div slot="content" style="text-align: center">保存内容<br/>Ctrl+回车</div>
+    <el-button size="medium" v-on:click="btnSaveClick" type="primary">保 存</el-button>
+  </el-tooltip>
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
   <el-button size="medium" v-on:click="btnPreviewClick" type="info">预 览</el-button>
   <el-button size="medium" v-if="isCensorButton()" type="success" v-on:click="btnCensorTextClick(false)">违规检测</el-button>
   <el-button size="medium" v-if="isSpellButton()" type="success" v-on:click="btnSpellingCheckClick(false)">文本纠错</el-button>
+<<<<<<< HEAD
   <el-button size="medium" v-on:click="btnCloseClick" type="default">关 闭</el-button>
+=======
+  <el-tooltip class="item" effect="dark" placement="top">
+    <div slot="content" style="text-align: center">关闭窗口<br/>Escape</div>
+    <el-button size="medium" v-on:click="btnCloseClick" type="default">关 闭</el-button>
+  </el-tooltip>
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   <el-button size="medium" icon="el-icon-setting" circle :type="isSettings ? 'info' : 'default'" v-on:click="isSettings = !isSettings"></el-button>
 </el-row>
 

@@ -6,6 +6,12 @@
   .main-wrapper {
     padding: 0 30px;
   }
+<<<<<<< HEAD
+=======
+  .unread, .unread span {
+    font-weight: bold;
+  }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 </style>
 }
 
@@ -32,45 +38,82 @@
       </el-form>
     </el-col>
     <el-col :span="4" style="text-align: right">
+<<<<<<< HEAD
       <el-button type="warning" size="small" v-on:click="btnAddClick">提交工单</el-button>
+=======
+      <el-button type="warning" size="small" v-on:click="btnAddClick">创建工单</el-button>
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     </el-col>
   </el-row>
 
   <el-table :data="tickets" style="width: 100%">
     <el-table-column label="工单编号" width="100">
       <template #default="scope">
+<<<<<<< HEAD
         <el-link type="primary" :underline="false" v-on:click.prevent="btnViewClick(scope.row)">
+=======
+        <el-link type="primary" :class="getClassName(scope.row)" :underline="false" v-on:click.prevent="btnViewClick(scope.row)">
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         {{ scope.row.ticketNo }}
         </el-link>
       </template>
     </el-table-column>
     <el-table-column label="问题内容">
       <template #default="scope">
+<<<<<<< HEAD
         <el-link type="primary" :underline="false" v-on:click.prevent="btnViewClick(scope.row)">
+=======
+        <el-link type="primary" :class="getClassName(scope.row)" :underline="false" v-on:click.prevent="btnViewClick(scope.row)">
+          <span v-if="isUnread(scope.row)">【未读】</span>
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
           {{ scope.row.content }}
         </el-link>
       </template>
     </el-table-column>
     <el-table-column label="工单类型" align="center" width="150">
       <template #default="scope">
+<<<<<<< HEAD
         {{ getTicketCategory(scope.row) }}
+=======
+        <span :class="getClassName(scope.row)">
+          {{ getTicketCategory(scope.row) }}
+        </span>
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       </template>
     </el-table-column>
     <el-table-column label="提交时间" align="center" width="140">
       <template #default="scope">
+<<<<<<< HEAD
         {{ scope.row.createdDate }}
+=======
+        <span :class="getClassName(scope.row)">
+          {{ scope.row.createdDate }}
+        </span>
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       </template>
     </el-table-column>
     <el-table-column label="状态" align="center" width="140">
       <template #default="scope">
+<<<<<<< HEAD
         <el-tag :type="getTicketStatusType(scope.row)">
+=======
+        <el-tag :class="getClassName(scope.row)" :type="getTicketStatusType(scope.row)">
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
           {{ getTicketStatus(scope.row.status) }}
         </el-tag>
       </template>
     </el-table-column>
+<<<<<<< HEAD
     <el-table-column label="工单类型" align="center" width="140">
       <template #default="scope">
         {{ getTicketPriority(scope.row.priority) }}
+=======
+    <el-table-column label="优先级" align="center" width="140">
+      <template #default="scope">
+        <span :class="getClassName(scope.row)">
+          {{ getTicketPriority(scope.row.priority) }}
+        </span>
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       </template>
     </el-table-column>
   </el-table>
@@ -80,7 +123,11 @@
       :page-size="formInline.limit" layout="total, prev, pager, next, jumper" :total="count"></el-pagination>
   </div>
 
+<<<<<<< HEAD
   <el-drawer title="提交工单" direction="rtl" size="60%" :visible.sync="isAdd">
+=======
+  <el-drawer title="创建工单" direction="rtl" size="60%" :visible.sync="isAdd">
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     <div style="margin: 15px 30px 0">
       <div class="drawer__content">
         <el-form style="margin: 10px" ref="form" :model="form" label-position="top">

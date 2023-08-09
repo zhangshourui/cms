@@ -42,8 +42,12 @@ namespace SSCMS.Web.Controllers.Home
         {
             public string HomeTitle { get; set; }
             public bool IsSmsEnabled { get; set; }
+<<<<<<< HEAD
             public User User { get; set; }
             public string Token { get; set; }
+=======
+            public bool IsUserCaptchaDisabled { get; set; }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         }
 
         public class CheckRequest
@@ -60,7 +64,10 @@ namespace SSCMS.Web.Controllers.Home
             public string Mobile { get; set; }
             public string Code { get; set; }
             public bool IsPersistent { get; set; }
+<<<<<<< HEAD
             public string AccessToken { get; set; }
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         }
 
         public class SubmitResult

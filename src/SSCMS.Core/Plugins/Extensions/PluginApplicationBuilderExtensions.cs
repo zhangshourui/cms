@@ -2,6 +2,10 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Datory;
+<<<<<<< HEAD
+=======
+using Datory.Utils;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
@@ -18,7 +22,11 @@ namespace SSCMS.Core.Plugins.Extensions
     public static class PluginApplicationBuilderExtensions
     {
         public static async Task UsePluginsAsync(this IApplicationBuilder app, ISettingsManager settingsManager,
+<<<<<<< HEAD
             IPluginManager pluginManager, IErrorLogRepository errorLogRepository)
+=======
+            IPluginManager pluginManager)
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         {
             var logger = app.ApplicationServices.GetService<ILoggerFactory>()
                 .CreateLogger<IApplicationBuilder>();
@@ -76,6 +84,7 @@ namespace SSCMS.Core.Plugins.Extensions
                     columns = database.GetTableColumns(table.Columns);
                 }
 
+<<<<<<< HEAD
                 if (columns == null || columns.Count == 0) continue;
 
                 try
@@ -95,6 +104,45 @@ namespace SSCMS.Core.Plugins.Extensions
                     // ignored
                 }
             }
+=======
+                await SyncPluginTableAsync(database, table.Id, columns, logger);
+            }
+
+            var assemblies = pluginManager.EnabledPlugins.Select(x => x.Assembly);
+            var entities = PluginUtils.GetImplementations<Entity>(assemblies);
+            foreach (var entity in entities)
+            {
+                var tableName = ReflectionUtils.GetTableName(entity);
+                if (tables.Exists(t => StringUtils.EqualsIgnoreCase(t.Id, tableName))) continue;
+
+                var tableColumns = ReflectionUtils.GetTableColumns(entity);
+                var columns = database.GetTableColumns(tableColumns);
+
+                await SyncPluginTableAsync(database, tableName, columns, logger);
+            }
+        }
+
+        private static async Task SyncPluginTableAsync(IDatabase database, string tableName, List<TableColumn> columns, ILogger<IApplicationBuilder> logger)
+        {
+            if (columns == null || columns.Count == 0) return;
+
+            try
+            {
+                logger.LogInformation("Sync Plugin Table '{0}'", tableName);
+                if (!await database.IsTableExistsAsync(tableName))
+                {
+                    await database.CreateTableAsync(tableName, columns);
+                }
+                else
+                {
+                    await database.AlterTableAsync(tableName, columns);
+                }
+            }
+            catch
+            {
+                // ignored
+            }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         }
     }
 }

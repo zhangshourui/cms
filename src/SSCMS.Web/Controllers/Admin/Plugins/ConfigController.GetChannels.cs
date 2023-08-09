@@ -28,6 +28,7 @@ namespace SSCMS.Web.Controllers.Admin.Plugins
                 siteConfig = plugin.SiteConfigs.FirstOrDefault(x => x.SiteId == request.SiteId);
             }
 
+<<<<<<< HEAD
             if (siteConfig == null)
             {
                 siteConfig = new SiteConfig
@@ -37,6 +38,14 @@ namespace SSCMS.Web.Controllers.Admin.Plugins
                     ChannelIds = new List<int>()
                 };
             }
+=======
+            siteConfig ??= new SiteConfig
+            {
+                SiteId = request.SiteId,
+                AllChannels = plugin.AllChannels,
+                ChannelIds = new List<int>()
+            };
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
             return new GetChannelsResult
             {

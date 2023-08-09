@@ -64,7 +64,10 @@
   direction="rtl"
   size="80%">
   <div class="drawer__content">
+<<<<<<< HEAD
     <el-alert type="info" title="提示：前缀及后缀为联动字段显示时在下拉列表之前及之后显示的文字，可以为空"></el-alert>
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     <div style="height: 10px"></div>
     <el-form v-on:submit.native.prevent size="small" ref="editorForm" :model="editorForm" label-width="150px" :rules="{
         title: [
@@ -196,7 +199,11 @@
                 <el-button type="text" size="mini" style="margin-left: 5px" v-on:click.stop="btnItemsDeleteClick(data.label, data.value)">
                   删除
                 </el-button>
+<<<<<<< HEAD
                 <el-button type="text" size="mini" style="margin-left: 5px" v-on:click.stop="btnItemsAddClick(data.value)">
+=======
+                <el-button type="text" size="mini" style="margin-left: 5px" v-on:click.stop="btnItemsAddClick(data.label, data.value)">
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                   批量添加
                 </el-button>
               </div>
@@ -215,7 +222,11 @@
       <el-button
       size="small"
       type="primary"
+<<<<<<< HEAD
       v-on:click="btnItemsAddClick(0)">
+=======
+      v-on:click="btnItemsAddClick('', 0)">
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       批量添加
     </el-button>
     </div>
@@ -230,8 +241,28 @@
   :visible.sync="itemsAddDialog"
   width="50%">
 
+<<<<<<< HEAD
   <el-form v-on:submit.native.prevent size="small" :model="itemsAddForm" ref="itemsAddForm" :inline="true" label-position="top" label-width="130px">
     <template v-for="(item, index) in itemsAddForm.items">
+=======
+  <el-form v-on:submit.native.prevent size="small" class="form-fixed" :model="itemsAddForm" ref="itemsAddForm1" :inline="false" label-width="100px">
+    <el-form-item v-if="itemsParentName" label="上级选项">
+      {{ itemsParentName }}
+    </el-form-item>
+    <el-form-item prop="isRapid" label="设置选项">
+      <el-select v-model="itemsAddForm.isRapid" placeholder="请选择设置选项">
+        <el-option :value="true" label="快速设置"></el-option>
+        <el-option :value="false" label="详细设置"></el-option>
+      </el-select>
+    </el-form-item>
+    <el-form-item v-if="itemsAddForm.isRapid" label="选项可选值" prop="rapidValues" :rules="{ required: true, message: '请输入选项可选值' }">
+      <el-input v-model="itemsAddForm.rapidValues" :rows="10" type="textarea" placeholder="请输入选项可选值"></el-input>
+      <div class="tips">多个选项使用换行分隔</div>
+    </el-form-item>
+  </el-form>
+  <el-form v-on:submit.native.prevent size="small" :model="itemsAddForm" ref="itemsAddForm2" :inline="true" label-position="top" label-width="130px">
+    <template v-if="!itemsAddForm.isRapid" v-for="(item, index) in itemsAddForm.items">
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       <el-form-item :label="'选项名称（' + (index + 1) + '）'" :prop="'items.' + index + '.key'" :rules="{
         required: true, message: '请输入选项名称'
       }">

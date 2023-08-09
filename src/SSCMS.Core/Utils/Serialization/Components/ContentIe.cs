@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Globalization;
+<<<<<<< HEAD
+=======
+using System.Linq;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 using System.Threading.Tasks;
 using Datory;
 using SSCMS.Core.Utils.Serialization.Atom.Atom.Core;
@@ -499,7 +503,11 @@ namespace SSCMS.Core.Utils.Serialization.Components
                 AtomUtility.AddDcElement(entry.AdditionalElements, nameof(Content.AddDate), content.AddDate.Value.ToString(CultureInfo.InvariantCulture));
             }
 
+<<<<<<< HEAD
             foreach (var attributeName in content.ToDictionary().Keys)
+=======
+            foreach (var attributeName in content.ToDictionary().Keys.ToList())
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             {
                 if (!ListUtils.ContainsIgnoreCase(ColumnsManager.MetadataAttributes.Value, attributeName))
                 {

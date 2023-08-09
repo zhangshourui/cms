@@ -41,7 +41,11 @@ namespace SSCMS.Core.Utils.Serialization
                 var srcPath = PathUtils.Combine(sitePath, directoryName);
                 var destPath = PathUtils.Combine(siteTemplatePath, directoryName);
 
+<<<<<<< HEAD
                 if (StringUtils.EqualsIgnoreCase(directoryName, DirectoryUtils.Site.Template)) continue;
+=======
+                // if (StringUtils.EqualsIgnoreCase(directoryName, DirectoryUtils.Site.Template)) continue;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 if (!isAllFiles && !ListUtils.ContainsIgnoreCase(directories, directoryName)) continue;
 
                 var isSiteDirectory = false;
@@ -63,15 +67,24 @@ namespace SSCMS.Core.Utils.Serialization
                 }
             }
 
+<<<<<<< HEAD
             var templateFileNames = await _databaseManager.TemplateRepository.GetRelatedFileNamesAsync(_site.Id, TemplateType.IndexPageTemplate);
             templateFileNames.AddRange(await _databaseManager.TemplateRepository.GetRelatedFileNamesAsync(_site.Id, TemplateType.IndexPageTemplate));
+=======
+            // var templateFileNames = await _databaseManager.TemplateRepository.GetRelatedFileNamesAsync(_site.Id, TemplateType.IndexPageTemplate);
+            // templateFileNames.AddRange(await _databaseManager.TemplateRepository.GetRelatedFileNamesAsync(_site.Id, TemplateType.IndexPageTemplate));
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
             foreach (var fileName in fileNames)
             {
                 var srcPath = PathUtils.Combine(sitePath, fileName);
                 var destPath = PathUtils.Combine(siteTemplatePath, fileName);
 
+<<<<<<< HEAD
                 if (ListUtils.ContainsIgnoreCase(templateFileNames, fileName)) continue;
+=======
+                // if (ListUtils.ContainsIgnoreCase(templateFileNames, fileName)) continue;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 if (!isAllFiles && !ListUtils.ContainsIgnoreCase(files, fileName)) continue;
 
                 FileUtils.CopyFile(srcPath, destPath);

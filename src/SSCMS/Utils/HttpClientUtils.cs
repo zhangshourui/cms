@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 ﻿using Microsoft.AspNetCore.Http;
 using System;
+=======
+﻿using System;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 using System.IO;
 using System.Net.Http;
 using System.Text;
@@ -79,6 +83,7 @@ namespace SSCMS.Utils
             }
             return true;
         }
+<<<<<<< HEAD
 
         public static string GetPeerIP(HttpContext context)
         {
@@ -113,5 +118,7 @@ namespace SSCMS.Utils
 
 
         }
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     }
 }

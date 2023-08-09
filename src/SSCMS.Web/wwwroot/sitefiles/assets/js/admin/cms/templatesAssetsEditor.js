@@ -101,7 +101,11 @@ var methods = {
   closeAndReload: function() {
     var tabVue = utils.getTabVue(this.tabName);
     if (tabVue) {
+<<<<<<< HEAD
       tabVue.apiList();
+=======
+      tabVue.apiGet();
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     }
     utils.removeTab();
     utils.openTab(this.tabName);

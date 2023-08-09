@@ -82,7 +82,11 @@ namespace SSCMS.Core.Plugins
         /// when the same type(s) is requested.
         /// </param>
         /// <returns>Found implementations of the given type.</returns>
+<<<<<<< HEAD
         private static IEnumerable<Type> GetImplementations<T>(IEnumerable<Assembly> assemblies, bool useCaching = true)
+=======
+        public static IEnumerable<Type> GetImplementations<T>(IEnumerable<Assembly> assemblies, bool useCaching = true)
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         {
             var type = typeof(T);
 

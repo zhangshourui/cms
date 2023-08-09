@@ -11,6 +11,11 @@ using SSCMS.Core.Utils;
 using SSCMS.Models;
 using SSCMS.Services;
 using Datory;
+<<<<<<< HEAD
+=======
+using SSCMS.Utils;
+using SSCMS.Enums;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
 namespace SSCMS.Core.StlParser.StlElement
 {
@@ -22,6 +27,15 @@ namespace SSCMS.Core.StlParser.StlElement
         [StlAttribute(Title = "循环类型")]
         private const string Type = nameof(Type);
 
+<<<<<<< HEAD
+=======
+        [StlAttribute(Title = "分割字符串")]
+        private const string Separator = nameof(Separator);
+
+        [StlAttribute(Title = "所处上下文")]
+        private const string Context = nameof(Context);
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         public static SortedList<string, string> TypeList => new SortedList<string, string>
         {
             {nameof(Content.ImageUrl), "遍历内容的图片字段"},
@@ -32,13 +46,20 @@ namespace SSCMS.Core.StlParser.StlElement
         public static async Task<object> ParseAsync(IParseManager parseManager)
         {
             var listInfo = await ListInfo.GetListInfoAsync(parseManager, ParseType.Each);
+<<<<<<< HEAD
 
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             return await ParseAsync(parseManager, listInfo);
         }
 
         private static async Task<string> ParseAsync(IParseManager parseManager, ListInfo listInfo)
         {
             var pageInfo = parseManager.PageInfo;
+<<<<<<< HEAD
+=======
+            var databaseManager = parseManager.DatabaseManager;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
             var type = listInfo.Others.Get(Type);
             if (string.IsNullOrEmpty(type))
@@ -46,6 +67,7 @@ namespace SSCMS.Core.StlParser.StlElement
                 type = nameof(Content.ImageUrl);
             }
 
+<<<<<<< HEAD
             var valueList = new List<string>();
             Entity entity = null;
             var content = await parseManager.GetContentAsync();
@@ -82,6 +104,91 @@ namespace SSCMS.Core.StlParser.StlElement
             //    }
             //}
 
+=======
+            var separator = listInfo.Others.Get(Separator);
+
+            var context = parseManager.ContextInfo.ContextType;
+            var contextStr = listInfo.Others.Get(Context);
+            if (!string.IsNullOrEmpty(contextStr))
+            {
+                context = TranslateUtils.ToEnum(contextStr, context);
+            }
+
+            var valueList = new List<string>();
+            Entity entity = null;
+            var inputType = InputType.Text;
+            if (context == ParseType.Content)
+            {
+                entity = await parseManager.GetContentAsync();
+                var channel = await parseManager.GetChannelAsync();
+                var style = await databaseManager.TableStyleRepository.GetContentStyleAsync(pageInfo.Site, channel, type);
+                if (style != null)
+                {
+                    inputType = style.InputType;
+                }
+            }
+            else if (context == ParseType.Site)
+            {
+                entity = pageInfo.Site;
+                var style = await databaseManager.TableStyleRepository.GetSiteStyleAsync(pageInfo.SiteId, type);
+                if (style != null)
+                {
+                    inputType = style.InputType;
+                }
+            }
+            else
+            {
+                var channel = await parseManager.GetChannelAsync();
+                entity = channel;
+                var style = await databaseManager.TableStyleRepository.GetChannelStyleAsync(channel, type);
+                if (style != null)
+                {
+                    inputType = style.InputType;
+                }
+            }
+
+            if (inputType == InputType.Image || inputType == InputType.Video || inputType == InputType.File)
+            {
+                if (!string.IsNullOrEmpty(entity.Get<string>(type)))
+                {
+                    valueList.Add(entity.Get<string>(type));
+                }
+
+                var countName = ColumnsManager.GetCountName(type);
+                var total = entity.Get<int>(countName);
+                for (var i = 1; i <= total; i++)
+                {
+                    var extendName = ColumnsManager.GetExtendName(type, i);
+                    var extend = entity.Get<string>(extendName);
+                    valueList.Add(extend);
+                }
+            }
+            else if (inputType == InputType.TextArea)
+            {
+                var values = entity.Get<string>(type);
+                if (string.IsNullOrEmpty(separator))
+                {
+                    valueList = ListUtils.GetStringListByReturnAndNewline(values);
+                }
+                else
+                {
+                    valueList = ListUtils.GetStringList(values, separator);
+                }
+            }
+            else
+            {
+                var values = entity.Get<string>(type);
+                if (string.IsNullOrEmpty(separator))
+                {
+                    valueList = ListUtils.GetStringList(values);
+                }
+                else
+                {
+                    valueList = ListUtils.GetStringList(values, separator);
+                }
+            }
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             if (listInfo.StartNum > 1 || listInfo.TotalNum > 0)
             {
                 if (listInfo.StartNum > 1)

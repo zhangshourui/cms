@@ -1,6 +1,10 @@
 ﻿var $url = '/cms/create/createPage';
 
 var data = utils.init({
+<<<<<<< HEAD
+=======
+  homepage: '/cms/createChannels/',
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   siteId: utils.getQueryInt('siteId'),
   type: utils.getQueryString('type'),
   isAllChecked: false,
@@ -35,7 +39,12 @@ var methods = {
     $api.get($url, {
       params: {
         siteId: this.siteId,
+<<<<<<< HEAD
         parentId: this.siteId
+=======
+        parentId: this.siteId,
+        type: this.type
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       }
     }).then(function (response) {
       var res = response.data;
@@ -195,11 +204,25 @@ var $vue = new Vue({
   created: function () {
     utils.keyPress(this.btnCreateClick, this.btnCloseClick);
     if (this.type === 'Index') {
+<<<<<<< HEAD
       this.apiCreateIndex();
     } else if (this.type === 'All') {
       this.apiCreateAll();
     } else {
       this.apiGet();
+=======
+      this.homepage = '/cms/createIndex/';
+      this.apiCreateIndex();
+    } else if (this.type === 'Channel') {
+      this.homepage = '/cms/createChannels/';
+      this.apiGet();
+    } else if (this.type === 'Content') {
+      this.homepage = '/cms/createContents/';
+      this.apiGet();
+    } else if (this.type === 'All') {
+      this.homepage = '/cms/createAll/';
+      this.apiCreateAll();
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     }
   }
 });

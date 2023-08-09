@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 ﻿using System.Collections.Generic;
+=======
+﻿using System;
+using System.Collections.Generic;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 using System.Threading.Tasks;
 using Datory;
 using Microsoft.AspNetCore.Mvc;
@@ -42,7 +47,11 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Channels
             var styles = await GetStylesAsync(channel);
             var entity = new Entity(channel.ToDictionary());
             var relatedFields = new Dictionary<int, List<Cascade<int>>>();
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             foreach (var style in styles)
             {
                 if (style.InputType == InputType.Image ||
@@ -86,6 +95,7 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Channels
                     }
                     entity.Set(style.AttributeName, channel.Get(style.AttributeName));
                 }
+<<<<<<< HEAD
                 else
                 {
                     entity.Set(style.AttributeName, channel.Get(style.AttributeName));
@@ -99,6 +109,16 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Channels
                     var targetChannelId = channelIds[channelIds.Count - 1];
                     var name = await _channelRepository.GetChannelNameNavigationAsync(siteId, targetChannelId);
                     entity.Set("LinkToChannel", name);
+=======
+                else if (style.InputType == InputType.Date || style.InputType == InputType.DateTime)
+                {
+                    var date = TranslateUtils.ToDateTime(channel.Get<string>(style.AttributeName), DateTime.Now);
+                    entity.Set(style.AttributeName, date);
+                }
+                else
+                {
+                    entity.Set(style.AttributeName, channel.Get(style.AttributeName));
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 }
             }
 
@@ -106,6 +126,42 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Channels
             var channelFilePathRule = channel.ChannelFilePathRule;
             var contentFilePathRule = channel.ContentFilePathRule;
 
+<<<<<<< HEAD
+=======
+            var linkTo = new LinkTo
+            {
+                ChannelIds = new List<int> {
+                  siteId,
+                },
+                ContentId = 0,
+                ContentTitle = string.Empty
+            };
+            if (channel.LinkType == Enums.LinkType.LinkToChannel)
+            {
+                linkTo.ChannelIds = ListUtils.GetIntList(channel.LinkUrl);
+            }
+            else if (channel.LinkType == Enums.LinkType.LinkToContent)
+            {
+                if (!string.IsNullOrEmpty(channel.LinkUrl) && channel.LinkUrl.IndexOf('_') != -1)
+                {
+                    var arr = channel.LinkUrl.Split('_');
+                    if (arr.Length == 2)
+                    {
+                        var channelIds = ListUtils.GetIntList(arr[0]);
+                        var linkContentId = TranslateUtils.ToInt(arr[1]);
+                        var linkChannelId = channelIds.Count > 0 ? channelIds[channelIds.Count - 1] : 0;
+                        var linkToContent = await _contentRepository.GetAsync(site.Id, linkChannelId, linkContentId);
+                        if (linkToContent != null)
+                        {
+                            linkTo.ChannelIds = channelIds;
+                            linkTo.ContentId = linkContentId;
+                            linkTo.ContentTitle = linkToContent.Title;
+                        }
+                    }
+                }
+            }
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             return new GetResult
             {
                 Entity = entity,
@@ -113,7 +169,12 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Channels
                 RelatedFields = relatedFields,
                 FilePath = filePath,
                 ChannelFilePathRule = channelFilePathRule,
+<<<<<<< HEAD
                 ContentFilePathRule = contentFilePathRule
+=======
+                ContentFilePathRule = contentFilePathRule,
+                LinkTo = linkTo,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             };
         }
     }

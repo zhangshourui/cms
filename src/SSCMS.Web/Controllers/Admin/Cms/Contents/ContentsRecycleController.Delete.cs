@@ -77,6 +77,7 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Contents
                 Value = true
             };
         }
+<<<<<<< HEAD
 
         public enum Action
         {
@@ -92,5 +93,7 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Contents
             public string ChannelContentIds { get; set; }
             public int RestoreChannelId { get; set; }
         }
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     }
 }

@@ -29,7 +29,11 @@ namespace SSCMS.Web.Controllers.Stl
             _contentRepository = contentRepository;
         }
 
+<<<<<<< HEAD
         private NameValueCollection GetPostCollection(StlSearchRequest request)
+=======
+        private static NameValueCollection GetPostCollection(StlSearchRequest request)
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         {
             var formCollection = new NameValueCollection();
             if (request != null)

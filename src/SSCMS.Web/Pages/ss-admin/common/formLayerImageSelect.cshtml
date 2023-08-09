@@ -31,7 +31,11 @@
 <el-row :gutter="10">
   <el-col :span="6" v-for="image in images" :key="image.imageUrl">
     <el-image
+<<<<<<< HEAD
       style="width: 100%; min-height: 120px; max-height: 220px; margin-bottom: 15px; cursor: pointer"
+=======
+      style="width: 100%; min-height: 220px; max-height: 220px; margin-bottom: 15px; cursor: pointer"
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       :src="image.imageUrl"
       v-on:click="btnImageClick(image)"
     >

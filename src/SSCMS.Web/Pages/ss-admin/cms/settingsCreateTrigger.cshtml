@@ -2,7 +2,11 @@
 @{ Layout = "_Layout"; }
 
 <el-form v-on:submit.native.prevent :inline="true">
+<<<<<<< HEAD
   <el-form-item label="关键字">
+=======
+  <el-form-item label="关键字" style="margin-bottom: 0;">
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     <el-input v-model="filterText" size="mini" placeholder="输入关键字进行过滤"></el-input>
   </el-form-item>
 </el-form>
@@ -61,9 +65,15 @@
         <tr class="el-table__row">
           <td rowspan="1" colspan="1" class="el-table_1_column_1">
           <div class="cell">
+<<<<<<< HEAD
             <a :href="getChannelUrl(data)" v-on:click.stop.native target="_blank">
               <i class="el-icon-link"></i>
             </a>
+=======
+            <el-link :underline="false" :href="getChannelUrl(data)" v-on:click.stop.native target="_blank">
+              <i class="el-icon-link"></i>
+            </el-link>
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             {{ data.label }} ({{ data.count }})
             <el-tag size="mini" v-if="data.indexName">
               {{ data.indexName }}
@@ -90,6 +100,11 @@
   </div>
 </el-tree>
 
+<<<<<<< HEAD
+=======
+<el-divider></el-divider>
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 <el-drawer
   id="editForm"
   v-if="editForm"
@@ -123,9 +138,15 @@
           :expand-on-click-node="true"
           v-on:check-change="handleTreeChanged">
           <span class="custom-tree-node" slot-scope="{ node, data }">
+<<<<<<< HEAD
             <a :href="getChannelUrl(data)" v-on:click.stop.native target="_blank">
               <i class="el-icon-link"></i>
             </a>
+=======
+            <el-link :underline="false" :href="getChannelUrl(data)" v-on:click.stop.native target="_blank">
+              <i class="el-icon-link"></i>
+            </el-link>
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             {{ data.label }} ({{ data.count }})
             <el-tag size="mini" v-if="data.indexName">
               {{ data.indexName }}

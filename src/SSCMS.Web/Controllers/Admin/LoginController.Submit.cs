@@ -18,6 +18,10 @@ namespace SSCMS.Web.Controllers.Admin
         public async Task<ActionResult<SubmitResult>> Submit([FromBody] SubmitRequest request)
         {
             Administrator administrator;
+<<<<<<< HEAD
+=======
+            var config = await _configRepository.GetAsync();
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             if (request.IsSmsLogin)
             {
                 var codeCacheKey = GetSmsCodeCacheKey(request.Mobile);
@@ -42,7 +46,11 @@ namespace SSCMS.Web.Controllers.Admin
             }
             else
             {
+<<<<<<< HEAD
                 if (!request.IsForceLogoutAndLogin)
+=======
+                if (!request.IsForceLogoutAndLogin && !config.IsAdminCaptchaDisabled)
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 {
                     var captcha = TranslateUtils.JsonDeserialize<CaptchaUtils.Captcha>(_settingsManager.Decrypt(request.Token));
 
@@ -100,8 +108,11 @@ namespace SSCMS.Web.Controllers.Admin
             var sessionId = StringUtils.Guid();
             await _dbCacheRepository.RemoveAndInsertAsync(cacheKey, sessionId);
 
+<<<<<<< HEAD
             var config = await _configRepository.GetAsync();
 
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             if (config.IsAdminEnforcePasswordChange)
             {
                 if (administrator.LastChangePasswordDate == null)

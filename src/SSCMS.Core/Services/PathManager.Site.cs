@@ -328,6 +328,29 @@ namespace SSCMS.Core.Services
                 }
                 return url;
             }
+<<<<<<< HEAD
+=======
+            else if (content.LinkType == LinkType.LinkToContent)
+            {
+                var url = PageUtils.UnClickableUrl;
+                if (!string.IsNullOrEmpty(content.LinkUrl) && content.LinkUrl.IndexOf('_') != -1)
+                {
+                    var arr = content.LinkUrl.Split('_');
+                    if (arr.Length == 2)
+                    {
+                        var channelIds = ListUtils.GetIntList(arr[0]);
+                        var contentId = TranslateUtils.ToInt(arr[1]);
+                        var channelId = channelIds.Count > 0 ? channelIds[channelIds.Count - 1] : 0;
+                        var linkToContent = await _contentRepository.GetAsync(site.Id, channelId, contentId);
+                        if (linkToContent != null)
+                        {
+                            url = await GetContentUrlAsync(site, linkToContent, false);
+                        }
+                    }
+                }
+                return url;
+            }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             else if (content.LinkType == LinkType.NoLink)
             {
                 return PageUtils.UnClickableUrl;
@@ -624,6 +647,10 @@ namespace SSCMS.Core.Services
                   new Select<string>(LinkType.None),
                   new Select<string>(LinkType.LinkToFirstChannel),
                   new Select<string>(LinkType.LinkToChannel),
+<<<<<<< HEAD
+=======
+                  new Select<string>(LinkType.LinkToContent),
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                   new Select<string>(LinkType.LinkToFirstContent),
                   new Select<string>(LinkType.LinkToOnlyOneContent),
                   new Select<string>(LinkType.NoLink),
@@ -634,6 +661,10 @@ namespace SSCMS.Core.Services
             {
                 new Select<string>(LinkType.None),
                 new Select<string>(LinkType.LinkToChannel),
+<<<<<<< HEAD
+=======
+                new Select<string>(LinkType.LinkToContent),
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 new Select<string>(LinkType.NoLink),
             };
         }
@@ -1008,6 +1039,14 @@ namespace SSCMS.Core.Services
                         await HttpClientUtils.DownloadAsync(originalImageSrc, filePath);
                         if (FileUtils.IsImage(PathUtils.GetExtension(fileName)))
                         {
+<<<<<<< HEAD
+=======
+                            if (site.IsImageAutoResize)
+                            {
+                                ImageUtils.ResizeImageIfExceeding(filePath, site.ImageAutoResizeWidth);
+                            }
+                            
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                             await AddWaterMarkAsync(site, filePath);
                         }
                     }

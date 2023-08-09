@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+<<<<<<< HEAD
 using System.Runtime.CompilerServices;
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 using System.Threading.Tasks;
 using Datory;
 using Microsoft.AspNetCore.Mvc;
@@ -113,7 +116,10 @@ namespace SSCMS.Web.Controllers.V1
 
             if (channelId.HasValue)
             {
+<<<<<<< HEAD
                 //query.Where(nameof(Abstractions.Content.ChannelId), channelId.Value);
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 var channelIds = await _channelRepository.GetChannelIdsAsync(siteId, channelId.Value, ScopeType.All);
 
                 query.WhereIn(nameof(Models.Content.ChannelId), channelIds);
@@ -121,6 +127,7 @@ namespace SSCMS.Web.Controllers.V1
 
             if (request.Checked.HasValue)
             {
+<<<<<<< HEAD
                 query.Where(nameof(Models.Content.Checked), request.Checked.Value.ToString());
             }
             if (request.Top.HasValue)
@@ -138,6 +145,25 @@ namespace SSCMS.Web.Controllers.V1
             if (request.Hot.HasValue)
             {
                 query.Where(nameof(Models.Content.Hot), request.Hot.Value.ToString());
+=======
+                query.Where(nameof(Models.Content.Checked), request.Checked);
+            }
+            if (request.Top.HasValue)
+            {
+                query.Where(nameof(Models.Content.Top), request.Top);
+            }
+            if (request.Recommend.HasValue)
+            {
+                query.Where(nameof(Models.Content.Recommend), request.Recommend);
+            }
+            if (request.Color.HasValue)
+            {
+                query.Where(nameof(Models.Content.Color), request.Color);
+            }
+            if (request.Hot.HasValue)
+            {
+                query.Where(nameof(Models.Content.Hot), request.Hot);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             }
 
             if (request.GroupNames != null)
@@ -222,7 +248,11 @@ namespace SSCMS.Web.Controllers.V1
             }
             else
             {
+<<<<<<< HEAD
                 query.OrderByDesc(nameof(Models.Content.Top), 
+=======
+                query.OrderByDesc(nameof(Models.Content.Top),
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                     nameof(Models.Content.ChannelId),
                     nameof(Models.Content.Taxis),
                     nameof(Models.Content.Id));
@@ -230,6 +260,7 @@ namespace SSCMS.Web.Controllers.V1
 
             return query;
         }
+<<<<<<< HEAD
 
         //[OpenApiOperation("获取站点内容API", "")]
         //[HttpGet, Route(RouteSite)]
@@ -397,5 +428,7 @@ namespace SSCMS.Web.Controllers.V1
         //        TotalCount = totalCount
         //    };
         //}
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     }
 }

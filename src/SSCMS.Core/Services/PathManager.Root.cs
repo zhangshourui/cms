@@ -235,7 +235,11 @@ namespace SSCMS.Core.Services
         }
 
         public string GetTriggerApiUrl(int siteId, int channelId, int contentId,
+<<<<<<< HEAD
             int fileTemplateId, bool isRedirect)
+=======
+            int fileTemplateId, int specialId, bool isRedirect)
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         {
             var apiUrl = PageUtils.GetLocalApiUrl(Constants.ApiStlPrefix);
             return PageUtils.AddQueryString(PageUtils.Combine(apiUrl, Constants.RouteStlActionsTrigger), new NameValueCollection
@@ -244,6 +248,10 @@ namespace SSCMS.Core.Services
                 {"channelId", channelId.ToString()},
                 {"contentId", contentId.ToString()},
                 {"fileTemplateId", fileTemplateId.ToString()},
+<<<<<<< HEAD
+=======
+                {"specialId", specialId.ToString()},
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 {"isRedirect", isRedirect.ToString()}
             });
         }

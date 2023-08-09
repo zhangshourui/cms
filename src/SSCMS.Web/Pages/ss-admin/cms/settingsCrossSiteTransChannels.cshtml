@@ -11,8 +11,15 @@
   </style>
 }
 
+<<<<<<< HEAD
 <el-form v-on:submit.native.prevent :inline="true">
   <el-form-item label="关键字">
+=======
+<el-alert>在此设置当前站点下的栏目，如果栏目下新增内容，需要转移到指定的站点/栏目下</el-alert>
+
+<el-form v-on:submit.native.prevent :inline="true">
+  <el-form-item label="关键字" style="margin-bottom: 0;">
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     <el-input v-model="filterText" size="mini" placeholder="输入关键字进行过滤"></el-input>
   </el-form-item>
 </el-form>
@@ -71,9 +78,15 @@
         <tr class="el-table__row">
           <td rowspan="1" colspan="1" class="el-table_1_column_1">
           <div class="cell">
+<<<<<<< HEAD
             <a :href="getChannelUrl(data)" v-on:click.stop.native target="_blank">
               <i class="el-icon-link"></i>
             </a>
+=======
+            <el-link :underline="false" :href="getChannelUrl(data)" v-on:click.stop.native target="_blank">
+              <i class="el-icon-link"></i>
+            </el-link>
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             {{ data.label }} ({{ data.count }})
             <el-tag size="mini" v-if="data.indexName">
               {{ data.indexName }}
@@ -104,6 +117,11 @@
   </div>
 </el-tree>
 
+<<<<<<< HEAD
+=======
+<el-divider></el-divider>
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 <el-drawer
   title="跨站转发设置"
   :visible.sync="editPanel"

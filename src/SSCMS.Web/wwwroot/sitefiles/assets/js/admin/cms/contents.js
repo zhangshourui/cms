@@ -21,12 +21,21 @@ var data = utils.init({
   permissions: null,
   contentMenus: null,
   contentsMenus: null,
+<<<<<<< HEAD
 
   asideHeight: 0,
   tableMaxHeight: 0,
   multipleSelection: [],
 
   checkedColumns: [],
+=======
+  asideHeight: 0,
+  tableMaxHeight: 0,
+  multipleSelection: [],
+  checkedColumns: [],
+  breadcrumbItems: [],
+  isChangeBanned: false,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
   searchForm: {
     searchType: 'Title',
@@ -103,6 +112,11 @@ var methods = {
       $this.contentsMenus = res.contentsMenus;
       $this.expendedChannelIds = [$this.siteId, channelId];
       $this.searchForm.isAllContents = res.isAllContents;
+<<<<<<< HEAD
+=======
+      $this.isChangeBanned = res.isChangeBanned;
+      $this.breadcrumbItems = res.breadcrumbItems;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
       if (message) {
         utils.success(message);
@@ -136,9 +150,15 @@ var methods = {
       siteId: this.siteId,
       channelId: this.channelId,
       prevAttributeName: prevAttributeName || '',
+<<<<<<< HEAD
       prevWidth: prevWidth || 0,
       nextAttributeName: nextAttributeName || '',
       nextWidth: nextWidth || 0
+=======
+      prevWidth: parseInt(prevWidth || 0),
+      nextAttributeName: nextAttributeName || '',
+      nextWidth: parseInt(nextWidth || 0)
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     }).then(function(response) {
       var res = response.data;
 
@@ -147,6 +167,30 @@ var methods = {
     });
   },
 
+<<<<<<< HEAD
+=======
+  apiOrder: function(channelId, contentId, isUp, rows) {
+    var $this = this;
+
+    utils.loading(this, true);
+    $api.post($url + '/actions/order', {
+      siteId: this.siteId,
+      channelId: channelId,
+      contentId: contentId,
+      isUp: isUp,
+      rows: rows
+    }).then(function(response) {
+      var res = response.data;
+
+      $this.apiList($this.channelId, $this.page, '内容排序成功！');
+    }).catch(function (error) {
+      utils.error(error);
+    }).then(function () {
+      utils.loading($this, false);
+    });
+  },
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   handleAllChange: function() {
     var $this = this;
 
@@ -222,7 +266,18 @@ var methods = {
   },
 
   btnAddClick: function () {
+<<<<<<< HEAD
     utils.addTab('添加内容', this.getAddUrl());
+=======
+    if (this.isChangeBanned) {
+      utils.alertWarning({
+        title: '禁止添加内容',
+        text: '栏目已开启禁止维护内容(添加/修改/删除)功能，添加内容请先在栏目中关闭此功能！'
+      });
+    } else {
+      utils.addTab('添加内容', this.getAddUrl());
+    }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   },
 
   btnImportClick: function (command) {
@@ -255,7 +310,16 @@ var methods = {
 
   btnEditClick: function(content) {
     if (!this.permissions.isEdit) return;
+<<<<<<< HEAD
     if (content.referenceId > 0 && content.sourceId > 0) {
+=======
+    if (this.isChangeBanned) {
+      utils.alertWarning({
+        title: '禁止修改内容',
+        text: '栏目已开启禁止维护内容(添加/修改/删除)功能，修改内容请先在栏目中关闭此功能！'
+      });
+    } else if (content.referenceId > 0 && content.sourceId > 0) {
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       utils.openLayer({
         title: "编辑引用内容",
         url: utils.getCmsUrl('contentsLayerReference', {
@@ -274,9 +338,14 @@ var methods = {
   btnAdminClick: function(adminId) {
     utils.openLayer({
       title: "管理员查看",
+<<<<<<< HEAD
       url: utils.getCommonUrl(adminLayerView, {adminId: adminId}),
       width: 550,
       height: 450
+=======
+      url: utils.getCommonUrl('adminLayerView', {adminId: adminId}),
+      full: true
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     });
   },
 
@@ -319,6 +388,27 @@ var methods = {
   },
 
   btnLayerClick: function(options) {
+<<<<<<< HEAD
+=======
+    if (this.isChangeBanned) {
+      if (options.name === 'Delete') {
+        return utils.alertWarning({
+          title: '禁止删除内容',
+          text: '栏目已开启禁止维护内容(添加/修改/删除)功能，删除内容请先在栏目中关闭此功能！'
+        });
+      } else if (options.name === 'Word' || options.name === 'Import' || options.name === 'Add') {
+        return utils.alertWarning({
+          title: '禁止添加内容',
+          text: '栏目已开启禁止维护内容(添加/修改/删除)功能，添加内容请先在栏目中关闭此功能！'
+        });
+      } else if (options.name === 'Attributes' || options.name === 'Taxis' || options.name === 'Check' || options.name === 'Group' || options.name === 'Tag' || options.name === 'Arrange' || options.name === 'Hits') {
+        return utils.alertWarning({
+          title: '禁止修改内容',
+          text: '栏目已开启禁止维护内容(添加/修改/删除)功能，修改内容请先在栏目中关闭此功能！'
+        });
+      }
+    }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     var query = {
       siteId: this.siteId,
       page: this.page
@@ -367,6 +457,27 @@ var methods = {
     });
   },
 
+<<<<<<< HEAD
+=======
+  btnCommandsClick: function(command) {
+    if (!command || command.indexOf(',') === -1) return;
+
+    var first = command.split(',')[0];
+    var second = command.split(',')[1];
+    for (var menu of this.contentsMenus) {
+      if (first === menu.id) {
+        for (var child of menu.children) {
+          if (second === child.id) {
+            this.btnCommandClick(child);
+            break;
+          }
+        }
+        break;
+      }
+    }
+  },
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   btnCommandClick: function(menu) {
     var args = {
       siteId: this.siteId,
@@ -498,6 +609,16 @@ var methods = {
     this.apiColumns(attributeNames);
   },
 
+<<<<<<< HEAD
+=======
+  onSort: function (event) {
+    var content = this.pageContents[event.oldIndex];
+    var isUp = event.oldIndex > event.newIndex;
+    var rows = Math.abs(event.oldIndex - event.newIndex);
+    this.apiOrder(content.channelId, content.id, isUp, rows);
+  },
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   btnCloseClick: function() {
     utils.removeTab();
   },
@@ -505,6 +626,12 @@ var methods = {
 
 var $vue = new Vue({
   el: "#main",
+<<<<<<< HEAD
+=======
+  components: {
+    ElTableDraggable,
+  },
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   data: data,
   methods: methods,
   computed: {

@@ -37,7 +37,11 @@ namespace SSCMS.Web.Controllers.Admin
                     envDatabaseHost, envDatabaseUser, envDatabasePassword, envDatabaseName);
                 if (!isEnvironment)
                 {
+<<<<<<< HEAD
                     return this.Error("系统启动失败，请检查 SS CMS 容器运行环境变量设置");
+=======
+                    return this.Error("系统启动失败，请检查 SSCMS 容器运行环境变量设置");
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 }
             }
 
@@ -296,6 +300,10 @@ namespace SSCMS.Web.Controllers.Admin
                 AdminLogoUrl = config.AdminLogoUrl,
                 AdminLogoLinkUrl = config.AdminLogoLinkUrl,
                 AdminTitle = config.AdminTitle,
+<<<<<<< HEAD
+=======
+                IsAdminUpdateDisabled = config.IsAdminUpdateDisabled,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 IsSuperAdmin = isSuperAdmin,
                 Culture = culture,
                 Plugins = plugins,

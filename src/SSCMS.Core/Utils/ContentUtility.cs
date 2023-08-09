@@ -114,6 +114,20 @@ namespace SSCMS.Core.Utils
 
             contentInfo = contentInfo.Clone<Content>();
 
+<<<<<<< HEAD
+=======
+            if (targetSiteId != site.Id)
+            {
+                if (contentInfo.Checked)
+                {
+                    if (!targetSite.IsCrossSiteTransChecked)
+                    {
+                        contentInfo.Checked = false;
+                    }
+                }
+            }
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             if (translateType == TranslateType.Copy)
             {
                 await pathManager.MoveFileByContentAsync(site, targetSite, contentInfo);
@@ -138,6 +152,7 @@ namespace SSCMS.Core.Utils
                     }
                 }
 
+<<<<<<< HEAD
                 //foreach (var plugin in oldPluginManager.GetPlugins())
                 //{
                 //    try
@@ -150,6 +165,8 @@ namespace SSCMS.Core.Utils
                 //    }
                 //}
 
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 await createManager.CreateContentAsync(targetSite.Id, contentInfo.ChannelId, theContentId);
                 await createManager.TriggerContentChangedEventAsync(targetSite.Id, contentInfo.ChannelId);
             }
@@ -178,6 +195,7 @@ namespace SSCMS.Core.Utils
                     }
                 }
 
+<<<<<<< HEAD
                 //foreach (var plugin in oldPluginManager.GetPlugins())
                 //{
                 //    try
@@ -196,6 +214,9 @@ namespace SSCMS.Core.Utils
 
                 //GlobalSettings.ContentRepository.DeleteContents(site.Id, tableName, TranslateUtils.ToIntList(contentId), channelId);
 
+=======
+                await databaseManager.ContentRepository.TrashContentAsync(site, channel, contentId, adminId);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 await createManager.CreateContentAsync(targetSite.Id, contentInfo.ChannelId, newContentId);
                 await createManager.TriggerContentChangedEventAsync(targetSite.Id, contentInfo.ChannelId);
             }

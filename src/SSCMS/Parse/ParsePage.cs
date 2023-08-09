@@ -32,6 +32,11 @@ namespace SSCMS.Parse
         public int PageChannelId { get; private set; }
 
         public int PageContentId { get; private set; }
+<<<<<<< HEAD
+=======
+        
+        public int SpecialId { get; private set; }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
         public bool IsLocal { get; set; }
         public EditMode EditMode { get; }
@@ -53,7 +58,11 @@ namespace SSCMS.Parse
 
         public ParsePage Clone()
         {
+<<<<<<< HEAD
             return new ParsePage(_pathManager, EditMode, Config, PageChannelId, PageContentId, Site, Template, PluginItems)
+=======
+            return new ParsePage(_pathManager, EditMode, Config, PageChannelId, PageContentId, SpecialId, Site, Template, PluginItems)
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             {
                 HeadCodes = new SortedDictionary<string, string>(HeadCodes),
                 BodyCodes = new SortedDictionary<string, string>(BodyCodes),
@@ -62,13 +71,21 @@ namespace SSCMS.Parse
             };
         }
 
+<<<<<<< HEAD
         public ParsePage(IPathManager pathManager, EditMode editMode, Config config, int pageChannelId, int pageContentId, Site site, Template template, Dictionary<string, object> pluginItems)
+=======
+        public ParsePage(IPathManager pathManager, EditMode editMode, Config config, int pageChannelId, int pageContentId, int specialId, Site site, Template template, Dictionary<string, object> pluginItems)
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         {
             _pathManager = pathManager;
             Template = template;
             SiteId = site.Id;
             PageChannelId = pageChannelId;
             PageContentId = pageContentId;
+<<<<<<< HEAD
+=======
+            SpecialId = specialId;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             IsLocal = false;
             EditMode = editMode;
             EditableIndex = 0;

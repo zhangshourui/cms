@@ -29,8 +29,13 @@ namespace SSCMS.Core.Services
             else if (createType == CreateType.Content)
             {
                 var site = await _siteRepository.GetAsync(siteId);
+<<<<<<< HEAD
                 var channelInfo = await _channelRepository.GetAsync(channelId);
                 await ExecuteContentAsync(site, channelInfo, contentId);
+=======
+                var channel = await _channelRepository.GetAsync(channelId);
+                await ExecuteContentAsync(site, channel, contentId);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             }
             else if (createType == CreateType.AllContent)
             {
@@ -72,6 +77,7 @@ namespace SSCMS.Core.Services
         private async Task ExecuteContentsAsync(int siteId, int channelId)
         {
             var site = await _siteRepository.GetAsync(siteId);
+<<<<<<< HEAD
             var channelInfo = await _channelRepository.GetAsync(channelId);
 
             var contentIdList = await _contentRepository.GetContentIdsCheckedAsync(site, channelInfo);
@@ -79,12 +85,23 @@ namespace SSCMS.Core.Services
             foreach (var contentId in contentIdList)
             {
                 await ExecuteContentAsync(site, channelInfo, contentId);
+=======
+            var channel = await _channelRepository.GetAsync(channelId);
+            if (channel.IsCreateBanned) return;
+
+            var contentIdList = await _contentRepository.GetContentIdsCheckedAsync(site, channel);
+
+            foreach (var contentId in contentIdList)
+            {
+                await ExecuteContentAsync(site, channel, contentId);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             }
         }
 
         private async Task ExecuteChannelAsync(int siteId, int channelId)
         {
             var site = await _siteRepository.GetAsync(siteId);
+<<<<<<< HEAD
             var channelInfo = await _channelRepository.GetAsync(channelId);
 
             var count = await _contentRepository.GetCountAsync(site, channelInfo);
@@ -96,6 +113,19 @@ namespace SSCMS.Core.Services
             var filePath = await _pathManager.GetChannelPageFilePathAsync(site, channelId);
 
             await _parseManager.InitAsync(EditMode.Default, site, channelId, 0, template);
+=======
+            var channel = await _channelRepository.GetAsync(channelId);
+
+            var count = await _contentRepository.GetCountAsync(site, channel);
+            if (!_channelRepository.IsCreatable(site, channel, count)) return;
+
+            var template = channelId == siteId
+                ? await _templateRepository.GetIndexPageTemplateAsync(siteId)
+                : await _templateRepository.GetChannelTemplateAsync(siteId, channel);
+            var filePath = await _pathManager.GetChannelPageFilePathAsync(site, channelId);
+
+            await _parseManager.InitAsync(EditMode.Default, site, channelId, 0, template, 0);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             _parseManager.ContextInfo.ContextType = ParseType.Channel;
 
             await ExecuteAsync(site, template, filePath);
@@ -242,6 +272,11 @@ namespace SSCMS.Core.Services
 
         private async Task ExecuteContentAsync(Site site, Channel channel, int contentId)
         {
+<<<<<<< HEAD
+=======
+            if (channel.IsCreateBanned) return;
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             var contentInfo = await _contentRepository.GetAsync(site, channel, contentId);
 
             if (contentInfo == null)
@@ -264,7 +299,11 @@ namespace SSCMS.Core.Services
             }
 
             var template = await _templateRepository.GetContentTemplateAsync(site.Id, channel, contentInfo.TemplateId);
+<<<<<<< HEAD
             await _parseManager.InitAsync(EditMode.Default, site, channel.Id, contentId, template);
+=======
+            await _parseManager.InitAsync(EditMode.Default, site, channel.Id, contentId, template, 0);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             _parseManager.ContextInfo.ContextType = ParseType.Content;
             _parseManager.ContextInfo.SetContent(contentInfo);
 
@@ -449,7 +488,11 @@ namespace SSCMS.Core.Services
                 return;
             }
 
+<<<<<<< HEAD
             await _parseManager.InitAsync(EditMode.Default, site, siteId, 0, template);
+=======
+            await _parseManager.InitAsync(EditMode.Default, site, siteId, 0, template, 0);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
             var filePath = await _pathManager.ParseSitePathAsync(site, template.CreatedFileFullName);
 
@@ -467,7 +510,11 @@ namespace SSCMS.Core.Services
 
             foreach (var template in templates)
             {
+<<<<<<< HEAD
                 await _parseManager.InitAsync(EditMode.Default, site, siteId, 0, template);
+=======
+                await _parseManager.InitAsync(EditMode.Default, site, siteId, 0, template, specialId);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
                 var filePath = await _pathManager.ParseSitePathAsync(site, template.CreatedFileFullName);
 

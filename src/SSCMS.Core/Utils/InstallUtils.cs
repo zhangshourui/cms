@@ -7,7 +7,11 @@ namespace SSCMS.Core.Utils
 {
     public static class InstallUtils
     {
+<<<<<<< HEAD
         public static void SaveSettings(string contentRootPath, bool isProtectData, bool isSafeMode, bool isDisablePlugins, string securityKey, string databaseType, string databaseConnectionString, string redisConnectionString, string adminRestrictionHost, string[] adminRestrictionAllowList, string[] adminRestrictionBlockList)
+=======
+        public static void SaveSettings(string contentRootPath, bool isProtectData, bool isSafeMode, bool isDisablePlugins, string securityKey, string databaseType, string databaseConnectionString, string redisConnectionString, string adminRestrictionHost, string[] adminRestrictionAllowList, string[] adminRestrictionBlockList, bool corsIsOrigins, string[] corsOrigins)
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         {
             var path = PathUtils.Combine(contentRootPath, Constants.ConfigFileName);
 
@@ -23,6 +27,13 @@ namespace SSCMS.Core.Utils
             {
                 securityKey = StringUtils.GetSecurityKey();
             }
+<<<<<<< HEAD
+=======
+            if (corsOrigins == null)
+            {
+                corsOrigins = new string[] { };
+            }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
             var json = SettingsManager.RunningInContainer
                 ? $@"
@@ -32,6 +43,13 @@ namespace SSCMS.Core.Utils
     ""Host"": ""{adminRestrictionHost}"",
     ""AllowList"": {TranslateUtils.JsonSerialize(adminRestrictionAllowList)},
     ""BlockList"": {TranslateUtils.JsonSerialize(adminRestrictionBlockList)}
+<<<<<<< HEAD
+=======
+  }},
+  ""Cors"": {{
+    ""IsOrigins"": {StringUtils.ToLower(corsIsOrigins.ToString())},
+    ""Origins"": {TranslateUtils.JsonSerialize(corsOrigins)}
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   }}
 }}"
                 : $@"
@@ -51,6 +69,13 @@ namespace SSCMS.Core.Utils
     ""Host"": ""{adminRestrictionHost}"",
     ""AllowList"": {TranslateUtils.JsonSerialize(adminRestrictionAllowList)},
     ""BlockList"": {TranslateUtils.JsonSerialize(adminRestrictionBlockList)}
+<<<<<<< HEAD
+=======
+  }},
+  ""Cors"": {{
+    ""IsOrigins"": {StringUtils.ToLower(corsIsOrigins.ToString())},
+    ""Origins"": {TranslateUtils.JsonSerialize(corsOrigins)}
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   }}
 }}";
 
@@ -118,7 +143,11 @@ namespace SSCMS.Core.Utils
                     var securityKey = StringUtils.GetSecurityKey();
 
                     SaveSettings(contentRootPath, false, false, false, securityKey, DatabaseType.MySql.GetValue(),
+<<<<<<< HEAD
                         string.Empty, string.Empty, string.Empty, null, null);
+=======
+                        string.Empty, string.Empty, string.Empty, null, null, false, null);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 }
             }
         }

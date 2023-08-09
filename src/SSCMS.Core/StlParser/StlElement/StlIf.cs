@@ -575,7 +575,11 @@ namespace SSCMS.Core.StlParser.StlElement
 
                 foreach (var str in stringList)
                 {
+<<<<<<< HEAD
                     if (!actualValues.Contains(str)) continue;
+=======
+                    if (!ListUtils.Contains(actualValues, str)) continue;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                     isSuccess = true;
                     break;
                 }
@@ -588,7 +592,11 @@ namespace SSCMS.Core.StlParser.StlElement
                 var isIn = false;
                 foreach (var str in stringList)
                 {
+<<<<<<< HEAD
                     if (!actualValues.Contains(str)) continue;
+=======
+                    if (!ListUtils.Contains(actualValues, str)) continue;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                     isIn = true;
                     break;
                 }
@@ -597,6 +605,17 @@ namespace SSCMS.Core.StlParser.StlElement
                     isSuccess = true;
                 }
             }
+<<<<<<< HEAD
+=======
+            else if (StringUtils.EqualsIgnoreCase(testOperate, OperateEmpty))
+            {
+                isSuccess = actualValues == null || actualValues.Count == 0;
+            }
+            else if (StringUtils.EqualsIgnoreCase(testOperate, OperateNotEmpty))
+            {
+                isSuccess = actualValues != null && actualValues.Count > 0;
+            }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             return isSuccess;
         }
 

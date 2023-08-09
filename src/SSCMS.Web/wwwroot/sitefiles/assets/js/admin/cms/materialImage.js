@@ -8,6 +8,10 @@ var $urlDownload = $url + '/actions/download';
 var data = utils.init({
   siteId: utils.getQueryInt("siteId"),
   showType: 'card',
+<<<<<<< HEAD
+=======
+  isSiteOnly: false,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   groups: null,
   count: null,
   items: null,
@@ -42,6 +46,13 @@ var methods = {
     }).then(function (response) {
       var res = response.data;
 
+<<<<<<< HEAD
+=======
+      $this.isSiteOnly = res.isSiteOnly;
+      if ($this.isSiteOnly) {
+        $this.form.groupId = -$this.siteId;
+      }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       $this.groups = res.groups;
       $this.count = res.count;
       $this.items = [];
@@ -233,9 +244,16 @@ var methods = {
   btnPullClick: function() {
     var $this = this;
 
+<<<<<<< HEAD
     utils.alertWarning({
       title: '拉取公众号图片素材',
       text: '此操作将拉取公众号图片素材，确认吗？',
+=======
+    utils.alertDelete({
+      title: '拉取公众号图片素材',
+      text: '此操作将拉取公众号图片素材，确定吗？',
+      button: '确 定',
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       callback: function () {
         $this.apiPull();
       }

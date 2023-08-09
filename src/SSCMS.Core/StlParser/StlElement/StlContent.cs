@@ -220,10 +220,21 @@ namespace SSCMS.Core.StlParser.StlElement
             {
                 type = nameof(Content.Title);
             }
+<<<<<<< HEAD
             if (StringUtils.EqualsIgnoreCase(type, "Tags"))
             {
                 type = nameof(Content.TagNames);
             }
+=======
+            else if (StringUtils.EqualsIgnoreCase(type, "Tags"))
+            {
+                type = nameof(Content.TagNames);
+            }
+            else if (StringUtils.EqualsIgnoreCase(type, "Groups"))
+            {
+                type = nameof(Content.GroupNames);
+            }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
             var isReturnToBr = false;
             if (string.IsNullOrEmpty(isReturnToBrStr))
@@ -609,6 +620,15 @@ namespace SSCMS.Core.StlParser.StlElement
                 else if (StringUtils.EqualsIgnoreCase(type, nameof(Content.TagNames)))
                 {
                     parsedContent = ListUtils.ToString(content.TagNames);
+<<<<<<< HEAD
+=======
+                    parsedContent = InputTypeUtils.ParseString(InputType.Text, parsedContent, replace, to, startIndex, length, wordNum, ellipsis, isClearTags, isClearBlank, isReturnToBr, isLower, isUpper, format);
+                }
+                else if (StringUtils.EqualsIgnoreCase(type, nameof(Content.GroupNames)))
+                {
+                    parsedContent = ListUtils.ToString(content.GroupNames);
+                    parsedContent = InputTypeUtils.ParseString(InputType.Text, parsedContent, replace, to, startIndex, length, wordNum, ellipsis, isClearTags, isClearBlank, isReturnToBr, isLower, isUpper, format);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 }
                 else if (StringUtils.EqualsIgnoreCase(type, nameof(Content.Hits)))
                 {
@@ -624,10 +644,17 @@ $(function(){{
     contentType: ""application/json"",
     data: JSON.stringify({TranslateUtils.JsonSerialize(new
                     {
+<<<<<<< HEAD
                         SiteId = pageInfo.SiteId,
                         ChannelId = contextInfo.ChannelId,
                         ContentId = contextInfo.ContentId,
                         AutoIncrease = isAutoIncrease
+=======
+                      pageInfo.SiteId,
+                      contextInfo.ChannelId,
+                      contextInfo.ContentId,
+                      AutoIncrease = isAutoIncrease
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                     })}),
     dataType: ""json"",
     success: function (result) {{ $(""#{elementId}"").before(result.value)  }}

@@ -106,9 +106,17 @@ namespace SSCMS.Core.StlParser.StlElement
 
         private static async Task<string> ParseAsync(IParseManager parseManager, string type, int no, string playUrl, string imageUrl, string width, string height, bool isAutoPlay, bool isControls, bool isLoop, NameValueCollection attributes)
         {
+<<<<<<< HEAD
             var pageInfo = parseManager.PageInfo;
             var contextInfo = parseManager.ContextInfo;
 
+=======
+            var databaseManager = parseManager.DatabaseManager;
+            var pageInfo = parseManager.PageInfo;
+            var contextInfo = parseManager.ContextInfo;
+
+            var contextType = contextInfo.ContextType;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             var videoUrl = string.Empty;
             if (!string.IsNullOrEmpty(playUrl))
             {
@@ -116,8 +124,18 @@ namespace SSCMS.Core.StlParser.StlElement
             }
             else
             {
+<<<<<<< HEAD
                 var contentId = contextInfo.ContentId;
                 if (contextInfo.ContextType == ParseType.Content)
+=======
+                if (contextType == ParseType.Undefined)
+                {
+                    contextType = contextInfo.ContentId != 0 ? ParseType.Content : ParseType.Channel;
+                }
+
+                var contentId = contextInfo.ContentId;
+                if (contextType == ParseType.Content)
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 {
                     if (contentId != 0)//获取内容视频
                     {
@@ -140,7 +158,36 @@ namespace SSCMS.Core.StlParser.StlElement
                         }
                     }
                 }
+<<<<<<< HEAD
                 else if (contextInfo.ContextType == ParseType.Each)
+=======
+                else if (contextType == ParseType.Channel)
+                {
+                    var channel = await databaseManager.ChannelRepository.GetAsync(contextInfo.ChannelId);
+                    if (no <= 1)
+                    {
+                        videoUrl = channel.Get<string>(type);
+                    }
+                    else
+                    {
+                        var extendName = ColumnsManager.GetExtendName(type, no - 1);
+                        videoUrl = channel.Get<string>(extendName);
+                    }
+                }
+                else if (contextType == ParseType.Site)
+                {
+                    if (no <= 1)
+                    {
+                        videoUrl = pageInfo.Site.Get<string>(type);
+                    }
+                    else
+                    {
+                        var extendName = ColumnsManager.GetExtendName(type, no - 1);
+                        videoUrl = pageInfo.Site.Get<string>(extendName);
+                    }
+                }
+                else if (contextType == ParseType.Each)
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 {
                     videoUrl = contextInfo.ItemContainer.EachItem.Value as string;
                 }
@@ -149,7 +196,11 @@ namespace SSCMS.Core.StlParser.StlElement
             if (string.IsNullOrEmpty(imageUrl))
             {
                 var contentId = contextInfo.ContentId;
+<<<<<<< HEAD
                 if (contextInfo.ContextType == ParseType.Content)
+=======
+                if (contextType == ParseType.Content)
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 {
                     if (contentId != 0)//获取内容视频
                     {

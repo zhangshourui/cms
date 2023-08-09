@@ -16,6 +16,7 @@ namespace SSCMS.Web.Controllers.Admin.Common.Form
                 var site = await _siteRepository.GetAsync(request.SiteId);
                 if (site == null) return this.Error("无法确定内容对应的站点");
 
+<<<<<<< HEAD
                 options = TranslateUtils.JsonDeserialize(site.Get<string>(nameof(LayerImageUploadController)), new Options
                 {
                     IsEditor = true,
@@ -25,6 +26,9 @@ namespace SSCMS.Web.Controllers.Admin.Common.Form
                     ThumbHeight = 1024,
                     IsLinkToOriginal = true
                 });
+=======
+                options = GetOptions(site);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             }
 
             return options;

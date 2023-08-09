@@ -2,6 +2,10 @@
 var $urlUpload = $apiUrl + $url + '/actions/upload';
 var $urlDelete = $url + '/actions/delete';
 var $urlDownload = $url + '/actions/download';
+<<<<<<< HEAD
+=======
+var $urlCreate = $url + '/actions/create';
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
 var data = utils.init({
   siteId: utils.getQueryInt('siteId'),
@@ -110,6 +114,27 @@ var methods = {
     });
   },
 
+<<<<<<< HEAD
+=======
+  btnCreateClick: function(special) {
+    var $this = this;
+
+    utils.loading(this, true);
+    $api.post($urlCreate, {
+      siteId: this.siteId,
+      specialId: special.id
+    }).then(function (response) {
+      var res = response.data;
+
+      utils.addTab('生成进度查看', utils.getCmsUrl('createStatus', {siteId: $this.siteId}));
+    }).catch(function (error) {
+      utils.error(error);
+    }).then(function () {
+      utils.loading($this, false);
+    });
+  },
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   btnEditClick: function (special) {
     this.form = {
       siteId: this.siteId,

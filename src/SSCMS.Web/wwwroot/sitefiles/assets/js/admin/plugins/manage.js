@@ -137,7 +137,10 @@ var methods = {
       });
     }).catch(function (error) {
       utils.error(error);
+<<<<<<< HEAD
     }).then(function () {
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       utils.loading($this, false);
     });
   },

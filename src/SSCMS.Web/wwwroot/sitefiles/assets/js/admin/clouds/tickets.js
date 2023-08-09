@@ -124,12 +124,30 @@ var methods = {
   },
 
   btnViewClick: function(ticket) {
+<<<<<<< HEAD
+=======
+    ticket.isRead = true;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     utils.addTab('工单：' + ticket.ticketNo, utils.getCloudsUrl('ticketMessages', {
       ticketNo: ticket.ticketNo,
       tabName: utils.getTabName()
     }));
   },
 
+<<<<<<< HEAD
+=======
+  isUnread(ticket) {
+    return ticket.status === 'Waiting' && !ticket.isRead;
+  },
+
+  getClassName(ticket) {
+    if (ticket.status === 'Waiting' && !ticket.isRead) {
+      return 'unread';
+    }
+    return '';
+  },
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   btnAddClick: function() {
     if (this.isTicket && this.cloudType !== 'Free') {
       this.isAdd = true;

@@ -26,5 +26,10 @@ namespace SSCMS.Repositories
 
         Task<List<Stat>> GetStatsWithAdminIdAsync(DateTime lowerDate, DateTime higherDate,
             StatType statType, int siteId);
+<<<<<<< HEAD
+=======
+
+        Task DeleteAllAsync(int siteId);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     }
 }

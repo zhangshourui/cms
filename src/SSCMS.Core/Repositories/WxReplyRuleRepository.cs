@@ -37,6 +37,16 @@ namespace SSCMS.Core.Repositories
             await _repository.DeleteAsync(ruleId);
         }
 
+<<<<<<< HEAD
+=======
+        public async Task DeleteAllAsync(int siteId)
+        {
+            await _repository.DeleteAsync(Q
+                .Where(nameof(WxReplyRule.SiteId), siteId)
+            );
+        }
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         public async Task<int> GetCount(int siteId, string keyword)
         {
             return await _repository.CountAsync(Q

@@ -60,11 +60,23 @@ var data = utils.init({
   tagNames: null,
   checkedLevels: null,
   linkTypes: null,
+<<<<<<< HEAD
+=======
+  linkTo: {
+    channelIds: [],
+    contentId: 0,
+    contentTitle: '',
+  },
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   root: null,
   styles: null,
   relatedFields: null,
   templates: null,
   form: null,
+<<<<<<< HEAD
+=======
+  breadcrumbItems: [],
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   translates: [],
   isPreviewSaving: false,
   isScheduledDialog: false,
@@ -119,16 +131,36 @@ var methods = {
       })
       .then(function (response) {
         var res = response.data;
+<<<<<<< HEAD
+=======
+        if (res.channel.isChangeBanned) {
+          return utils.alertWarning({
+            title: '禁止修改内容',
+            text: '栏目已开启禁止维护内容(添加/修改/删除)功能，修改内容请先在栏目中关闭此功能！',
+            callback: function() {
+              utils.removeTab();
+            }
+          });
+        }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
         $this.csrfToken = res.csrfToken;
 
         $this.site = res.site;
         $this.siteUrl = res.siteUrl;
         $this.channel = res.channel;
+<<<<<<< HEAD
+=======
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         $this.groupNames = res.groupNames;
         $this.tagNames = res.tagNames;
         $this.checkedLevels = res.checkedLevels;
         $this.linkTypes = res.linkTypes;
+<<<<<<< HEAD
+=======
+        $this.linkTo = res.linkTo;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         $this.root = [res.root];
         $this.settings = res.settings;
         $this.censorSettings = _.assign({}, $this.censorSettings, res.settings.censorSettings, {
@@ -142,6 +174,13 @@ var methods = {
         $this.relatedFields = res.relatedFields;
         $this.templates = res.templates;
         $this.form = _.assign({}, res.content);
+<<<<<<< HEAD
+=======
+        $this.breadcrumbItems = res.breadcrumbItems;
+
+        $this.scheduledForm.isScheduled = res.isScheduled;
+        $this.scheduledForm.scheduledDate = res.scheduledDate;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
         if (!$this.form.addDate) {
           $this.form.addDate = new Date().Format("yyyy-MM-dd hh:mm:ss");
@@ -240,6 +279,10 @@ var methods = {
         contentId: this.contentId,
         content: this.form,
         translates: this.translates,
+<<<<<<< HEAD
+=======
+        linkTo: this.linkTo,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         isScheduled: this.scheduledForm.isScheduled,
         scheduledDate: this.scheduledForm.scheduledDate,
       })
@@ -256,6 +299,16 @@ var methods = {
       });
   },
 
+<<<<<<< HEAD
+=======
+  getChannelUrl: function(data) {
+    return utils.getRootUrl('redirect', {
+      siteId: this.siteId,
+      channelId: data.value
+    });
+  },
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   getText: function (isCensor, isSpell) {
     var text = "";
     for (var i = 0; i < this.styles.length; i++) {
@@ -653,6 +706,10 @@ var methods = {
         contentId: this.contentId,
         content: this.form,
         translates: this.translates,
+<<<<<<< HEAD
+=======
+        linkTo: this.linkTo,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         isScheduled: this.scheduledForm.isScheduled,
         scheduledDate: this.scheduledForm.scheduledDate,
       })
@@ -726,6 +783,22 @@ var methods = {
     this.insertEditor(attributeName, html);
   },
 
+<<<<<<< HEAD
+=======
+  runLayerContentSelect: function (content) {
+    this.linkTo.contentId = content.id;
+    this.linkTo.contentTitle = content.title;
+  },
+
+  getContentUrl: function() {
+    return utils.getRootUrl('redirect', {
+      siteId: this.siteId,
+      channelId:  this.linkTo.channelIds[this.linkTo.channelIds.length - 1],
+      contentId: this.linkTo.contentId
+    });
+  },
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   insertText: function (attributeName, no, text) {
     var count = this.form[utils.getCountName(attributeName)] || 0;
     if (count <= no) {
@@ -870,9 +943,12 @@ var methods = {
   },
 
   btnSaveCommandClick: function (command) {
+<<<<<<< HEAD
     this.scheduledForm.isScheduled = true;
     this.scheduledForm.scheduledDate = new Date();
     this.scheduledForm.scheduledDate.setDate(this.scheduledForm.scheduledDate.getDate() + 1);
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     this.isScheduledDialog = command === 'scheduled';
   },
 
@@ -881,8 +957,17 @@ var methods = {
     this.syncEditors();
     this.$refs.form.validate(function (valid) {
       if (valid) {
+<<<<<<< HEAD
         $this.censorSettings.isCensorPassed = $this.spellSettings.isSpellPassed = false;
         $this.apiSave();
+=======
+        $this.$refs.linkToForm.validate(function(valid) {
+          if (valid) {
+            $this.censorSettings.isCensorPassed = $this.spellSettings.isSpellPassed = false;
+            $this.apiSave();
+          }
+        });
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       }
     });
   },
@@ -963,6 +1048,21 @@ var methods = {
     });
   },
 
+<<<<<<< HEAD
+=======
+  btnLinkToContentClick: function () {
+    var channelId = this.linkTo.channelIds[this.linkTo.channelIds.length - 1];
+    utils.openLayer({
+      title: "选择指定内容",
+      url: utils.getCmsUrl("layerContentSelect", {
+        siteId: this.siteId,
+        channelId: channelId,
+        contentId: this.contentId,
+      }),
+    });
+  },
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   btnExtendAddClick: function (style) {
     var no = this.form[utils.getCountName(style.attributeName)] + 1;
     this.form[utils.getCountName(style.attributeName)] = no;

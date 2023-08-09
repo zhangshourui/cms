@@ -31,7 +31,11 @@
   </el-button>
 
   <el-button size="mini" icon="el-icon-sort" :disabled="total === 0 || !permissions.isEdit || !isContentChecked"
+<<<<<<< HEAD
     v-on:click="btnLayerClick({title: '批量排序', name: 'Taxis', width: 450, height: 280, withContents: true})">
+=======
+    v-on:click="btnLayerClick({title: '批量排序', name: 'Taxis', withContents: true})">
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     排序
   </el-button>
 
@@ -49,9 +53,29 @@
   </el-button>
 
   <template v-if="typeof(contentsMenus) == 'object'">
+<<<<<<< HEAD
     <el-button v-for="menu in contentsMenus" :key="menu.id" size="mini" :icon="menu.iconClass" v-on:click.stop.native="btnCommandClick(menu)">
       {{ menu.text }}
     </el-button>
+=======
+    <template v-for="menu in contentsMenus" :key="menu.id">
+        <el-dropdown v-if="menu.children && menu.children.length > 0" size="mini" v-on:command="btnCommandsClick">
+          <el-button size="mini" style="margin-right: 5px" :icon="menu.iconClass">
+            {{ menu.text }}
+            <i class="el-icon-arrow-down el-icon--right"></i>
+          </el-button>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item v-for="childMenu in menu.children" :command="menu.id + ',' + childMenu.id">
+              <i v-if="childMenu.iconClass" :class="childMenu.iconClass"></i>
+              {{ childMenu.text }}
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+        <el-button v-else size="mini" style="margin-right: 5px" :icon="menu.iconClass" v-on:click.stop.native="btnCommandClick(menu)">
+          {{ menu.text }}
+        </el-button>
+      </template>
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   </template>
 
   <el-dropdown size="mini" v-on:command="btnMoreClick">
@@ -67,4 +91,8 @@
       <el-dropdown-item command="Hits" :disabled="!permissions.isEdit || !isContentChecked"><i class="el-icon-mouse"></i>设置点击量</el-dropdown-item>
     </el-dropdown-menu>
   </el-dropdown>
+<<<<<<< HEAD
+=======
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 </div>

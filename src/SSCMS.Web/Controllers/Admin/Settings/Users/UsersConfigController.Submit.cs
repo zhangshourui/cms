@@ -28,6 +28,10 @@ namespace SSCMS.Web.Controllers.Admin.Settings.Users
             config.UserLockLoginCount = request.UserLockLoginCount;
             config.UserLockLoginType = request.UserLockLoginType;
             config.UserLockLoginHours = request.UserLockLoginHours;
+<<<<<<< HEAD
+=======
+            config.IsUserCaptchaDisabled = request.IsUserCaptchaDisabled;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
             await _configRepository.UpdateAsync(config);
 

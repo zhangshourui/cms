@@ -5,6 +5,11 @@ using SSCMS.Configuration;
 using SSCMS.Dto;
 using SSCMS.Core.Utils;
 using SSCMS.Utils;
+<<<<<<< HEAD
+=======
+using System.Linq;
+using SSCMS.Enums;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
 namespace SSCMS.Web.Controllers.Admin.Cms.Contents
 {
@@ -33,6 +38,19 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Contents
             var columnsManager = new ColumnsManager(_databaseManager, _pathManager);
             var columns = await columnsManager.GetContentListColumnsAsync(site, channel, ColumnsManager.PageType.RecycleContents);
 
+<<<<<<< HEAD
+=======
+            var titleColumn =
+                columns.FirstOrDefault(x => StringUtils.EqualsIgnoreCase(x.AttributeName, nameof(Models.Content.Title)));
+            var bodyColumn = new ContentColumn
+            {
+                AttributeName = nameof(Models.Content.Body),
+                DisplayName = "内容正文",
+                InputType = InputType.TextEditor,
+                IsSearchable = true,
+            };
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             return new TreeResult
             {
                 Root = root,
@@ -40,6 +58,7 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Contents
                 GroupNames = groupNames,
                 TagNames = tagNames,
                 CheckedLevels = checkedLevels,
+<<<<<<< HEAD
                 Columns = columns
             };
         }
@@ -53,5 +72,12 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Contents
             public IEnumerable<CheckBox<int>> CheckedLevels { get; set; }
             public List<ContentColumn> Columns { get; set; }
         }
+=======
+                Columns = columns,
+                TitleColumn = titleColumn,
+                BodyColumn = bodyColumn,
+            };
+        }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     }
 }

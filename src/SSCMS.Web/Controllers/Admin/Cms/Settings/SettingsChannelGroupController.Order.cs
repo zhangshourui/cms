@@ -15,6 +15,7 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Settings
                 return Unauthorized();
             }
 
+<<<<<<< HEAD
             if (request.IsUp)
             {
                 await _channelGroupRepository.UpdateTaxisUpAsync(request.SiteId, request.GroupId, request.Taxis);
@@ -22,6 +23,19 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Settings
             else
             {
                 await _channelGroupRepository.UpdateTaxisDownAsync(request.SiteId, request.GroupId, request.Taxis);
+=======
+            for (int i = 0; i < request.Rows; i++)
+            {
+                var group = await _channelGroupRepository.GetAsync(request.SiteId, request.GroupId);
+                if (request.IsUp)
+                {
+                    await _channelGroupRepository.UpdateTaxisUpAsync(request.SiteId, group.Id, group.Taxis);
+                }
+                else
+                {
+                    await _channelGroupRepository.UpdateTaxisDownAsync(request.SiteId, group.Id, group.Taxis);
+                }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             }
 
             var groups = await _channelGroupRepository.GetChannelGroupsAsync(request.SiteId);

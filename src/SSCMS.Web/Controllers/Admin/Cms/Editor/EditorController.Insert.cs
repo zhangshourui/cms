@@ -5,9 +5,12 @@ using SSCMS.Dto;
 using SSCMS.Configuration;
 using SSCMS.Utils;
 using SSCMS.Core.Services;
+<<<<<<< HEAD
 using SSCMS.Models;
 using SSCMS.Enums;
 using System;
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
 namespace SSCMS.Web.Controllers.Admin.Cms.Editor
 {
@@ -50,10 +53,34 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Editor
                 }
             }
 
+<<<<<<< HEAD
             content.Id = await _contentRepository.InsertAsync(site, channel, content);
 
             if (request.IsScheduled)
             {                
+=======
+            if (content.LinkType == Enums.LinkType.None)
+            {
+                content.LinkUrl = request.Content.LinkUrl;
+            }
+            else if (content.LinkType == Enums.LinkType.LinkToChannel)
+            {
+                content.LinkUrl = ListUtils.ToString(request.LinkTo.ChannelIds);
+            }
+            else if (content.LinkType == Enums.LinkType.LinkToContent)
+            {
+                content.LinkUrl = ListUtils.ToString(request.LinkTo.ChannelIds) + "_" + request.LinkTo.ContentId;
+            }
+            else
+            {
+                content.LinkUrl = string.Empty;
+            }
+
+            content.Id = await _contentRepository.InsertAsync(site, channel, content);
+
+            if (request.IsScheduled)
+            {
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 await _scheduledTaskRepository.InsertPublishAsync(content, request.ScheduledDate);
             }
 

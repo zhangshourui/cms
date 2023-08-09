@@ -42,8 +42,13 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Settings
         public class OrderRequest : SiteRequest
         {
             public int GroupId { get; set; }
+<<<<<<< HEAD
             public int Taxis { get; set; }
             public bool IsUp { get; set; }
+=======
+            public bool IsUp { get; set; }
+            public int Rows { get; set; }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         }
     }
 }

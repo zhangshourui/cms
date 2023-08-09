@@ -45,6 +45,16 @@
       color: #bcc0c7;
       cursor: not-allowed;
     }
+<<<<<<< HEAD
+=======
+    .el-breadcrumb__inner a, .el-breadcrumb__inner.is-link {
+      font-weight: normal;
+      color: #999;
+    }
+    .el-breadcrumb__item:last-child .el-breadcrumb__inner, .el-breadcrumb__item:last-child .el-breadcrumb__inner a, .el-breadcrumb__item:last-child .el-breadcrumb__inner a:hover {
+      cursor: pointer;
+    }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   </style>
 }
 
@@ -189,7 +199,32 @@
 
       <div style="height: 10px;"></div>
 
+<<<<<<< HEAD
       @await Html.PartialAsync("_PartialContents")
+=======
+      <el-table-draggable v-on:sort="onSort">
+        @await Html.PartialAsync("_PartialContents")
+      </el-table-draggable>
+
+      <el-row style="margin-top: 7px;">
+        <el-col :span="12" align="left">
+          <el-breadcrumb style="margin-top: 5px;">
+            <el-breadcrumb-item v-for="item in breadcrumbItems" :key="item.value"><a :href="getChannelUrl(item)" target="_blank">{{ item.label }}</a></el-breadcrumb-item>
+          </el-breadcrumb>
+        </el-col>
+        <el-col :span="12" align="right">
+          <el-pagination
+          size="mini"
+          background
+          v-on:current-change="handleCurrentChange"
+          :current-page="page"
+          :page-size="pageSize"
+          layout="total, prev, pager, next, jumper"
+          :total="total">
+        </el-pagination>
+        </el-col>
+      </el-row>
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     </el-main>
   </el-container>
 </el-container>

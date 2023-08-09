@@ -7,6 +7,10 @@ using SSCMS.Core.Utils;
 using SSCMS.Models;
 using SSCMS.Services;
 using SSCMS.Utils;
+<<<<<<< HEAD
+=======
+using SSCMS.Core.StlParser.Utility;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
 namespace SSCMS.Core.StlParser.StlElement
 {
@@ -122,6 +126,10 @@ namespace SSCMS.Core.StlParser.StlElement
 
         private static async Task<string> ParseAsync(IParseManager parseManager, string type, int no, string src, bool isFileName, bool isFileType, bool isFileSize, bool isCount, bool isLower, bool isUpper, string leftText, string rightText, NameValueCollection attributes)
         {
+<<<<<<< HEAD
+=======
+            var databaseManager = parseManager.DatabaseManager;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             var pageInfo = parseManager.PageInfo;
             var contextInfo = parseManager.ContextInfo;
 
@@ -134,6 +142,10 @@ namespace SSCMS.Core.StlParser.StlElement
 
             var contentInfo = await parseManager.GetContentAsync();
 
+<<<<<<< HEAD
+=======
+            var contextType = contextInfo.ContextType;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             var fileUrl = string.Empty;
             if (!string.IsNullOrEmpty(src))
             {
@@ -141,11 +153,20 @@ namespace SSCMS.Core.StlParser.StlElement
             }
             else
             {
+<<<<<<< HEAD
                 if (contextInfo.ContextType == ParseType.Undefined)
                 {
                     contextInfo.ContextType = ParseType.Content;
                 }
                 if (contextInfo.ContextType == ParseType.Content)
+=======
+                if (contextType == ParseType.Undefined)
+                {
+                    contextType = contextInfo.ContentId != 0 ? ParseType.Content : ParseType.Channel;
+                }
+
+                if (contextType == ParseType.Content)
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 {
                     if (contextInfo.ContentId != 0)
                     {
@@ -163,7 +184,36 @@ namespace SSCMS.Core.StlParser.StlElement
                         }
                     }
                 }
+<<<<<<< HEAD
                 else if (contextInfo.ContextType == ParseType.Each)
+=======
+                else if (contextType == ParseType.Channel)
+                {
+                    var channel = await databaseManager.ChannelRepository.GetAsync(contextInfo.ChannelId);
+                    if (no <= 1)
+                    {
+                        fileUrl = channel.Get<string>(type);
+                    }
+                    else
+                    {
+                        var extendName = ColumnsManager.GetExtendName(type, no - 1);
+                        fileUrl = channel.Get<string>(extendName);
+                    }
+                }
+                else if (contextType == ParseType.Site)
+                {
+                    if (no <= 1)
+                    {
+                        fileUrl = pageInfo.Site.Get<string>(type);
+                    }
+                    else
+                    {
+                        var extendName = ColumnsManager.GetExtendName(type, no - 1);
+                        fileUrl = pageInfo.Site.Get<string>(extendName);
+                    }
+                }
+                else if (contextType == ParseType.Each)
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 {
                     fileUrl = contextInfo.ItemContainer.EachItem.Value as string;
                 }

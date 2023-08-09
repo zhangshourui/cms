@@ -3,6 +3,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SSCMS.Configuration;
 using SSCMS.Core.Utils;
+<<<<<<< HEAD
+=======
+using SSCMS.Enums;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 using SSCMS.Utils;
 
 namespace SSCMS.Web.Controllers.Admin.Cms.Contents
@@ -55,6 +59,17 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Contents
                     columns.FirstOrDefault(x => StringUtils.EqualsIgnoreCase(x.AttributeName, nameof(Models.Content.Title)));
                 columns.Remove(titleColumn);
 
+<<<<<<< HEAD
+=======
+                var bodyColumn = new ContentColumn
+                {
+                    AttributeName = nameof(Models.Content.Body),
+                    DisplayName = "内容正文",
+                    InputType = InputType.TextEditor,
+                    IsSearchable = true,
+                };
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 return new TreeResult
                 {
                     Root = root,
@@ -63,6 +78,10 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Contents
                     TagNames = tagNames,
                     CheckedLevels = checkedLevels,
                     TitleColumn = titleColumn,
+<<<<<<< HEAD
+=======
+                    BodyColumn = bodyColumn,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                     Columns = columns,
                     Permissions = permissions
                 };

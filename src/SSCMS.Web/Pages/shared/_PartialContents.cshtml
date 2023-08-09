@@ -93,6 +93,23 @@
   <el-table-column type="selection" width="45" align="center"></el-table-column>
 
   <el-table-column
+<<<<<<< HEAD
+=======
+    v-for="column in columns"
+    v-if="column.isList && (column.attributeName == 'Sequence' || column.attributeName == 'Id' || column.attributeName == 'Guid')"
+    :key="column.attributeName"
+    :column-key="column.attributeName"
+    :label="column.displayName"
+    :width="column.width"
+    show-overflow-tooltip
+    resizable>
+    <template slot-scope="scope">
+      {{ scope.row.getEntityValue(column.attributeName) }}
+    </template>
+  </el-table-column>
+
+  <el-table-column
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     :label="titleColumn.displayName"
     :column-key="titleColumn.attributeName"
     :min-width="titleColumn.width"
@@ -154,7 +171,11 @@
 
   <el-table-column
     v-for="column in columns"
+<<<<<<< HEAD
     v-if="column.isList"
+=======
+    v-if="column.isList && column.attributeName !== 'Sequence' && column.attributeName !== 'Id' && column.attributeName !== 'Guid'"
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     :key="column.attributeName"
     :column-key="column.attributeName"
     :label="column.displayName"
@@ -255,7 +276,11 @@
       :key="menu.id"
       fixed="right"
       align="center"
+<<<<<<< HEAD
       :width="menu.text.length * 20 + (menu.iconClass ? 20 : 0)"
+=======
+      :width="menu.text.length * 20 + (menu.iconClass ? 30 : 20)"
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       show-overflow-tooltip>
       <template slot-scope="scope">
         <el-link :disabled="!permissions.isEdit" size="mini" type="primary" :underline="false" v-on:click.stop.native="btnMenuClick(menu, scope.row)">
@@ -275,6 +300,7 @@
     </template>
   </el-table-column>
 </el-table>
+<<<<<<< HEAD
 
 <el-row style="margin-top: 7px;">
   <el-col :span="24" align="center">
@@ -289,3 +315,5 @@
     </el-pagination>
   </el-col>
 </el-row>
+=======
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93

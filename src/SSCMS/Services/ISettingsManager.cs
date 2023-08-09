@@ -28,9 +28,17 @@ namespace SSCMS.Services
         public string AdminRestrictionHost { get; }
         public string[] AdminRestrictionAllowList { get; }
         public string[] AdminRestrictionBlockList { get; }
+<<<<<<< HEAD
         string Encrypt(string inputString, string securityKey = null);
         string Decrypt(string inputString, string securityKey = null);
         void SaveSettings(bool isProtectData, bool isSafeMode, bool isDisablePlugins, DatabaseType databaseType, string databaseConnectionString, string redisConnectionString, string adminRestrictionHost, string[] adminRestrictionAllowList, string[] adminRestrictionBlockList);
+=======
+        public bool CorsIsOrigins { get; }
+        public string[] CorsOrigins { get; }
+        string Encrypt(string inputString, string securityKey = null);
+        string Decrypt(string inputString, string securityKey = null);
+        void SaveSettings(bool isProtectData, bool isSafeMode, bool isDisablePlugins, DatabaseType databaseType, string databaseConnectionString, string redisConnectionString, string adminRestrictionHost, string[] adminRestrictionAllowList, string[] adminRestrictionBlockList, bool corsIsOrigins, string[] corsOrigins);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         IServiceProvider BuildServiceProvider();
         void Reload();
     }

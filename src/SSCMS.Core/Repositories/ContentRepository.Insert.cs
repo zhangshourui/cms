@@ -79,6 +79,11 @@ namespace SSCMS.Core.Repositories
 
         public async Task<int> InsertAsync(Site site, Channel channel, Content content)
         {
+<<<<<<< HEAD
+=======
+            if (channel.IsChangeBanned) return 0;
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             var taxis = 0;
             if (content.SourceId == SourceManager.Preview)
             {
@@ -94,6 +99,11 @@ namespace SSCMS.Core.Repositories
 
         public async Task<int> InsertPreviewAsync(Site site, Channel channel, Content content)
         {
+<<<<<<< HEAD
+=======
+             if (channel.IsChangeBanned) return 0;
+             
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             channel.IsPreviewContentsExists = true;
             await _channelRepository.UpdateAsync(channel);
 

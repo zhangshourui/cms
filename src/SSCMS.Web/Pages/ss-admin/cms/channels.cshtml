@@ -278,13 +278,21 @@
   <div class="drawer__content">
     <el-form v-on:submit.native.prevent ref="appendForm" :model="appendForm" size="small" label-width="120px">
       <el-form-item label="父栏目" prop="parentIds" :rules="{ required: true, message: '请选择父栏目' }">
+<<<<<<< HEAD
         <el-cascader
+=======
+        <el-cascader-panel
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
           v-model="appendForm.parentIds"
           :options="root"
           :props="{ checkStrictly: true }"
           style="width: 100%;"
           placeholder="请选择父栏目">
+<<<<<<< HEAD
         </el-cascader>
+=======
+        </el-cascader-panel>
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       </el-form-item>
       <el-form-item label="栏目" prop="channels" :rules="{ required: true, message: '请输入栏目名称' }">
         <el-input v-model="appendForm.channels" type="textarea" rows="10" :autosize="{ minRows: 10, maxRows: 20}" placeholder="栏目之间用换行分割，下级栏目在栏目前添加“-”字符，索引可以放到括号中，如：&#10;栏目一(栏目索引)&#10;-下级栏目(下级索引)&#10;--下下级栏目"></el-input>
@@ -476,6 +484,7 @@
       <el-form-item v-if="form.linkType == 'None'" label="外部链接">
         <el-input v-model="form.linkUrl" placeholder="设置后栏目链接将转向此地址"></el-input>
       </el-form-item>
+<<<<<<< HEAD
       <el-form-item v-if="form.linkType == 'LinkToChannel'" label="指定栏目" prop="linkUrl" :rules="{ required: true, message: '请选择链接到指定栏目' }">
         <el-tag
           v-if="form.linkToChannel"
@@ -495,6 +504,43 @@
           placeholder="请选择栏目">
         </el-cascader>
       </el-form-item>
+=======
+      <el-form-item
+        v-if="form.linkType == 'LinkToChannel' || form.linkType == 'LinkToContent'" 
+        label="指定栏目"
+        prop="channelIds"
+        :rules="[{ required: true, message: '请选择栏目' }]"
+        >
+        <el-cascader
+          v-model="form.channelIds"
+          filterable
+          :options="root"
+          :props="{ checkStrictly: true }"
+          filterable 
+          v-on:change="form.contentId = 0; form.contentTitle = '';"
+          style="width: 100%;"
+          placeholder="请选择栏目">
+          <template slot-scope="{ node, data }">
+            <span>{{ data.label }}</span>
+            <span> ({{ data.count }}) </span>
+          </template>
+        </el-cascader>
+      </el-form-item>
+      <el-form-item 
+        v-if="form.linkType == 'LinkToContent' && form.channelIds && form.channelIds.length > 0" 
+        label="指定内容"
+        prop="contentTitle"
+        :rules="[{ required: true, message: '请选择内容' }]"
+        >
+        <template v-if="form.contentId > 0">
+          <el-link type="primary" :underline="false" :href="getContentUrl()" v-html="form.contentTitle" target="_blank"></el-link>
+          <div style="clear: both;"></div>
+        </template>
+        <el-button size="mini" icon="el-icon-circle-plus-outline" v-on:click="btnLinkToContentClick">
+          指定内容
+        </el-button>
+      </el-form-item>
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       <el-form-item label="新增内容排序规则">
         <el-tooltip effect="light" content="新增或导入的内容将按照此排序规则进行排序" placement="right">
           <el-select v-model="form.defaultTaxisType" placeholder="请选择新增内容排序规则">
@@ -503,6 +549,7 @@
         </el-tooltip>
       </el-form-item>
       <el-form-item label="生成页面路径">
+<<<<<<< HEAD
         <el-input v-model="form.filePath" placeholder="在此设置栏目的生成页面地址"></el-input>
       </el-form-item>
       <el-form-item label="下级栏目页面命名规则">
@@ -513,11 +560,31 @@
         <el-input style="width: 70%" v-model="form.contentFilePathRule" placeholder="在此设置栏目页面命名规则"></el-input>
         <el-button v-on:click.prevent="btnSetClick(form.id, false, form.contentFilePathRule)">构造</el-button>
       </el-form-item>
+=======
+        <el-input v-model="form.filePath" placeholder="设置栏目的生成页面地址"></el-input>
+      </el-form-item>
+      <el-form-item label="下级栏目页面命名规则">
+        <el-input style="width: 70%" v-model="form.channelFilePathRule" placeholder="设置下级栏目页面命名规则"></el-input>
+        <el-button v-on:click.prevent="btnSetClick(form.id, true, form.channelFilePathRule)">构造</el-button>
+      </el-form-item>
+      <el-form-item label="内容页面命名规则">
+        <el-input style="width: 70%" v-model="form.contentFilePathRule" placeholder="设置此栏目下的内容页面命名规则"></el-input>
+        <el-button v-on:click.prevent="btnSetClick(form.id, false, form.contentFilePathRule)">构造</el-button>
+      </el-form-item>
+      <el-form-item label="栏目设置">
+        <el-switch v-model="form.isChangeBanned" active-text="禁止维护内容(添加/修改/删除)" style="margin-right: 20px"></el-switch>
+        <el-switch v-model="form.isCreateBanned" active-text="禁止生成内容"></el-switch>
+      </el-form-item>
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       <el-form-item label="栏目关键字">
         <el-input v-model="form.keywords"></el-input>
       </el-form-item>
       <el-form-item label="栏目描述">
+<<<<<<< HEAD
         <el-input type="textarea" v-model="form.description"></el-input>
+=======
+        <el-input type="textarea" v-model="form.description" :autosize="{ minRows: 3, maxRows: 10}"></el-input>
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       </el-form-item>
       @await Html.PartialAsync("_PartialForm")
 

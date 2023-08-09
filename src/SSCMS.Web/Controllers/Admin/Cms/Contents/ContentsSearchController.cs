@@ -113,6 +113,10 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Contents
             public IEnumerable<string> TagNames { get; set; }
             public IEnumerable<CheckBox<int>> CheckedLevels { get; set; }
             public ContentColumn TitleColumn { get; set; }
+<<<<<<< HEAD
+=======
+            public ContentColumn BodyColumn { get; set; }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             public List<ContentColumn> Columns { get; set; }
             public Permissions Permissions { get; set; }
         }

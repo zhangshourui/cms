@@ -5,7 +5,11 @@
     <TargetFramework>net7.0</TargetFramework>
     <LangVersion>latest</LangVersion>
     <ApplicationIcon>logo.ico</ApplicationIcon>
+<<<<<<< HEAD
     <Version>7.2.0</Version>
+=======
+    <Version>7.2.1</Version>
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     <NoWarn>$(NoWarn);1591</NoWarn>
     <AssemblyName>SSCMS.Cli</AssemblyName>
     <StartupObject>SSCMS.Cli.Program</StartupObject>

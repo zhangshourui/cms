@@ -71,6 +71,21 @@ namespace SSCMS.Core.StlParser.StlElement
         [StlAttribute(Title = "是否默认显示全部内容")]
         public const string IsDefaultDisplay = nameof(IsDefaultDisplay);
 
+<<<<<<< HEAD
+=======
+        [StlAttribute(Title = "动态请求发送前执行的JS代码")]
+        private const string OnBeforeSend = nameof(OnBeforeSend);
+
+        [StlAttribute(Title = "动态请求成功后执行的JS代码")]
+        private const string OnSuccess = nameof(OnSuccess);
+
+        [StlAttribute(Title = "动态请求结束后执行的JS代码")]
+        private const string OnComplete = nameof(OnComplete);
+
+        [StlAttribute(Title = "动态请求失败后执行的JS代码")]
+        private const string OnError = nameof(OnError);
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         public static async Task<object> ParseAsync(IParseManager parseManager)
         {
             var pageInfo = parseManager.PageInfo;
@@ -92,6 +107,13 @@ namespace SSCMS.Core.StlParser.StlElement
             var pageNum = 0;
             var isHighlight = true;
             var isDefaultDisplay = false;
+<<<<<<< HEAD
+=======
+            var onBeforeSend = string.Empty;
+            var onSuccess = string.Empty;
+            var onComplete = string.Empty;
+            var onError = string.Empty;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
             foreach (var name in contextInfo.Attributes.AllKeys)
             {
@@ -161,6 +183,25 @@ namespace SSCMS.Core.StlParser.StlElement
                 {
                     isDefaultDisplay = TranslateUtils.ToBool(value);
                 }
+<<<<<<< HEAD
+=======
+                else if (StringUtils.EqualsIgnoreCase(name, OnBeforeSend))
+                {
+                    onBeforeSend = await parseManager.ReplaceStlEntitiesForAttributeValueAsync(value);
+                }
+                else if (StringUtils.EqualsIgnoreCase(name, OnSuccess))
+                {
+                    onSuccess = await parseManager.ReplaceStlEntitiesForAttributeValueAsync(value);
+                }
+                else if (StringUtils.EqualsIgnoreCase(name, OnComplete))
+                {
+                    onComplete = await parseManager.ReplaceStlEntitiesForAttributeValueAsync(value);
+                }
+                else if (StringUtils.EqualsIgnoreCase(name, OnError))
+                {
+                    onError = await parseManager.ReplaceStlEntitiesForAttributeValueAsync(value);
+                }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             }
 
             StlParserUtility.GetLoadingYesNo(contextInfo.InnerHtml, out var loading, out var yes, out var no);
@@ -170,6 +211,15 @@ namespace SSCMS.Core.StlParser.StlElement
                 var filePath = parseManager.PathManager.GetSiteFilesPath(Resources.Search.LoadingTemplatePath);
                 loading = parseManager.PathManager.GetContentByFilePath(filePath);
             }
+<<<<<<< HEAD
+=======
+            else
+            {
+                var innerBuilder = new StringBuilder(loading);
+                await parseManager.ParseInnerContentAsync(innerBuilder);
+                loading = innerBuilder.ToString();
+            }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             if (string.IsNullOrEmpty(yes))
             {
                 var filePath = parseManager.PathManager.GetSiteFilesPath(Resources.Search.YesTemplatePath);
@@ -180,6 +230,15 @@ namespace SSCMS.Core.StlParser.StlElement
                 var filePath = parseManager.PathManager.GetSiteFilesPath(Resources.Search.NoTemplatePath);
                 no = parseManager.PathManager.GetContentByFilePath(filePath);
             }
+<<<<<<< HEAD
+=======
+            else
+            {
+                var innerBuilder = new StringBuilder(no);
+                await parseManager.ParseInnerContentAsync(innerBuilder);
+                no = innerBuilder.ToString();
+            }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
             await pageInfo.AddPageHeadCodeIfNotExistsAsync(ParsePage.Const.StlClient);
             await pageInfo.AddPageHeadCodeIfNotExistsAsync(ParsePage.Const.Jquery);
@@ -225,6 +284,11 @@ jQuery(document).ready(function(){{
             parameters['page'] = 1;
         }}
 
+<<<<<<< HEAD
+=======
+        {onBeforeSend}
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         jQuery.support.cors = true;
         jQuery.ajax({{
             url: url,
@@ -237,11 +301,21 @@ jQuery(document).ready(function(){{
                 jQuery(""#{elementId} .stl_yes"").show();
                 jQuery(""#{elementId} .stl_no"").hide();
                 jQuery(""#{elementId} .stl_yes"").html(res.value);
+<<<<<<< HEAD
+=======
+                {onSuccess}
+                {onComplete}
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             }},
             error: function(e) {{
                 jQuery(""#{elementId} .stl_loading"").hide();
                 jQuery(""#{elementId} .stl_yes"").hide();
                 jQuery(""#{elementId} .stl_no"").show();
+<<<<<<< HEAD
+=======
+                {onError}
+                {onComplete}
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             }}
         }});
     }} else {{

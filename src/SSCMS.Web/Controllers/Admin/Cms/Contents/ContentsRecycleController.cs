@@ -1,7 +1,18 @@
+<<<<<<< HEAD
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
 using SSCMS.Configuration;
+=======
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using NSwag.Annotations;
+using SSCMS.Configuration;
+using SSCMS.Dto;
+using SSCMS.Models;
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 using SSCMS.Repositories;
 using SSCMS.Services;
 
@@ -40,5 +51,59 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Contents
             _contentGroupRepository = contentGroupRepository;
             _contentTagRepository = contentTagRepository;
         }
+<<<<<<< HEAD
+=======
+
+        public enum Action
+        {
+            Delete,
+            DeleteAll,
+            Restore,
+            RestoreAll
+        }
+
+        public class DeleteRequest : SiteRequest
+        {
+            public Action Action { get; set; }
+            public string ChannelContentIds { get; set; }
+            public int RestoreChannelId { get; set; }
+        }
+
+        public class TreeResult
+        {
+            public Cascade<int> Root { get; set; }
+            public string SiteUrl { get; set; }
+            public IEnumerable<string> GroupNames { get; set; }
+            public IEnumerable<string> TagNames { get; set; }
+            public IEnumerable<CheckBox<int>> CheckedLevels { get; set; }
+            public List<ContentColumn> Columns { get; set; }
+            public ContentColumn TitleColumn { get; set; }
+            public ContentColumn BodyColumn { get; set; }
+        }
+
+        public class ListRequest : SiteRequest
+        {
+            public int? ChannelId { get; set; }
+            public DateTime? StartDate { get; set; }
+            public DateTime? EndDate { get; set; }
+            public IEnumerable<KeyValuePair<string, string>> Items { get; set; }
+            public int Page { get; set; }
+            public bool IsCheckedLevels { get; set; }
+            public List<int> CheckedLevels { get; set; }
+            public bool IsTop { get; set; }
+            public bool IsRecommend { get; set; }
+            public bool IsHot { get; set; }
+            public bool IsColor { get; set; }
+            public List<string> GroupNames { get; set; }
+            public List<string> TagNames { get; set; }
+        }
+
+        public class ListResult
+        {
+            public List<Content> PageContents { get; set; }
+            public int Total { get; set; }
+            public int PageSize { get; set; }
+        }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     }
 }

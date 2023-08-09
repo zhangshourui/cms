@@ -32,6 +32,11 @@ namespace SSCMS.Web.Controllers.Admin.Settings.Administrators
             config.IsAdminEnforceLogout = request.IsAdminEnforceLogout;
             config.AdminEnforceLogoutMinutes = request.AdminEnforceLogoutMinutes;
 
+<<<<<<< HEAD
+=======
+            config.IsAdminCaptchaDisabled = request.IsAdminCaptchaDisabled;
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             await _configRepository.UpdateAsync(config);
 
             await _authManager.AddAdminLogAsync("修改管理员设置");

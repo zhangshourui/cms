@@ -24,6 +24,7 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Settings
             var cascade = await _channelRepository.GetCascadeAsync(site, channel, async summary =>
             {
                 var count = await _contentRepository.GetCountAsync(site, summary);
+<<<<<<< HEAD
                 var entity = await _channelRepository.GetAsync(summary.Id);
                 var filePath = await _pathManager.GetInputChannelUrlAsync(site, entity, false);
                 var contentFilePathRule = string.IsNullOrEmpty(entity.ContentFilePathRule)
@@ -32,6 +33,17 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Settings
                 return new
                 {
                     entity.IndexName,
+=======
+                var node = await _channelRepository.GetAsync(summary.Id);
+                var filePath = await _pathManager.GetInputChannelUrlAsync(site, node, false);
+                var contentFilePathRule = string.IsNullOrEmpty(node.ContentFilePathRule)
+                    ? await _pathManager.GetContentFilePathRuleAsync(site, summary.Id)
+                    : node.ContentFilePathRule;
+
+                return new
+                {
+                    Channel = node,
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                     Count = count,
                     FilePath = filePath,
                     ContentFilePathRule = contentFilePathRule

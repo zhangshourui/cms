@@ -13,12 +13,17 @@
   <el-form-item label="用户中心状态">
     <el-radio v-model="form.isHomeClosed" :label="false">启用用户中心</el-radio>
     <el-radio v-model="form.isHomeClosed" :label="true">禁用用户中心</el-radio>
+<<<<<<< HEAD
     <div class="tips">选择禁用将导致用户无法使用中户中心</div>
+=======
+    <div class="tips">选择禁用将关闭用户中心</div>
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
   </el-form-item>
   <template v-if="!form.isHomeClosed">
 
     <el-form-item label="用户中心名称" prop="homeTitle" :rules="{ required: true, message: '请输入用户中心名称' }">
       <el-input v-model="form.homeTitle"></el-input>
+<<<<<<< HEAD
       <small class="tips">设置用户中心访问地址</small>
     </el-form-item>
     <el-form-item label="用户中心Logo">
@@ -26,6 +31,14 @@
       <el-radio v-model="form.isHomeLogo" :label="true">使用图片作为Logo</el-radio>
     </el-form-item>
     <el-form-item v-if="form.isHomeLogo" label="用户中心Logo">
+=======
+    </el-form-item>
+    <el-form-item label="用户中心Logo类型">
+      <el-radio v-model="form.isHomeLogo" :label="false">使用文字作为Logo</el-radio>
+      <el-radio v-model="form.isHomeLogo" :label="true">使用图片作为Logo</el-radio>
+    </el-form-item>
+    <el-form-item v-if="form.isHomeLogo" label="用户中心Logo图片">
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       <el-upload
         :action="uploadUrl"
         :file-list="uploadFileListHomeLogoUrl"
@@ -40,7 +53,11 @@
         <i class="el-icon-plus"></i>
       </el-upload>
     </el-form-item>
+<<<<<<< HEAD
     <el-form-item label="默认用户头像">
+=======
+    <el-form-item label="默认用户头像图片">
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
       <el-upload
         :action="uploadUrl"
         :file-list="uploadFileListHomeDefaultAvatarUrl"
@@ -64,15 +81,24 @@
       <el-checkbox-group v-model="form.userRegistrationAttributes">
         <el-checkbox v-for="style in styles" :key="style.attributeName" :label="style.attributeName">{{style.displayName}}</el-checkbox>
       </el-checkbox-group>
+<<<<<<< HEAD
       <small class="tips">
         字段名称及验证方式请进入
         <el-link type="primary" :underline="false" v-on:click="btnUsersStyleClick">用户字段</el-link>
         界面进行设置
       </small>
+=======
+      <div class="tips">
+        字段名称及验证方式请进入
+        <el-link type="primary" :underline="false" v-on:click="btnUsersStyleClick">用户字段</el-link>
+        界面进行设置
+      </div>
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     </el-form-item>
     <el-form-item label="是否显示用户协议">
       <el-radio v-model="form.isHomeAgreement" :label="true">显示用户协议</el-radio>
       <el-radio v-model="form.isHomeAgreement" :label="false">不显示用户协议</el-radio>
+<<<<<<< HEAD
       <small class="tips">设置显示用户协议后，新用户注册时必须勾选阅读并接受《用户协议》</small>
     </el-form-item>
     <el-form-item v-if="form.isHomeAgreement" label="用户协议" prop="homeAgreementHtml" :rules="{ required: true, message: '请输入用户中心名称' }">
@@ -82,6 +108,17 @@
     <el-form-item label="用户中心欢迎语">
       <el-input v-model="form.homeWelcomeHtml" type="textarea"></el-input>
       <small class="tips">请填写进入用户中心后显示的欢迎文字，支持HTML格式。</small>
+=======
+      <div class="tips">设置显示用户协议后，新用户注册时必须勾选阅读并接受《用户协议》</div>
+    </el-form-item>
+    <el-form-item v-if="form.isHomeAgreement" label="用户协议" prop="homeAgreementHtml" :rules="{ required: true, message: '请输入用户中心名称' }">
+      <el-input v-model="form.homeAgreementHtml" type="textarea"></el-input>
+      <div class="tips">请在用户协议中填写显示在勾选框后面的文字，支持HTML格式</div>
+    </el-form-item>
+    <el-form-item label="用户中心欢迎语">
+      <el-input v-model="form.homeWelcomeHtml" type="textarea"></el-input>
+      <div class="tips">请填写进入用户中心后显示的欢迎文字，支持HTML格式。</div>
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     </el-form-item>
     
   </template>

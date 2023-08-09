@@ -43,6 +43,10 @@ namespace SSCMS.Web.Controllers.Admin.Settings.Administrators
             public int AdminEnforcePasswordChangeDays { get; set; }
             public bool IsAdminEnforceLogout { get; set; }
             public int AdminEnforceLogoutMinutes { get; set; }
+<<<<<<< HEAD
+=======
+            public bool IsAdminCaptchaDisabled { get; set; }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         }
     }
 }

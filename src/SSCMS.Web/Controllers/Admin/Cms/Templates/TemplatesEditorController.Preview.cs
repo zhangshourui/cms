@@ -21,7 +21,11 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Templates
             if (site == null) return this.Error(Constants.ErrorNotFound);
 
             var template = await _templateRepository.GetAsync(request.TemplateId);
+<<<<<<< HEAD
             await _parseManager.InitAsync(EditMode.Preview, site, request.ChannelId, request.ContentId, template);
+=======
+            await _parseManager.InitAsync(EditMode.Preview, site, request.ChannelId, request.ContentId, template, 0);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             var parsedContent = await _parseManager.ParseTemplateWithCodesHtmlAsync(request.Content);
 
             var baseUrl = string.Empty;

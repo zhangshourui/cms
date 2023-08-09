@@ -107,7 +107,11 @@ npm run copy-linux-arm64
 docker pull sscms/core:latest
 ```
 
+<<<<<<< HEAD
 运行 SS CMS 容器
+=======
+运行 SSCMS 容器
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
 ```sh
 docker run -d \
@@ -122,7 +126,11 @@ docker run -d \
 
 ## 贡献代码
 
+<<<<<<< HEAD
 项目编译需要使用 Visual Studio 2019，你可以从这里下载 [Visual Studio Community 2019](https://www.visualstudio.com/downloads/)
+=======
+项目编译需要使用 Visual Studio 2022，你可以从这里下载 [Visual Studio Community 2022](https://www.visualstudio.com/downloads/)
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
 代码贡献有很多形式，从提交问题，撰写文档，到提交代码，我们欢迎任何形式的贡献！
 
@@ -132,14 +140,31 @@ SSCMS 产品将每隔两月发布新的正式版本，我们将在每次迭代�
 
 ## 问题与建议
 
+<<<<<<< HEAD
 如果发现任何 BUG 以及对产品使用的问题与建议，请提交至 [Github Issues](https://github.com/siteserver/cms/issues) 或者  [Gitee Issues](https://gitee.com/siteserver/cms/issues)。
+=======
+如果发现任何 BUG 以及对产品使用的问题与建议，请提交至 [Github Issues](https://github.com/siteserver/cms/issues) 或者 [Gitee Issues](https://gitee.com/siteserver/cms/issues)。
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
 ## 关注最新动态
 
 [![qrcode](https://sscms.com/assets/images/qrcode_for_wx.jpg)](https://sscms.com/)
 
+<<<<<<< HEAD
+=======
+## 特别声明
+
+SSCMS 项目已加入 [dotNET China](https://gitee.com/dotnetchina)  组织。<br/>
+
+![dotnetchina](https://gitee.com/dotnetchina/home/raw/master/assets/dotnetchina-raw.png "dotNET China LOGO")
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 ## License
 
 [GNU Affero General Public License v3.0](LICENSE)
 
+<<<<<<< HEAD
 Copyright (C) 2003-2022 SSCMS
+=======
+Copyright (C) 2003-2023 SSCMS
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93

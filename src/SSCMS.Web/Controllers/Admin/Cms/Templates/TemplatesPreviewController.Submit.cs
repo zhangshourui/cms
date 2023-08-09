@@ -43,12 +43,20 @@ namespace SSCMS.Web.Controllers.Admin.Cms.Templates
             //var cacheItem = new CacheItem<string>(CacheKey, request.Content, ExpirationMode.Sliding, TimeSpan.FromHours(1));
             //_cacheManager.AddOrUpdate(cacheItem, _ => request.Content);
 
+<<<<<<< HEAD
             var templateInfo = new Template
+=======
+            var template = new Template
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             {
                 TemplateType = request.TemplateType
             };
 
+<<<<<<< HEAD
             await _parseManager.InitAsync(EditMode.Preview, site, request.ChannelId, contentId, templateInfo);
+=======
+            await _parseManager.InitAsync(EditMode.Preview, site, request.ChannelId, contentId, template, 0);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
             var parsedContent = await _parseManager.ParseTemplateWithCodesHtmlAsync(request.Content);
 

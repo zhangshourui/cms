@@ -65,7 +65,11 @@ namespace SSCMS.Cli.Jobs
             var contentRootPath = _settingsManager.ContentRootPath;
             if (!CliUtils.IsSsCmsExists(contentRootPath) || await _configRepository.IsNeedInstallAsync())
             {
+<<<<<<< HEAD
                 await console.WriteErrorAsync($"SS CMS has not been installed in {contentRootPath}");
+=======
+                await console.WriteErrorAsync($"SSCMS has not been installed in {contentRootPath}");
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 return;
             }
 
@@ -78,7 +82,11 @@ namespace SSCMS.Cli.Jobs
 
             if (!SemVersion.TryParse(result.Cms.Version, out var version) || version <= _settingsManager.Version)
             {
+<<<<<<< HEAD
                 await console.WriteLineAsync($"SS CMS {result.Cms.Version} is the latest version and no update is required");
+=======
+                await console.WriteLineAsync($"SSCMS {result.Cms.Version} is the latest version and no update is required");
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 var proceed = console.GetYesNo("do you still want to update?");
                 if (!proceed) return;
             }
@@ -88,7 +96,11 @@ namespace SSCMS.Cli.Jobs
                 if (!proceed) return;
             }
 
+<<<<<<< HEAD
             await console.WriteLineAsync($"Downloading SS CMS {result.Cms.Version}...");
+=======
+            await console.WriteLineAsync($"Downloading SSCMS {result.Cms.Version}...");
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             var directoryPath = await CloudUtils.Dl.DownloadCmsAsync(_pathManager, _settingsManager.OSArchitecture, result.Cms.Version);
 
             FileUtils.DeleteFileIfExists(PathUtils.Combine(directoryPath, Constants.ConfigFileName));
@@ -130,7 +142,11 @@ namespace SSCMS.Cli.Jobs
 
             //FileUtils.DeleteFileIfExists(offlinePath);
 
+<<<<<<< HEAD
             //await console.WriteSuccessAsync($"Congratulations, SS CMS was updated to {result.Cms.Version} successfully!");
+=======
+            //await console.WriteSuccessAsync($"Congratulations, SSCMS was updated to {result.Cms.Version} successfully!");
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
         }
 
         //public static void Replacing(string contentRootPath, string directoryPath, List<string> unOverrides)

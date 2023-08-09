@@ -79,6 +79,11 @@ namespace SSCMS.Web.Controllers.Admin.Common.TableStyle
                 {
                     foreach (var rapidValue in ListUtils.GetStringListByReturnAndNewline(request.RapidValues))
                     {
+<<<<<<< HEAD
+=======
+                        if (string.IsNullOrWhiteSpace(rapidValue)) continue;
+                        
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                         var itemInfo = new InputStyleItem
                         {
                             Label = rapidValue,
@@ -121,6 +126,18 @@ namespace SSCMS.Web.Controllers.Admin.Common.TableStyle
             {
                 style.CustomizeCode = request.CustomizeCode;
             }
+<<<<<<< HEAD
+=======
+            else if (request.InputType == InputType.Number)
+            {
+                style.Rules = new List<InputStyleRule>{
+                  new InputStyleRule {
+                    Type = ValidateType.Decimal,
+                    Message = "字段必须是数字"
+                  }
+                };
+            }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
             await _tableStyleRepository.InsertAsync(relatedIdentities, style);
 

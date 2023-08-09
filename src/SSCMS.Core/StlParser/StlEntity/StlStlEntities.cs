@@ -60,7 +60,11 @@ namespace SSCMS.Core.StlParser.StlEntity
 
                 if (StringUtils.EqualsIgnoreCase(PoweredBy, attributeName))//支持信息
                 {
+<<<<<<< HEAD
                     parsedContent = @$"Powered by <a href=""{CloudUtils.Www.Host}"" target=""_blank"">SS CMS</a>";
+=======
+                    parsedContent = @$"Powered by <a href=""{CloudUtils.Www.Host}"" target=""_blank"">SSCMS</a>";
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 }
                 else if (StringUtils.EqualsIgnoreCase(RootUrl, attributeName))//系统根目录地址
                 {
@@ -107,19 +111,31 @@ namespace SSCMS.Core.StlParser.StlEntity
                 {
                     var contentInfo = await parseManager.GetContentAsync();
                     var returnUrl = await StlParserUtility.GetStlCurrentUrlAsync(parseManager, pageInfo.Site, contextInfo.ChannelId, contextInfo.ContentId, contentInfo, pageInfo.Template.TemplateType, pageInfo.Template.Id, pageInfo.IsLocal);
+<<<<<<< HEAD
                     parsedContent = parseManager.PathManager.GetHomeUrl($"pages/login.html?returnUrl={PageUtils.UrlEncode(returnUrl)}");
+=======
+                    parsedContent = parseManager.PathManager.GetHomeUrl($"login/?returnUrl={PageUtils.UrlEncode(returnUrl)}");
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 }
                 else if (StringUtils.EqualsIgnoreCase(LogoutUrl, attributeName))
                 {
                     var contentInfo = await parseManager.GetContentAsync();
                     var returnUrl = await StlParserUtility.GetStlCurrentUrlAsync(parseManager, pageInfo.Site, contextInfo.ChannelId, contextInfo.ContentId, contentInfo, pageInfo.Template.TemplateType, pageInfo.Template.Id, pageInfo.IsLocal);
+<<<<<<< HEAD
                     parsedContent = parseManager.PathManager.GetHomeUrl($"pages/logout.html?returnUrl={PageUtils.UrlEncode(returnUrl)}");
+=======
+                    parsedContent = parseManager.PathManager.GetHomeUrl($"logout/?returnUrl={PageUtils.UrlEncode(returnUrl)}");
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 }
                 else if (StringUtils.EqualsIgnoreCase(RegisterUrl, attributeName))
                 {
                     var contentInfo = await parseManager.GetContentAsync();
                     var returnUrl = await StlParserUtility.GetStlCurrentUrlAsync(parseManager, pageInfo.Site, contextInfo.ChannelId, contextInfo.ContentId, contentInfo, pageInfo.Template.TemplateType, pageInfo.Template.Id, pageInfo.IsLocal);
+<<<<<<< HEAD
                     parsedContent = parseManager.PathManager.GetHomeUrl($"pages/register.html?returnUrl={PageUtils.UrlEncode(returnUrl)}");
+=======
+                    parsedContent = parseManager.PathManager.GetHomeUrl($"register/?returnUrl={PageUtils.UrlEncode(returnUrl)}");
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 }
                 else if (StringUtils.StartsWithIgnoreCase(attributeName, "TableFor"))//
                 {

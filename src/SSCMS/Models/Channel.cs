@@ -92,5 +92,14 @@ namespace SSCMS.Models
 
         //显示下级栏目内容
         public bool IsAllContents { get; set; }
+<<<<<<< HEAD
+=======
+
+        //禁止维护内容(添加/修改/删除)
+        public bool IsChangeBanned { get; set; }
+
+        //禁止生成内容
+        public bool IsCreateBanned { get; set; }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     }
 }

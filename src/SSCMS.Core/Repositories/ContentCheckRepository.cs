@@ -7,7 +7,11 @@ using SSCMS.Services;
 
 namespace SSCMS.Core.Repositories
 {
+<<<<<<< HEAD
 	public class ContentCheckRepository : IContentCheckRepository
+=======
+    public class ContentCheckRepository : IContentCheckRepository
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
     {
         private readonly Repository<ContentCheck> _repository;
 
@@ -27,14 +31,31 @@ namespace SSCMS.Core.Repositories
             await _repository.InsertAsync(check);
         }
 
+<<<<<<< HEAD
 		public async Task<List<ContentCheck>> GetCheckListAsync(int siteId, int channelId, int contentId)
 		{
+=======
+        public async Task DeleteAllAsync(int siteId)
+        {
+            await _repository.DeleteAsync(Q
+                .Where(nameof(ContentCheck.SiteId), siteId)
+            );
+        }
+
+        public async Task<List<ContentCheck>> GetCheckListAsync(int siteId, int channelId, int contentId)
+        {
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             return await _repository.GetAllAsync(Q
                 .Where(nameof(ContentCheck.SiteId), siteId)
                 .Where(nameof(ContentCheck.ChannelId), channelId)
                 .Where(nameof(ContentCheck.ContentId), contentId)
                 .OrderByDesc(nameof(ContentCheck.Id))
             );
+<<<<<<< HEAD
 		}
 	}
+=======
+        }
+    }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 }

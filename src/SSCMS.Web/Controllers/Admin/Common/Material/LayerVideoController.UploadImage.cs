@@ -34,11 +34,19 @@ namespace SSCMS.Web.Controllers.Admin.Common.Material
             var extName = PathUtils.GetExtension(fileName);
             if (!_pathManager.IsImageExtensionAllowed(site, extName))
             {
+<<<<<<< HEAD
                 return this.Error(Constants.ErrorVideoExtensionAllowed);
             }
             if (!_pathManager.IsImageSizeAllowed(site, file.Length))
             {
                 return this.Error(Constants.ErrorVideoSizeAllowed);
+=======
+                return this.Error(Constants.ErrorImageExtensionAllowed);
+            }
+            if (!_pathManager.IsImageSizeAllowed(site, file.Length))
+            {
+                return this.Error(Constants.ErrorImageSizeAllowed);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             }
 
             var localDirectoryPath = await _pathManager.GetUploadDirectoryPathAsync(site, UploadType.Image);

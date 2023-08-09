@@ -35,7 +35,11 @@ namespace SSCMS.Core.StlParser.Utility
         public const string OrderHits = "Hits";	            //点击量
         public const string OrderRandom = "Random";            //随机
 
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
         public static bool IsStlChannelElementWithTypePageContent(List<string> list)
         {
@@ -81,7 +85,11 @@ namespace SSCMS.Core.StlParser.Utility
             return stlPageContentElement;
         }
 
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
 
         public static string GetNameFromEntity(string stlEntity)
         {
@@ -197,6 +205,7 @@ namespace SSCMS.Core.StlParser.Utility
         public static int GetItemIndex(ParseContext contextInfo)
         {
             var dbItemIndex = 0;
+<<<<<<< HEAD
             if (contextInfo.ContextType == ParseType.Channel)
             {
                 dbItemIndex = contextInfo.ItemContainer.ChannelItem.Key;
@@ -216,6 +225,30 @@ namespace SSCMS.Core.StlParser.Utility
             else if (contextInfo.ContextType == ParseType.Each)
             {
                 dbItemIndex = contextInfo.ItemContainer.EachItem.Key;
+=======
+            if (contextInfo.ItemContainer != null)
+            {
+                if (contextInfo.ContextType == ParseType.Channel)
+                {
+                    dbItemIndex = contextInfo.ItemContainer.ChannelItem.Key;
+                }
+                else if (contextInfo.ContextType == ParseType.Content)
+                {
+                    dbItemIndex = contextInfo.ItemContainer.ContentItem.Key;
+                }
+                else if (contextInfo.ContextType == ParseType.SqlContent)
+                {
+                    dbItemIndex = contextInfo.ItemContainer.SqlItem.Key;
+                }
+                else if (contextInfo.ContextType == ParseType.Site)
+                {
+                    dbItemIndex = contextInfo.ItemContainer.SiteItem.Key;
+                }
+                else if (contextInfo.ContextType == ParseType.Each)
+                {
+                    dbItemIndex = contextInfo.ItemContainer.EachItem.Key;
+                }
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             }
 
             return contextInfo.PageItemIndex + dbItemIndex + 1;
@@ -232,8 +265,13 @@ namespace SSCMS.Core.StlParser.Utility
             {
                 if (content == null)
                 {
+<<<<<<< HEAD
                     var nodeInfo = await parseManager.DatabaseManager.ChannelRepository.GetAsync(channelId);
                     currentUrl = await parseManager.PathManager.GetContentUrlAsync(site, nodeInfo, contentId, isLocal);
+=======
+                    var channel = await parseManager.DatabaseManager.ChannelRepository.GetAsync(channelId);
+                    currentUrl = await parseManager.PathManager.GetContentUrlAsync(site, channel, contentId, isLocal);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
                 }
                 else
                 {
@@ -242,7 +280,12 @@ namespace SSCMS.Core.StlParser.Utility
             }
             else if (templateType == TemplateType.ChannelTemplate)
             {
+<<<<<<< HEAD
                 currentUrl = await parseManager.PathManager.GetChannelUrlAsync(site, await parseManager.DatabaseManager.ChannelRepository.GetAsync(channelId), isLocal);
+=======
+                var channel = await parseManager.DatabaseManager.ChannelRepository.GetAsync(channelId);
+                currentUrl = await parseManager.PathManager.GetChannelUrlAsync(site, channel, isLocal);
+>>>>>>> c6f12030edc3fe4820d2654bd0ed70f892a63e93
             }
             else if (templateType == TemplateType.FileTemplate)
             {
