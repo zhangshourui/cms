@@ -4,7 +4,7 @@ var $cloudToken = localStorage.getItem(CLOUD_ACCESS_TOKEN_NAME);
 var $cloudUserName = localStorage.getItem(CLOUD_USER_NAME);
 
 var cloud = _.extend(axios.create({
-  baseURL: 'http://localhost:6060/v7',
+  baseURL: 'https://api.sscms.com/v7',
   headers: {
     Authorization: "Bearer " + $cloudToken,
   },

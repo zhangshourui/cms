@@ -42,6 +42,8 @@ namespace SSCMS.Web.Controllers.Home
         {
             public string HomeTitle { get; set; }
             public bool IsSmsEnabled { get; set; }
+            public User User { get; set; }
+            public string Token { get; set; }
         }
 
         public class CheckRequest
@@ -58,6 +60,7 @@ namespace SSCMS.Web.Controllers.Home
             public string Mobile { get; set; }
             public string Code { get; set; }
             public bool IsPersistent { get; set; }
+            public string AccessToken { get; set; }
         }
 
         public class SubmitResult

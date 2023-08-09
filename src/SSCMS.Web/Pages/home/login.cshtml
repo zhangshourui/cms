@@ -102,7 +102,7 @@
       <el-checkbox v-model="form.isPersistent" style="margin-right: 10px; margin-bottom: 5px;">
         保持登录状态
       </el-checkbox>
-      <el-link style="float: right;" v-if="isSmsEnabled" v-on:click="redirectLostPassword" :underline="false" style="margin-left: 10px">忘记密码？</el-link>
+            <el-link style="float: right;margin-left: 10px" v-if="isSmsEnabled" v-on:click="redirectLostPassword" :underline="false">忘记密码？</el-link>
     </div>
     <div style="margin: 10px 0;">
       <el-button type="primary" style="width: 100%" v-on:click="btnSubmitClick">登 录</el-button>

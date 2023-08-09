@@ -34,15 +34,31 @@ var methods = {
         title: '您的账号登录已过期或失效，请重新登录'
       };
     }
+    var tempUrl = $url;
+    var access_token = utils.getQueryString("access_token");
+    if (access_token) {
+      tempUrl += "?access_token=" + encodeURIComponent(access_token);
+    }
 
     utils.loading(this, true);
-    $api.get($url).then(function (response) {
+    $api.get(tempUrl).then(function (response) {
       var res = response.data;
+      if (res.token) {
+        localStorage.removeItem(ACCESS_TOKEN_NAME);
+        localStorage.setItem(ACCESS_TOKEN_NAME, res.token);
+        if ($this.returnUrl) {
+          location.href = $this.returnUrl;
+        } else {
+          $this.redirectIndex();
+        }
+      }
+      else {
 
-      $this.version = res.version;
-      $this.homeTitle = res.homeTitle;
-      $this.isSmsEnabled = res.isSmsEnabled;
-      $this.apiCaptcha();
+        $this.version = res.version;
+        $this.homeTitle = res.homeTitle;
+        $this.isSmsEnabled = res.isSmsEnabled;
+        $this.apiCaptcha();
+      }
     }).catch(function (error) {
       utils.notifyError(error);
     }).then(function () {
@@ -96,7 +112,7 @@ var methods = {
       $this.countdown = 60;
       var interval = setInterval(function () {
         $this.countdown -= 1;
-        if ($this.countdown <= 0){
+        if ($this.countdown <= 0) {
           clearInterval(interval);
         }
       }, 1000);
@@ -140,15 +156,17 @@ var methods = {
     });
   },
 
+  //redirectIndex: function () {
+  //  location.href = utils.getIndexUrl();
+  //},
   redirectIndex: function () {
-    location.href = utils.getIndexUrl();
+    location.href = "/"
   },
-
   redirectLostPassword: function () {
     location.href = utils.getRootUrl('lostPassword');
   },
 
-  btnTypeClick: function() {
+  btnTypeClick: function () {
     var $this = this;
 
     this.$refs.formAccount.clearValidate();
@@ -189,13 +207,13 @@ var methods = {
     var $this = this;
 
     if (this.form.type == 'account') {
-      this.$refs.formAccount.validate(function(valid) {
+      this.$refs.formAccount.validate(function (valid) {
         if (valid) {
           $this.apiCaptchaCheck();
         }
       });
     } else {
-      this.$refs.formMobile.validate(function(valid) {
+      this.$refs.formMobile.validate(function (valid) {
         if (valid) {
           $this.apiSubmit();
         }
@@ -203,7 +221,7 @@ var methods = {
     }
   },
 
-  btnRegisterClick: function(e) {
+  btnRegisterClick: function (e) {
     e.preventDefault();
     location.href = utils.getRootUrl('register');
   }

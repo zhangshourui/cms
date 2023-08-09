@@ -1,0 +1,18 @@
+﻿{
+  "IsProtectData": false,
+  "IsSafeMode": false,
+  "SecurityKey": "c1b8906aacbfd2ae737fbacfcc9ac7ec88a9468ef096c4e7",
+  "Database": {
+    "Type": "SqlServer",
+    "ConnectionString": "Server=localhost;Uid=sa;Pwd=zhangcupid;Database=cms;"
+  },
+  "Redis": {
+    "ConnectionString": "localhost:6379,allowAdmin=true"
+  },
+  "IsDisablePlugins": false,
+  "AdminRestriction": {
+    "Host": "",
+    "AllowList": [],
+    "BlockList": []
+  }
+}

@@ -1,0 +1,48 @@
+<header id="header-web">
+    <div class="header-main">
+        <a href="{Stl.SiteUrl}/" class="logo">
+            <img src="{stl.imageUrl}" />
+        </a>
+        <nav class="header-nav ">
+            <div>
+                <ul>
+                    <li>
+                        <a href="{Stl.SiteUrl}/" class="{stl:if type=topLevel value=0 yes=active}">首页</a>
+                    </li>
+                    <stl:channels topLevel="0" group="主导航">
+                        <li>
+                            <stl:a class="{stl:if type=current yes=active}">{Channel.Title}</stl:a>
+                        </li>
+                    </stl:channels>
+
+                    <stl:if type="IsUserLoggin">
+                        <stl:yes>
+                            <li class="username">
+
+                                <label>
+                                    {user.DisplayName}
+                                    <a href="{stl:login url=logout}">退出</a>
+                                </label>
+
+                            </li>
+
+                        </stl:yes>
+                        <stl:no>
+                            <li>
+                                <a href="#" onclick="onLogin()">登录</a>
+                            </li>
+                        </stl:no>
+                    </stl:if>
+
+
+                </ul>
+            </div>
+        </nav>
+        <!--<form method="get" class="search" action="{Stl.SiteUrl}/utils/search.html">
+            <input class="text" type="text" name="word" placeholder="搜索">
+        </form>-->
+    </div>
+    <stl:layer funcName="onLogin" title="用户登录" width="500" offset="100px">
+        <stl:login type="login-account"></stl:login>
+    </stl:layer>
+</header>

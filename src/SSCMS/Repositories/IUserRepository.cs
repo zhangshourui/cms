@@ -9,7 +9,15 @@ namespace SSCMS.Repositories
 {
     public partial interface IUserRepository : IRepository
     {
-        Task<(User user, string errorMessage)> InsertAsync(User user, string password, string ipAddress);
+        /// <summary>
+        /// 注册一个一个新的用户
+        /// </summary>
+        /// <param name="user">用户对象 <see cref="SSCMS.Models.User"/>  </param>
+        /// <param name="password">密码</param>
+        /// <param name="ipAddress">注册IP</param>
+        /// <param name="ignoreConfigLimit">是否忽略配置限制，true为忽略限制。默认false，按配置限制。</param>
+        /// <returns></returns>
+        Task<(User user, string errorMessage)> InsertAsync(User user, string password, string ipAddress, bool ignoreConfigLimit = false);
 
         Task<(bool success, string errorMessage)> UpdateAsync(User user);
 

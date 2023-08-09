@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.IO;
 using System.Net.Http;
 using System.Text;
@@ -77,6 +78,40 @@ namespace SSCMS.Utils
                 throw new Exception($"页面地址“{remoteUrl}”无法访问，{ex.Message}！");
             }
             return true;
+        }
+
+        public static string GetPeerIP(HttpContext context)
+        {
+
+            try
+            {
+                var request = context.Request;
+
+                if (request == null)
+                    return null;
+                string strIPAddr = "";
+                string xfr = request.Headers["X-Forwarded-For"];
+                if (string.IsNullOrEmpty(xfr)
+                    || xfr.IndexOf("unknown") >= 0)
+
+                    strIPAddr = context.Connection.LocalIpAddress.MapToIPv4().ToString();
+                else
+                {
+                    string[] arr = xfr.Split(new char[] { ',', ';' });
+                    if (arr.Length >= 1)
+                    {
+                        strIPAddr = arr[0].Trim();
+                    }
+                }
+                return strIPAddr;
+            }
+            catch (Exception)
+            {
+
+                return string.Empty;
+            }
+
+
         }
     }
 }

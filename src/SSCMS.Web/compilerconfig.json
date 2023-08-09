@@ -1,0 +1,14 @@
+﻿[
+  {
+    "outputFile": "wwwroot/sitefiles/sitetemplates/T_Scevola/css/gardenl-pc.css",
+    "inputFile": "wwwroot/sitefiles/sitetemplates/T_Scevola/css/gardenl-pc.less"
+  },
+  {
+    "outputFile": "wwwroot/css/gardenl-phone.css",
+    "inputFile": "wwwroot/css/gardenl-phone.less"
+  },
+  {
+    "outputFile": "wwwroot/css/gardenl-pc.css",
+    "inputFile": "wwwroot/css/gardenl-pc.less"
+  }
+]

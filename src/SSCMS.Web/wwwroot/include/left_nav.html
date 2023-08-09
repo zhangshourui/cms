@@ -1,0 +1,45 @@
+﻿<aside id="sitebar-page">
+    <button class="btn collapsed" id="btn-left-nav-toggle" type="button" aria-label="Toggle docs navigation">
+        <div>目录</div>
+    </button>
+
+    <div id="menu">
+        <ul class="menu">
+            <stl:channels topLevel="1">
+                <stl:if type="UpChannelOrSelf">
+                    <stl:yes>
+                        <li class="navon">
+                            <stl:a>{Channel.Title}</stl:a>
+                        </li>
+                    </stl:yes>
+                    <stl:no>
+                        <li>
+                            <stl:a>{Channel.Title}</stl:a>
+                        </li>
+                    </stl:no>
+                </stl:if>
+                <li>
+                    <ul class="sub-menu">
+                        <stl:channels topLevel="2" channelIndex={stl:Channel type='channelIndex' }>
+                            <stl:if type="UpChannelOrSelf">
+                                <stl:yes>
+                                    <li class="navon">
+                                        <stl:a>{Channel.Title}</stl:a>
+                                    </li>
+                                </stl:yes>
+                                <stl:no>
+                                    <li>
+                                        <stl:a>{Channel.Title}</stl:a>
+                                    </li>
+                                </stl:no>
+                            </stl:if>
+                        </stl:channels>
+
+                    </ul>
+                </li>
+            </stl:channels>
+        </ul>
+    </div>
+</aside>
+
+<script src="/js/left-nav.js"></script>

@@ -1,0 +1,24 @@
+<header id="header-web">
+  <div class="header-main">
+    <a href="{Stl.SiteUrl}/" class="logo">
+      <img src="{stl.imageUrl}" />
+    </a>
+    <nav class="header-nav ">
+      <div>
+        <ul>
+          <li>
+            <a href="{Stl.SiteUrl}/" class="{stl:if type=topLevel value=0 yes=active}">首页</a>
+          </li>
+          <stl:channels topLevel="0" group="主导航">
+            <li>
+              <stl:a class="{stl:if type=current yes=active}">{Channel.Title}</stl:a>
+            </li>
+          </stl:channels>
+        </ul>
+      </div>
+    </nav>
+    <form method="get" class="search" action="{Stl.SiteUrl}/utils/search.html">
+      <input class="text" type="text" name="word" placeholder="搜索">
+    </form>
+  </div>
+</header>

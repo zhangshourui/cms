@@ -1,0 +1,175 @@
+@page-width: 1140px;
+
+.header-main {
+    margin: 0 auto;
+    padding: 30px 0;
+    display: flex;
+    flex-flow: row nowrap;
+
+    .logo {
+        display: block;
+
+        img {
+            width: 40px;
+            height: auto;
+            margin-top: 10px;
+        }
+    }
+
+    .header-nav {
+        margin-top: 10px;
+
+        ul {
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+
+            > li {
+                position: relative;
+
+
+
+                > a {
+                    display: block;
+                    color: #000;
+                    text-align: right;
+                    font-size: 1.1rem;
+                    padding: 0.8em 2em;
+                    min-width: 4em;
+
+                    &.active, &:hover {
+                        color: #ff8b3d;
+
+                        &:after {
+                            left: 0;
+                            width: 100%;
+                            transition: width 350ms;
+                            -moz-transition: width 350ms;
+                            -webkit-transition: width 350ms;
+                        }
+                    }
+                }
+
+                &.username {
+                    > label {
+                        font-size: 1.1rem;
+                        padding: 0.8em 2em;
+                        padding-right: 0;
+                    }
+                }
+
+                &.logout > a {
+                    padding-left: 0.5em;
+                    min-width: auto;
+                    color: #f56c6c;
+                }
+
+                .sub-menu {
+                    position: absolute;
+                    z-index: 99999;
+                    top: 40px;
+                    left: 0;
+                    padding-bottom: 15px;
+                    border-radius: 5px;
+                    transition: all .6s;
+                    overflow: hidden;
+                    width: 150px;
+                    height: 0;
+
+                    li {
+                        width: 100%;
+                        margin-left: 0;
+                        margin-top: 15px;
+                        clear: both;
+
+                        a {
+                            width: 100%;
+                            text-align: center;
+                            color: #fff;
+                            text-indent: 0;
+                            padding: 0;
+
+                            &:hover {
+                                color: #fff;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+#sitebar-page {
+    width: auto;
+    // display: none;
+    #btn-left-nav-toggle {
+        display: none;
+        border: 1px solid #ddd;
+        text-align: center;
+        position: fixed;
+        z-index: 999;
+        background: rgba(255,255,255,.93);
+        box-shadow: 0 2px 7px 0 rgba(0,0,0,.12);
+        color: #000;
+        font-size: 0.7rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        line-height: 2.5rem;
+        border-radius: 50%;
+        bottom: 5rem;
+        right: 1.4rem;
+
+        &:focus {
+        }
+    }
+
+    #menu {
+        width: auto;
+        transition: width 0.2s ease-in-out;
+
+        ul.menu, ul.sub-menu {
+            > li {
+                > a {
+                    padding: 0.5em;
+                    line-height: normal;
+                    width: 100%;
+                    transition: background-color 0.2s ease-out;
+                    display: block;
+
+                    &:hover {
+                        color: lemonchiffon;
+                        background-color: darken(#ff8b3d, 10%);
+                    }
+                }
+            }
+        }
+
+        ul.sub-menu {
+            padding-left: 1em;
+
+            > li {
+
+                > a {
+
+                    &:hover {
+                        color: #ff8b3d;
+                        background-color: transparent;
+                    }
+                }
+            }
+
+            > li.navon {
+                color: #ff8b3d;
+                background-color: transparent;
+                font-weight: bold;
+
+                > a {
+                    color: #ff8b3d;
+                }
+            }
+        }
+    }
+}
